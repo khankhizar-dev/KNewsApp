@@ -1,0 +1,9 @@
+com.android.knewsapp.session-pngs-0 D:\KNewsApp\session\build\generated\res\pngs\debug
+com.android.knewsapp.session-updated_navigation_xml-1 D:\KNewsApp\session\build\generated\updated_navigation_xml\debug
+com.android.knewsapp.session-mergeDebugResources-2 D:\KNewsApp\session\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.android.knewsapp.session-mergeDebugResources-3 D:\KNewsApp\session\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.android.knewsapp.session-debug-4 D:\KNewsApp\session\build\intermediates\merged_res\debug\mergeDebugResources
+com.android.knewsapp.session-debug-5 D:\KNewsApp\session\build\intermediates\packaged_res\debug\packageDebugResources
+com.android.knewsapp.session-debug-6 D:\KNewsApp\session\src\debug\res
+com.android.knewsapp.session-main-7 D:\KNewsApp\session\src\main\res
+gradleHome-0 C:\Users\khiza\.gradle

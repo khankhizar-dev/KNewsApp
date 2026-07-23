@@ -1,0 +1,9 @@
+com.android.knewsapp.security-pngs-0 D:\KNewsApp\security\build\generated\res\pngs\debug
+com.android.knewsapp.security-updated_navigation_xml-1 D:\KNewsApp\security\build\generated\updated_navigation_xml\debug
+com.android.knewsapp.security-mergeDebugResources-2 D:\KNewsApp\security\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.android.knewsapp.security-mergeDebugResources-3 D:\KNewsApp\security\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.android.knewsapp.security-debug-4 D:\KNewsApp\security\build\intermediates\merged_res\debug\mergeDebugResources
+com.android.knewsapp.security-debug-5 D:\KNewsApp\security\build\intermediates\packaged_res\debug\packageDebugResources
+com.android.knewsapp.security-debug-6 D:\KNewsApp\security\src\debug\res
+com.android.knewsapp.security-main-7 D:\KNewsApp\security\src\main\res
+gradleHome-0 C:\Users\khiza\.gradle

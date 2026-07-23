@@ -1,0 +1,136 @@
+package com.android.knewsapp.auth
+
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.unit.dp
+
+@Composable
+fun LoginScreen(
+    viewModel: AuthViewModel,
+    onNavigateToSignUp: () -> Unit,
+    onLoginSuccess: () -> Unit,
+    onGoogleSignInClick: () -> Unit
+) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    val error by viewModel.error.collectAsState()
+    val loading by viewModel.loading.collectAsState()
+
+    Column(
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text("Login", style = MaterialTheme.typography.headlineMedium)
+        Spacer(modifier = Modifier.height(16.dp))
+
+        TextField(
+            value = email,
+            onValueChange = { email = it },
+            label = { Text("Email") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("Password") },
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        if (error != null) {
+            Text(error!!, color = MaterialTheme.colorScheme.error)
+            Spacer(modifier = Modifier.height(8.dp))
+        }
+
+        Button(
+            onClick = { viewModel.signInWithEmail(email, password, onLoginSuccess) },
+            enabled = !loading,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            if (loading) CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary)
+            else Text("Login")
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedButton(
+            onClick = onGoogleSignInClick,
+            enabled = !loading,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Sign in with Google")
+        }
+
+        TextButton(onClick = onNavigateToSignUp) {
+            Text("Don't have an account? Sign Up")
+        }
+    }
+}
+
+@Composable
+fun SignUpScreen(
+    viewModel: AuthViewModel,
+    onNavigateToLogin: () -> Unit,
+    onSignUpSuccess: () -> Unit
+) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    val error by viewModel.error.collectAsState()
+    val loading by viewModel.loading.collectAsState()
+
+    Column(
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text("Sign Up", style = MaterialTheme.typography.headlineMedium)
+        Spacer(modifier = Modifier.height(16.dp))
+
+        TextField(
+            value = email,
+            onValueChange = { email = it },
+            label = { Text("Email") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("Password") },
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        if (error != null) {
+            Text(error!!, color = MaterialTheme.colorScheme.error)
+            Spacer(modifier = Modifier.height(8.dp))
+        }
+
+        Button(
+            onClick = { viewModel.signUpWithEmail(email, password, onSignUpSuccess) },
+            enabled = !loading,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            if (loading) CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary)
+            else Text("Sign Up")
+        }
+
+        TextButton(onClick = onNavigateToLogin) {
+            Text("Already have an account? Login")
+        }
+    }
+}

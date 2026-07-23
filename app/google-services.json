@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "302041499058",
+    "project_id": "knewsapp",
+    "storage_bucket": "knewsapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302041499058:android:06c76930bfa06418e190ab",
+        "android_client_info": {
+          "package_name": "com.android.knewsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5oBxqoDhZ2dAgMAVhmlqifaEYUSnt8eI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
