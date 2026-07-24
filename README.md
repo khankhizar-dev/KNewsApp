@@ -25,6 +25,15 @@ The project follows a multi-module approach to ensure scalability and testabilit
 *   **`:auth`**: Contains all authentication UI (Login/Sign-up) and the `AuthViewModel`.
 *   **`:session`**: Manages the user session lifecycle and persists state across app restarts.
 *   **`:security`**: Provides encryption utilities and secure storage wrappers used across the app.
+*   **`:core-ui`**: Centralized Design System containing theme, dimensions, and reusable UI components.
+
+## 🌿 Branching Strategy
+This repository is organized into branches to showcase different development scenarios:
+*   **`main`**: The latest stable version with all features integrated.
+*   **`feature/modularization`**: Focused on the initial project structure and module separation.
+*   **`feature/firebase-auth`**: Implementation of Email/Password and Google Sign-in.
+*   **`feature/session-security`**: Advanced session management with DataStore, EncryptedPrefs, and inactivity timeouts.
+*   **`feature/core-ui`**: Centralization of the UI Design System.
 
 ## 🚦 Getting Started
 1. **Firebase Setup:**
