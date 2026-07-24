@@ -1,0 +1,1 @@
+-keep,allowobfuscation,allowshrinking class com.android.knewsapp.news.presentation.news_list.NewsListViewModel
