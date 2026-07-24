@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.GetCredentialException
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -30,8 +31,10 @@ import com.android.knewsapp.core_ui.theme.Dimensions
 import com.android.knewsapp.core_ui.theme.KNewsAppTheme
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val authViewModel: AuthViewModel by viewModels()
 
@@ -46,6 +49,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             KNewsAppTheme {
                 val navController = rememberNavController()
+                val authViewModel: AuthViewModel = hiltViewModel()
                 val user by authViewModel.user.collectAsStateWithLifecycle()
                 val scope = rememberCoroutineScope()
                 val credentialManager = CredentialManager.create(this)

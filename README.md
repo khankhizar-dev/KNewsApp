@@ -3,8 +3,9 @@
 A modern, modularized Android news application built with **Jetpack Compose** and **Firebase**. This project demonstrates industry-standard best practices, focusing on a clean architecture, robust security, and a reactive user experience.
 
 ## 🚀 Key Features
-*   **Authentication:** Fully integrated Firebase Auth supporting both Email/Password and Google Sign-In.
-*   **Modular Architecture:** Clean separation of concerns with dedicated modules for `:app`, `:auth`, `:session`, and `:security`.
+*   **Authentication:** Fully integrated Firebase Auth supporting both Email/Password and Google Sign-In via Credential Manager.
+*   **Modular Architecture:** Clean separation of concerns with dedicated modules for `:app`, `:auth`, `:session`, `:security`, and `:core-ui`.
+*   **Dependency Injection:** Powered by **Hilt** for a clean, decoupled architecture.
 *   **Secure Session Management:** 
     *   **Jetpack DataStore** for reactive, persistent storage of user preferences.
     *   **EncryptedSharedPreferences** (Hardware-backed) for sensitive session data.
@@ -32,8 +33,9 @@ This repository is organized into branches to showcase different development sce
 *   **`main`**: The latest stable version with all features integrated.
 *   **`feature/modularization`**: Focused on the initial project structure and module separation.
 *   **`feature/firebase-auth`**: Implementation of Email/Password and Google Sign-in.
-*   **`feature/session-security`**: Advanced session management with DataStore, EncryptedPrefs, and inactivity timeouts.
+*   **`feature/session-security`**: Advanced session management with DataStore, EncryptedPrefs (legacy migrated), and inactivity timeouts.
 *   **`feature/core-ui`**: Centralization of the UI Design System.
+*   **`feature/hilt-di`**: Dependency Injection implementation using Hilt.
 
 ## 🚦 Getting Started
 1. **Firebase Setup:**
