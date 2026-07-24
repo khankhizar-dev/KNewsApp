@@ -28,4 +28,5 @@ include(":auth")
 include(":session")
 include(":security")
 include(":core-ui")
+include(":network")
  

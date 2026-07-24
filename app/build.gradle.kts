@@ -43,6 +43,7 @@ dependencies {
     implementation(project(":session"))
     implementation(project(":security"))
     implementation(project(":core-ui"))
+    implementation(project(":network"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)

@@ -13,6 +13,8 @@ ksp = "2.1.0-1.0.29"
 composeBom = "2024.10.01"
 hiltNavigationCompose = "1.2.0"
 datastore = "1.1.1"
+retrofit = "2.11.0"
+okhttp = "4.12.0"
 
 firebaseBom = "33.5.1"
 googleServices = "4.4.2"
@@ -51,6 +53,10 @@ androidx-credentials = { group = "androidx.credentials", name = "credentials", v
 androidx-credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentials" }
 googleid = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "googleid" }
 auth0-jwt = { group = "com.auth0", name = "java-jwt", version.ref = "jwt" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 kotlinx-coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "kotlinxCoroutinesPlayServices" }
 
 [plugins]
