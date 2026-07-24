@@ -29,4 +29,5 @@ include(":session")
 include(":security")
 include(":core-ui")
 include(":network")
+include(":news")
  

@@ -29,6 +29,8 @@ import com.android.knewsapp.auth.LoginScreen
 import com.android.knewsapp.auth.SignUpScreen
 import com.android.knewsapp.core_ui.theme.Dimensions
 import com.android.knewsapp.core_ui.theme.KNewsAppTheme
+import com.android.knewsapp.news.presentation.news_list.NewsListScreen
+import com.android.knewsapp.news.presentation.news_list.NewsListViewModel
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import dagger.hilt.android.AndroidEntryPoint
@@ -121,33 +123,19 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     composable("main") {
-                        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                            Greeting(
-                                name = user?.email ?: "User",
-                                onSignOut = {
-                                    authViewModel.signOut()
-                                },
-                                modifier = Modifier.padding(innerPadding)
-                            )
-                        }
+                        val newsViewModel: NewsListViewModel = hiltViewModel()
+                        NewsListScreen(
+                            viewModel = newsViewModel,
+                            onArticleClick = { article ->
+                                // Handle article click (e.g., navigate to detail)
+                            },
+                            onLogoutClick = {
+                                authViewModel.signOut()
+                            }
+                        )
                     }
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun Greeting(name: String, onSignOut: () -> Unit, modifier: Modifier = Modifier) {
-    androidx.compose.foundation.layout.Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center,
-        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
-    ) {
-        Text(text = "Welcome $name!")
-        androidx.compose.foundation.layout.Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
-        androidx.compose.material3.Button(onClick = onSignOut) {
-            Text("Sign Out")
         }
     }
 }

@@ -44,6 +44,7 @@ dependencies {
     implementation(project(":security"))
     implementation(project(":core-ui"))
     implementation(project(":network"))
+    implementation(project(":news"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
