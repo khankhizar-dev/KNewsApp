@@ -45,12 +45,12 @@ object KeyManager {
         signature.initSign(privateKey)
         signature.update(data.toByteArray())
         
-        return Base64.encodeToString(signature.sign(), Base64.DEFAULT)
+        return Base64.encodeToString(signature.sign(), Base64.NO_WRAP)
     }
 
     fun getPublicKey(): String {
         val keyStore = KeyStore.getInstance(ANDROID_KEYSTORE).apply { load(null) }
         val publicKey = keyStore.getCertificate(KEY_ALIAS).publicKey as ECPublicKey
-        return Base64.encodeToString(publicKey.encoded, Base64.DEFAULT)
+        return Base64.encodeToString(publicKey.encoded, Base64.NO_WRAP)
     }
 }
