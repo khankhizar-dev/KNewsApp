@@ -27,4 +27,5 @@ include(":app")
 include(":auth")
 include(":session")
 include(":security")
+include(":core-ui")
  

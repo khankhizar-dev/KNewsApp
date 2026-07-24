@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.android.knewsapp.auth"
+    namespace = "com.android.knewsapp.core_ui"
     compileSdk = 37
 
     defaultConfig {
@@ -23,25 +23,13 @@ android {
 }
 
 dependencies {
-    implementation(project(":session"))
-    implementation(project(":security"))
-    implementation(project(":core-ui"))
-    
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.navigation.compose)
-
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.auth)
-    implementation(libs.play.services.auth)
-    implementation(libs.kotlinx.coroutines.play.services)
-
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.core.ktx)
+    
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

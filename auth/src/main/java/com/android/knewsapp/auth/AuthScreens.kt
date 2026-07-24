@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import com.android.knewsapp.core_ui.components.KNewsButton
+import com.android.knewsapp.core_ui.theme.Dimensions
 
 @Composable
 fun LoginScreen(
@@ -23,12 +25,12 @@ fun LoginScreen(
     val loading by viewModel.loading.collectAsState()
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = Modifier.fillMaxSize().padding(Dimensions.PaddingMedium),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Text("Login", style = MaterialTheme.typography.headlineMedium)
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
 
         TextField(
             value = email,
@@ -36,7 +38,7 @@ fun LoginScreen(
             label = { Text("Email") },
             modifier = Modifier.fillMaxWidth()
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(Dimensions.SpacerSmall))
 
         TextField(
             value = password,
@@ -46,23 +48,21 @@ fun LoginScreen(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             modifier = Modifier.fillMaxWidth()
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
 
         if (error != null) {
             Text(error!!, color = MaterialTheme.colorScheme.error)
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(Dimensions.SpacerSmall))
         }
 
-        Button(
+        KNewsButton(
+            text = "Login",
             onClick = { viewModel.signInWithEmail(email, password, onLoginSuccess) },
-            enabled = !loading,
+            isLoading = loading,
             modifier = Modifier.fillMaxWidth()
-        ) {
-            if (loading) CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary)
-            else Text("Login")
-        }
+        )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(Dimensions.SpacerSmall))
 
         OutlinedButton(
             onClick = onGoogleSignInClick,
@@ -90,12 +90,12 @@ fun SignUpScreen(
     val loading by viewModel.loading.collectAsState()
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = Modifier.fillMaxSize().padding(Dimensions.PaddingMedium),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Text("Sign Up", style = MaterialTheme.typography.headlineMedium)
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
 
         TextField(
             value = email,
@@ -103,7 +103,7 @@ fun SignUpScreen(
             label = { Text("Email") },
             modifier = Modifier.fillMaxWidth()
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(Dimensions.SpacerSmall))
 
         TextField(
             value = password,
@@ -113,21 +113,19 @@ fun SignUpScreen(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             modifier = Modifier.fillMaxWidth()
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
 
         if (error != null) {
             Text(error!!, color = MaterialTheme.colorScheme.error)
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(Dimensions.SpacerSmall))
         }
 
-        Button(
+        KNewsButton(
+            text = "Sign Up",
             onClick = { viewModel.signUpWithEmail(email, password, onSignUpSuccess) },
-            enabled = !loading,
+            isLoading = loading,
             modifier = Modifier.fillMaxWidth()
-        ) {
-            if (loading) CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary)
-            else Text("Sign Up")
-        }
+        )
 
         TextButton(onClick = onNavigateToLogin) {
             Text("Already have an account? Login")

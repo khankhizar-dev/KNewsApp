@@ -25,7 +25,8 @@ import androidx.navigation.compose.rememberNavController
 import com.android.knewsapp.auth.AuthViewModel
 import com.android.knewsapp.auth.LoginScreen
 import com.android.knewsapp.auth.SignUpScreen
-import com.android.knewsapp.ui.theme.KNewsAppTheme
+import com.android.knewsapp.core_ui.theme.Dimensions
+import com.android.knewsapp.core_ui.theme.KNewsAppTheme
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -133,7 +134,7 @@ fun Greeting(name: String, onSignOut: () -> Unit, modifier: Modifier = Modifier)
         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
     ) {
         Text(text = "Welcome $name!")
-        androidx.compose.foundation.layout.Spacer(modifier = Modifier.height(16.dp))
+        androidx.compose.foundation.layout.Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
         androidx.compose.material3.Button(onClick = onSignOut) {
             Text("Sign Out")
         }
