@@ -6,7 +6,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.android.knewsapp.security.SecurityUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
@@ -18,7 +17,6 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 
 class SessionManager(private val context: Context) {
     private val auth = FirebaseAuth.getInstance()
-    private val encryptedPrefs = SecurityUtils.getEncryptedPrefs(context)
 
     private val _user = MutableStateFlow<FirebaseUser?>(auth.currentUser)
     val user: StateFlow<FirebaseUser?> = _user
@@ -26,6 +24,7 @@ class SessionManager(private val context: Context) {
     companion object {
         val USER_EMAIL = stringPreferencesKey("user_email")
         val USER_ID = stringPreferencesKey("user_id")
+        val LAST_LOGIN_UID = stringPreferencesKey("last_login_uid")
     }
 
     val userEmail: Flow<String?> = context.dataStore.data.map { preferences ->
@@ -39,9 +38,8 @@ class SessionManager(private val context: Context) {
             context.dataStore.edit { preferences ->
                 preferences[USER_EMAIL] = user.email ?: ""
                 preferences[USER_ID] = user.uid
+                preferences[LAST_LOGIN_UID] = user.uid
             }
-            // Example of using encrypted prefs for sensitive data
-            encryptedPrefs.edit().putString("last_login_uid", user.uid).apply()
         }
     }
 
@@ -51,6 +49,5 @@ class SessionManager(private val context: Context) {
         context.dataStore.edit { preferences ->
             preferences.clear()
         }
-        encryptedPrefs.edit().clear().apply()
     }
 }

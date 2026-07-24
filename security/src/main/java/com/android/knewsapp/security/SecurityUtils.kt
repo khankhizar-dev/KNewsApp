@@ -1,24 +1,11 @@
 package com.android.knewsapp.security
 
-import android.content.Context
-import android.content.SharedPreferences
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKey
-
+/**
+ * Security utilities for the application.
+ * Note: EncryptedSharedPreferences and MasterKey have been deprecated in favor of 
+ * Jetpack DataStore for persistent storage.
+ */
 object SecurityUtils {
-    private const val PREFS_NAME = "encrypted_prefs"
-
-    fun getEncryptedPrefs(context: Context): SharedPreferences {
-        val masterKey = MasterKey.Builder(context)
-            .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-            .build()
-
-        return EncryptedSharedPreferences.create(
-            context,
-            PREFS_NAME,
-            masterKey,
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
-    }
+    // You can add non-deprecated security logic here, such as hashing or custom encryption 
+    // if needed for DataStore serializers.
 }

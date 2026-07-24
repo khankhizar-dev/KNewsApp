@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
@@ -21,8 +22,8 @@ fun LoginScreen(
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    val error by viewModel.error.collectAsState()
-    val loading by viewModel.loading.collectAsState()
+    val error by viewModel.error.collectAsStateWithLifecycle()
+    val loading by viewModel.loading.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier.fillMaxSize().padding(Dimensions.PaddingMedium),
@@ -86,8 +87,8 @@ fun SignUpScreen(
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    val error by viewModel.error.collectAsState()
-    val loading by viewModel.loading.collectAsState()
+    val error by viewModel.error.collectAsStateWithLifecycle()
+    val loading by viewModel.loading.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier.fillMaxSize().padding(Dimensions.PaddingMedium),

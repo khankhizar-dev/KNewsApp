@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlin.time.Duration.Companion.minutes
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -21,7 +22,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     val user: StateFlow<FirebaseUser?> = sessionManager.user
 
     private var inactivityJob: Job? = null
-    private val INACTIVITY_TIMEOUT = 3 * 60 * 1000L // 3 minutes
+    private val inactivityTimeout = 3.minutes
 
     init {
         // Start monitoring user session to handle timeout
@@ -43,7 +44,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
             auth.currentUser?.getIdToken(false) 
 
             inactivityJob = viewModelScope.launch {
-                delay(INACTIVITY_TIMEOUT)
+                delay(inactivityTimeout)
                 signOut()
             }
         }
