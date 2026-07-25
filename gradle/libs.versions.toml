@@ -18,6 +18,7 @@ retrofit = "2.11.0"
 okhttp = "4.12.0"
 jsoup = "1.18.1"
 serialization = "1.7.3"
+room = "2.6.1"
 
 firebaseBom = "33.5.1"
 googleServices = "4.4.2"
@@ -56,6 +57,9 @@ androidx-credentials = { group = "androidx.credentials", name = "credentials", v
 androidx-credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentials" }
 googleid = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "googleid" }
 auth0-jwt = { group = "com.auth0", name = "java-jwt", version.ref = "jwt" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 jsoup = { group = "org.jsoup", name = "jsoup", version.ref = "jsoup" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }

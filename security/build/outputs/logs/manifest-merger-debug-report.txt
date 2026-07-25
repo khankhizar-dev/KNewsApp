@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12838064281276930097.xml:2:13-83
-INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12838064281276930097.xml:2:13-83
+ADDED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14145665802596548750.xml:2:13-83
+INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14145665802596548750.xml:2:13-83
 	package
-		INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12838064281276930097.xml
+		INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14145665802596548750.xml
 	xmlns:android
-		ADDED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12838064281276930097.xml:2:23-81
+		ADDED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14145665802596548750.xml:2:23-81
 uses-sdk
-INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12838064281276930097.xml reason: use-sdk injection requested
-INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12838064281276930097.xml
-INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12838064281276930097.xml
+INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14145665802596548750.xml reason: use-sdk injection requested
+INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14145665802596548750.xml
+INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14145665802596548750.xml
 	android:targetSdkVersion
-		INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12838064281276930097.xml
+		INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14145665802596548750.xml
 	android:minSdkVersion
-		INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12838064281276930097.xml
+		INJECTED from D:\KNewsApp\security\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14145665802596548750.xml

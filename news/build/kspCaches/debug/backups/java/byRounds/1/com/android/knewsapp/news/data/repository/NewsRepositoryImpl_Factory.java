@@ -1,5 +1,6 @@
 package com.android.knewsapp.news.data.repository;
 
+import com.android.knewsapp.news.data.local.dao.NewsDao;
 import com.android.knewsapp.news.data.remote.NewsApiService;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
@@ -28,25 +29,31 @@ import javax.annotation.processing.Generated;
 public final class NewsRepositoryImpl_Factory implements Factory<NewsRepositoryImpl> {
   private final Provider<NewsApiService> apiServiceProvider;
 
-  public NewsRepositoryImpl_Factory(Provider<NewsApiService> apiServiceProvider) {
+  private final Provider<NewsDao> newsDaoProvider;
+
+  public NewsRepositoryImpl_Factory(Provider<NewsApiService> apiServiceProvider,
+      Provider<NewsDao> newsDaoProvider) {
     this.apiServiceProvider = apiServiceProvider;
+    this.newsDaoProvider = newsDaoProvider;
   }
 
   @Override
   public NewsRepositoryImpl get() {
-    return newInstance(apiServiceProvider.get());
+    return newInstance(apiServiceProvider.get(), newsDaoProvider.get());
   }
 
   public static NewsRepositoryImpl_Factory create(
-      javax.inject.Provider<NewsApiService> apiServiceProvider) {
-    return new NewsRepositoryImpl_Factory(Providers.asDaggerProvider(apiServiceProvider));
+      javax.inject.Provider<NewsApiService> apiServiceProvider,
+      javax.inject.Provider<NewsDao> newsDaoProvider) {
+    return new NewsRepositoryImpl_Factory(Providers.asDaggerProvider(apiServiceProvider), Providers.asDaggerProvider(newsDaoProvider));
   }
 
-  public static NewsRepositoryImpl_Factory create(Provider<NewsApiService> apiServiceProvider) {
-    return new NewsRepositoryImpl_Factory(apiServiceProvider);
+  public static NewsRepositoryImpl_Factory create(Provider<NewsApiService> apiServiceProvider,
+      Provider<NewsDao> newsDaoProvider) {
+    return new NewsRepositoryImpl_Factory(apiServiceProvider, newsDaoProvider);
   }
 
-  public static NewsRepositoryImpl newInstance(NewsApiService apiService) {
-    return new NewsRepositoryImpl(apiService);
+  public static NewsRepositoryImpl newInstance(NewsApiService apiService, NewsDao newsDao) {
+    return new NewsRepositoryImpl(apiService, newsDao);
   }
 }

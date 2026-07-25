@@ -49,6 +49,9 @@ dependencies {
 
     implementation(libs.coil.compose)
     implementation(libs.jsoup)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
     implementation(libs.kotlinx.serialization.json)

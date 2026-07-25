@@ -106,41 +106,25 @@ class NewsListViewModel @Inject constructor(
         }
     }
 
-    fun loadNews() {
+    fun loadNews(fetchFromRemote: Boolean = true) {
         viewModelScope.launch {
             _loading.value = true
             _error.value = null
             
-            // NewsAPI logic: top-headlines supports (country, category) OR (sources)
-            // language is only supported in 'everything' or if selecting sources.
-            
-            val result = if (_country.value != null || _category.value != null) {
-                // If country or category is set, use top-headlines
-                repository.getTopHeadlines(
-                    country = _country.value,
-                    category = _category.value
-                )
-            } else if (_language.value != null) {
-                // If only language is set, use everything with a placeholder query
-                repository.getEverything(
-                    query = "news",
-                    language = _language.value
-                )
-            } else {
-                // Default fallback
-                repository.getTopHeadlines(country = "us")
+            repository.getArticles(
+                country = _country.value,
+                category = _category.value,
+                fetchFromRemote = fetchFromRemote
+            ).collect { result ->
+                result
+                    .onSuccess { articles ->
+                        _articles.value = articles
+                    }
+                    .onFailure { exception ->
+                        _error.value = exception.message ?: "Failed to load news"
+                    }
+                _loading.value = false
             }
-
-            result
-                .onSuccess { articles ->
-                    _articles.value = articles
-                    sortArticles()
-                }
-                .onFailure { exception ->
-                    _error.value = exception.message ?: "Failed to load news"
-                    _articles.value = emptyList()
-                }
-            _loading.value = false
         }
     }
 }

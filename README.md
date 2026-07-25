@@ -1,10 +1,14 @@
 # KNewsApp
 
-A modern, modularized Android news application built with **Jetpack Compose** and **Firebase**. This project demonstrates industry-standard best practices, focusing on a clean architecture, robust security, and a reactive user experience.
+A modern, modularized Android news application built with **Jetpack Compose** and **Firebase**. This project demonstrates industry-standard best practices, focusing on a clean architecture, robust security, and an offline-first user experience.
 
 ## 🚀 Key Features
 *   **Authentication:** Fully integrated Firebase Auth supporting both Email/Password and Google Sign-In via Credential Manager.
 *   **Persistent Sessions:** Smart session management that keeps users logged in across app restarts, with automatic token refreshing handled by Firebase.
+*   **Mobile First & Offline Sync:** 
+    *   **Single Source of Truth (SSOT)**: The UI observes a local **Room Database**, ensuring instant data availability.
+    *   **Background Sync**: Automatically synchronizes with NewsAPI in the background and updates the local cache.
+    *   **Full Offline Support**: Read previously loaded news even without an active internet connection.
 *   **Modular Architecture:** Clean separation of concerns with dedicated modules for `:app`, `:auth`, `:session`, `:security`, `:core-ui`, `:network`, and `:news`.
 *   **Dependency Injection:** Powered by **Hilt** for a clean, decoupled architecture across all modules.
 *   **Secure Networking:** 
@@ -13,7 +17,7 @@ A modern, modularized Android news application built with **Jetpack Compose** an
     *   **JWT Management**: Automatic injection of Authorization headers using a secure Interceptor.
 *   **Rich News Experience:**
     *   **Global Filters**: Filter news by Country, Category, and Language.
-    *   **Smart Search**: keyword-based global search across the latest news.
+    *   **Smart Search**: Keyword-based global search across the latest news.
     *   **Sorting**: Organize news by publication date or title.
     *   **Native Reading**: Immersive native detail view with background HTML scraping (Jsoup) to display full stories without WebViews.
 *   **Secure Session Management:** 
@@ -24,9 +28,10 @@ A modern, modularized Android news application built with **Jetpack Compose** an
 ## 🛠 Technical Stack
 *   **Language:** Kotlin
 *   **UI Framework:** Jetpack Compose (Material 3)
+*   **Local Database:** Room
 *   **Networking:** Retrofit, OkHttp, Jsoup (HTML Scraping)
 *   **Dependency Injection:** Dagger Hilt
-*   **Asynchronous Logic:** Kotlin Coroutines & StateFlow
+*   **Asynchronous Logic:** Kotlin Coroutines & StateFlow (Flow)
 *   **Navigation:** Compose Navigation component
 *   **Backend Services:** Firebase Authentication, Google Play Services Auth
 *   **Security:** Android KeyStore (EC Keys), Jetpack DataStore, Auth0 JWT
@@ -39,7 +44,7 @@ The project follows a multi-module approach to ensure scalability and testabilit
 *   **`:security`**: Provides hardware-backed key management and cryptographic utilities.
 *   **`:core-ui`**: Centralized Design System containing theme, dimensions, and reusable UI components.
 *   **`:network`**: Centralized network layer with automatic authentication and request signing logic.
-*   **`:news`**: Encapsulates all news-related data (Remote API), domain logic, and feature-rich UI.
+*   **`:news`**: Encapsulates all news-related data (Room + Remote API), domain logic, and feature-rich UI.
 
 ## 🌿 Branching Strategy
 *   **`main`**: The latest stable version with all features integrated.
@@ -49,7 +54,8 @@ The project follows a multi-module approach to ensure scalability and testabilit
 *   **`feature/core-ui`**: Centralization of the UI Design System.
 *   **`feature/hilt-di`**: Dependency Injection implementation using Hilt.
 *   **`feature/network-security`**: Implementation of secure networking with JWT and EC signing.
-*   **`feature/news-feature`**: Full implementation of the native news feed, filtering, and detail view.
+*   **`feature/news-feature`**: Implementation of the native news feed and detail view.
+*   **`feature/offline-sync`**: Implementation of Mobile-First architecture with Room for offline caching.
 
 ## 🚦 Getting Started
 1. **Firebase Setup:**

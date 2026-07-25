@@ -8,12 +8,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
@@ -26,7 +25,6 @@ import androidx.navigation.compose.rememberNavController
 import com.android.knewsapp.auth.AuthViewModel
 import com.android.knewsapp.auth.LoginScreen
 import com.android.knewsapp.auth.SignUpScreen
-import com.android.knewsapp.core_ui.theme.Dimensions
 import com.android.knewsapp.core_ui.theme.KNewsAppTheme
 import com.android.knewsapp.news.presentation.news_detail.NewsDetailScreen
 import com.android.knewsapp.news.presentation.news_list.NewsListScreen
