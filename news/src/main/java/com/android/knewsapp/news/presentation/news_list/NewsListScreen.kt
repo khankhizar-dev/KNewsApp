@@ -51,12 +51,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.android.knewsapp.core_ui.theme.Dimensions
+import com.android.knewsapp.news.R
 import com.android.knewsapp.news.domain.model.Article
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
@@ -82,7 +84,11 @@ fun NewsListScreen(
     val countries = listOf("us", "gb", "in", "ca", "au", "ae", "sa", "fr", "de", "jp")
     val categories = listOf("business", "entertainment", "general", "health", "science", "sports", "technology")
     val languages = listOf("ar", "de", "en", "es", "fr", "he", "it", "nl", "no", "pt", "ru", "sv", "ud", "zh")
-    val sortOptions = listOf("publishedAt" to "Latest", "title" to "Title A-Z")
+    val sortOptions =
+        listOf(
+            "publishedAt" to stringResource(R.string.latest),
+            "title" to stringResource(R.string.title_a_z),
+        )
 
     val displayArticles = if (selectedTab == 0) articles else bookmarkedArticles
 
@@ -96,13 +102,13 @@ fun NewsListScreen(
                         .verticalScroll(rememberScrollState()),
             ) {
                 Text(
-                    "Filters & Sorting",
+                    stringResource(R.string.filters_and_sorting),
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                 )
                 Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
 
-                Text("Sort By", style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.sort_by), style = MaterialTheme.typography.titleMedium)
                 LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     items(sortOptions) { option ->
                         FilterChip(
@@ -115,7 +121,7 @@ fun NewsListScreen(
 
                 Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
 
-                Text("Country", style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.country), style = MaterialTheme.typography.titleMedium)
                 LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     item {
                         FilterChip(
@@ -123,7 +129,7 @@ fun NewsListScreen(
                             onClick = {
                                 viewModel.setFilters(null, currentCategory, currentLanguage)
                             },
-                            label = { Text("Global") },
+                            label = { Text(stringResource(R.string.global)) },
                         )
                     }
                     items(countries) { country ->
@@ -139,7 +145,7 @@ fun NewsListScreen(
 
                 Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
 
-                Text("Language (Global Search)", style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.language_global_search), style = MaterialTheme.typography.titleMedium)
                 LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     item {
                         FilterChip(
@@ -147,7 +153,7 @@ fun NewsListScreen(
                             onClick = {
                                 viewModel.setFilters(currentCountry, currentCategory, null)
                             },
-                            label = { Text("All") },
+                            label = { Text(stringResource(R.string.all)) },
                         )
                     }
                     items(languages) { language ->
@@ -163,7 +169,7 @@ fun NewsListScreen(
 
                 Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
 
-                Text("Category", style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.category), style = MaterialTheme.typography.titleMedium)
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.fillMaxWidth(),
@@ -193,7 +199,7 @@ fun NewsListScreen(
                             TextField(
                                 value = searchQuery,
                                 onValueChange = { searchQuery = it },
-                                placeholder = { Text("Search news...") },
+                                placeholder = { Text(stringResource(R.string.search_news)) },
                                 modifier = Modifier.fillMaxWidth(),
                                 singleLine = true,
                                 colors =
@@ -204,7 +210,7 @@ fun NewsListScreen(
                             )
                         } else {
                             Text(
-                                "KNews",
+                                stringResource(R.string.app_name),
                                 style = MaterialTheme.typography.headlineMedium,
                                 fontWeight = FontWeight.Bold,
                             )
@@ -221,7 +227,7 @@ fun NewsListScreen(
                                     searchQuery = ""
                                 },
                             ) {
-                                Icon(Icons.Default.Search, contentDescription = "Confirm Search")
+                                Icon(Icons.Default.Search, contentDescription = stringResource(R.string.confirm_search))
                             }
                             IconButton(
                                 onClick = {
@@ -229,17 +235,17 @@ fun NewsListScreen(
                                     searchQuery = ""
                                 },
                             ) {
-                                Icon(Icons.Default.Close, contentDescription = "Close Search")
+                                Icon(Icons.Default.Close, contentDescription = stringResource(R.string.close_search))
                             }
                         } else {
                             IconButton(onClick = { isSearchExpanded = true }) {
-                                Icon(Icons.Default.Search, contentDescription = "Search")
+                                Icon(Icons.Default.Search, contentDescription = stringResource(R.string.search))
                             }
                             IconButton(onClick = { viewModel.loadNews() }) {
-                                Icon(Icons.Default.Refresh, contentDescription = "Refresh")
+                                Icon(Icons.Default.Refresh, contentDescription = stringResource(R.string.refresh))
                             }
                             IconButton(onClick = { showFilterSheet = true }) {
-                                Icon(Icons.Default.List, contentDescription = "Filter")
+                                Icon(Icons.Default.List, contentDescription = stringResource(R.string.filter))
                             }
                         }
                     },
@@ -253,12 +259,12 @@ fun NewsListScreen(
                     Tab(
                         selected = selectedTab == 0,
                         onClick = { selectedTab = 0 },
-                        text = { Text("Discover") },
+                        text = { Text(stringResource(R.string.discover)) },
                     )
                     Tab(
                         selected = selectedTab == 1,
                         onClick = { selectedTab = 1 },
-                        text = { Text("Bookmarks") },
+                        text = { Text(stringResource(R.string.bookmarks)) },
                     )
                 }
             }
@@ -281,17 +287,22 @@ fun NewsListScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Text(
-                        text = error ?: "Unknown error",
+                        text = error ?: stringResource(R.string.unknown_error),
                         color = MaterialTheme.colorScheme.error,
                         style = MaterialTheme.typography.bodyLarge,
                     )
                     Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
                     Button(onClick = { viewModel.loadNews() }) {
-                        Text("Retry")
+                        Text(stringResource(R.string.retry))
                     }
                 }
             } else if (!loading && displayArticles.isEmpty()) {
-                val emptyText = if (selectedTab == 0) "No articles found." else "No bookmarks saved yet."
+                val emptyText =
+                    if (selectedTab == 0) {
+                        stringResource(R.string.no_articles_found)
+                    } else {
+                        stringResource(R.string.no_bookmarks_saved)
+                    }
                 Column(
                     modifier =
                         Modifier
@@ -306,7 +317,7 @@ fun NewsListScreen(
                     if (selectedTab == 0) {
                         Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
                         OutlinedButton(onClick = { viewModel.setFilters("us", null, null) }) {
-                            Text("Reset Filters")
+                            Text(stringResource(R.string.reset_filters))
                         }
                     }
                 }
@@ -344,7 +355,7 @@ fun ArticleItem(
                 article.urlToImage?.let { imageUrl ->
                     AsyncImage(
                         model = imageUrl,
-                        contentDescription = null,
+                        contentDescription = stringResource(R.string.article_image),
                         modifier =
                             Modifier
                                 .fillMaxWidth()
@@ -360,7 +371,7 @@ fun ArticleItem(
                     val icon = if (article.isBookmarked) Icons.Default.Favorite else Icons.Default.FavoriteBorder
                     Icon(
                         imageVector = icon,
-                        contentDescription = "Bookmark",
+                        contentDescription = stringResource(R.string.bookmark),
                         tint = if (article.isBookmarked) Color.Red else Color.White,
                     )
                 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login">Connexion</string>
+    <string name="email">E-mail</string>
+    <string name="password">Mot de passe</string>
+    <string name="sign_in_with_google">Se connecter avec Google</string>
+    <string name="dont_have_account_signup">Vous n\'avez pas de compte ? S\'inscrire</string>
+    <string name="sign_up">S\'inscrire</string>
+    <string name="already_have_account_login">Vous avez déjà un compte ? Connexion</string>
+    <string name="profile_picture">Photo de profil</string>
+    <string name="no_name">Pas de nom</string>
+    <string name="no_email">Pas d\'e-mail</string>
+    <string name="sign_out">Se déconnecter</string>
+</resources>

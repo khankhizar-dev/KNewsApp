@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
@@ -44,7 +45,7 @@ fun ProfileScreen(
         if (user?.photoUrl != null) {
             AsyncImage(
                 model = user?.photoUrl,
-                contentDescription = "Profile Picture",
+                contentDescription = stringResource(R.string.profile_picture),
                 modifier =
                     Modifier
                         .size(120.dp)
@@ -55,7 +56,7 @@ fun ProfileScreen(
         } else {
             Icon(
                 imageVector = Icons.Default.Person,
-                contentDescription = "Profile Picture",
+                contentDescription = stringResource(R.string.profile_picture),
                 modifier =
                     Modifier
                         .size(120.dp)
@@ -69,12 +70,12 @@ fun ProfileScreen(
         Spacer(modifier = Modifier.height(Dimensions.SpacerLarge))
 
         Text(
-            text = user?.displayName ?: "No Name",
+            text = user?.displayName ?: stringResource(R.string.no_name),
             style = MaterialTheme.typography.headlineMedium,
         )
 
         Text(
-            text = user?.email ?: "No Email",
+            text = user?.email ?: stringResource(R.string.no_email),
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.secondary,
         )
@@ -85,7 +86,7 @@ fun ProfileScreen(
             onClick = onLogoutClick,
             modifier = Modifier.height(50.dp),
         ) {
-            Text("Sign Out")
+            Text(stringResource(R.string.sign_out))
         }
     }
 }

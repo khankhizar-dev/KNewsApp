@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KNewsApp</string>
+    <string name="google_sign_in_failed">Échec de la connexion Google : %s</string>
+    <string name="no_internet_connection">Pas de connexion Internet - Mode hors ligne</string>
+    <string name="news">Actualités</string>
+    <string name="profile">Profil</string>
+</resources>

@@ -30,10 +30,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.android.knewsapp.core_ui.theme.Dimensions
+import com.android.knewsapp.news.R
 import com.android.knewsapp.news.domain.model.Article
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,7 +54,7 @@ fun NewsDetailScreen(
                 title = { Text(article.source.name) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back))
                     }
                 },
                 actions = {
@@ -69,7 +71,7 @@ fun NewsDetailScreen(
                             context.startActivity(shareIntent)
                         },
                     ) {
-                        Icon(Icons.Default.Share, contentDescription = "Share")
+                        Icon(Icons.Default.Share, contentDescription = stringResource(R.string.share))
                     }
                     IconButton(onClick = onBookmarkClick) {
                         Icon(
@@ -79,7 +81,7 @@ fun NewsDetailScreen(
                                 } else {
                                     Icons.Default.FavoriteBorder
                                 },
-                            contentDescription = "Bookmark",
+                            contentDescription = stringResource(R.string.bookmark),
                             tint = if (article.isBookmarked) Color.Red else LocalContentColor.current,
                         )
                     }
@@ -97,7 +99,7 @@ fun NewsDetailScreen(
             article.urlToImage?.let {
                 AsyncImage(
                     model = it,
-                    contentDescription = null,
+                    contentDescription = stringResource(R.string.article_image),
                     modifier =
                         Modifier
                             .fillMaxWidth()

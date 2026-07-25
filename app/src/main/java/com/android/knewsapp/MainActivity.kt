@@ -34,6 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.credentials.CredentialManager
@@ -90,7 +91,7 @@ class MainActivity : ComponentActivity() {
                             contentAlignment = Alignment.Center,
                         ) {
                             Text(
-                                text = "No Internet Connection - Offline Mode",
+                                text = stringResource(R.string.no_internet_connection),
                                 color = Color.White,
                                 style = MaterialTheme.typography.labelMedium,
                                 textAlign = TextAlign.Center,
@@ -160,7 +161,7 @@ class MainActivity : ComponentActivity() {
 
                                                 authViewModel.signInWithGoogle(idToken) {}
                                             } catch (e: GetCredentialException) {
-                                                val msg = "Google Sign-In failed: ${e.message}"
+                                                val msg = getString(R.string.google_sign_in_failed, e.message)
                                                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                                             }
                                         }
@@ -186,14 +187,24 @@ class MainActivity : ComponentActivity() {
                                             NavigationBarItem(
                                                 selected = bottomTab == 0,
                                                 onClick = { bottomTab = 0 },
-                                                icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
-                                                label = { Text("News") },
+                                                icon = {
+                                                    Icon(
+                                                        imageVector = Icons.Default.Home,
+                                                        contentDescription = stringResource(R.string.news),
+                                                    )
+                                                },
+                                                label = { Text(stringResource(R.string.news)) },
                                             )
                                             NavigationBarItem(
                                                 selected = bottomTab == 1,
                                                 onClick = { bottomTab = 1 },
-                                                icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
-                                                label = { Text("Profile") },
+                                                icon = {
+                                                    Icon(
+                                                        imageVector = Icons.Default.Person,
+                                                        contentDescription = stringResource(R.string.profile),
+                                                    )
+                                                },
+                                                label = { Text(stringResource(R.string.profile)) },
                                             )
                                         }
                                     },
