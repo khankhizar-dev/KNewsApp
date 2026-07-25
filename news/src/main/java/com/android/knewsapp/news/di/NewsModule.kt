@@ -27,7 +27,8 @@ object NewsModule {
             context,
             NewsDatabase::class.java,
             "news_db",
-        ).build()
+        ).fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
