@@ -1,5 +1,7 @@
 # KNewsApp
 
+[![Android CI](https://github.com/khankhizar-dev/KNewsApp/actions/workflows/android.yml/badge.svg)](https://github.com/khankhizar-dev/KNewsApp/actions/workflows/android.yml)
+
 A modern, modularized Android news application built with **Jetpack Compose** and **Firebase**. This project demonstrates industry-standard best practices, focusing on a clean architecture, robust security, and an offline-first user experience with 90%+ test coverage and performance benchmarking.
 
 ## 🚀 Key Features
@@ -17,6 +19,7 @@ A modern, modularized Android news application built with **Jetpack Compose** an
 *   **Static Code Analysis**: 
     *   **KtLint**: Automated Kotlin linting and formatting.
     *   **Detekt**: Advanced static code analysis for identifying code smells and complexity.
+*   **Automated CI/CD**: Fully integrated **GitHub Actions** pipeline for continuous integration.
 
 ## 🛠 Technical Stack
 *   **Language:** Kotlin
@@ -27,6 +30,7 @@ A modern, modularized Android news application built with **Jetpack Compose** an
 *   **Benchmarking**: Macrobenchmark, Baseline Profiles
 *   **Static Analysis**: KtLint, Detekt
 *   **Testing:** JUnit 4, MockK, Google Truth, Turbine, Robolectric, Paparazzi
+*   **CI/CD**: GitHub Actions
 
 ## 🏗 Architecture Overview
 The project follows **Clean Architecture** principles:
@@ -40,6 +44,7 @@ The project follows **Clean Architecture** principles:
 *   **`feature/network-security`**: JWT and EC signing implementation.
 *   **`feature/testing-suite`**: Full testing implementation.
 *   **`feature/performance-benchmarking`**: Startup time improvements and Baseline Profiles.
+*   **`feature/ci-cd`**: GitHub Actions automation.
 
 ## 🚦 Getting Started
 1. **Firebase Setup:** Place `google-services.json` in `app/`.
@@ -48,5 +53,5 @@ The project follows **Clean Architecture** principles:
 4. **Static Analysis:** Run `./gradlew ktlintCheck detekt`.
     *   **Automated Enforcement**: Run `./gradlew installGitHooks` to automatically run static analysis on every `git commit`.
 5. **Generate Baseline Profile:** Run `./gradlew :app:generateBaselineProfile`.
-5. **Run Benchmarks:** Run the tests in the `:benchmark` module on a physical device.
-6. **Build:** Sync Gradle and run the `:app` module.
+6. **Run Benchmarks:** Run the tests in the `:benchmark` module on a physical device.
+7. **Build:** Sync Gradle and run the `:app` module.
