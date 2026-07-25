@@ -20,10 +20,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
@@ -251,7 +251,10 @@ fun NewsListScreen(
                                 Icon(Icons.Default.Refresh, contentDescription = stringResource(R.string.refresh))
                             }
                             IconButton(onClick = { showFilterSheet = true }) {
-                                Icon(Icons.Default.List, contentDescription = stringResource(R.string.filter))
+                                Icon(
+                                    Icons.AutoMirrored.Filled.List,
+                                    contentDescription = stringResource(R.string.filter),
+                                )
                             }
                         }
                     },

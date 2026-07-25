@@ -4,11 +4,10 @@ import com.android.knewsapp.network.interceptors.AuthInterceptor;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
-import dagger.internal.Provider;
-import dagger.internal.Providers;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -24,9 +23,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
     "rawtypes",
     "KotlinInternal",
     "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "cast"
 })
 public final class NetworkModule_ProvideOkHttpClientFactory implements Factory<OkHttpClient> {
   private final Provider<AuthInterceptor> authInterceptorProvider;
@@ -42,12 +39,6 @@ public final class NetworkModule_ProvideOkHttpClientFactory implements Factory<O
   @Override
   public OkHttpClient get() {
     return provideOkHttpClient(authInterceptorProvider.get(), loggingInterceptorProvider.get());
-  }
-
-  public static NetworkModule_ProvideOkHttpClientFactory create(
-      javax.inject.Provider<AuthInterceptor> authInterceptorProvider,
-      javax.inject.Provider<HttpLoggingInterceptor> loggingInterceptorProvider) {
-    return new NetworkModule_ProvideOkHttpClientFactory(Providers.asDaggerProvider(authInterceptorProvider), Providers.asDaggerProvider(loggingInterceptorProvider));
   }
 
   public static NetworkModule_ProvideOkHttpClientFactory create(

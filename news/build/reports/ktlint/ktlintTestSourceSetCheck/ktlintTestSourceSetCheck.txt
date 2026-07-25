@@ -1,17 +1,37 @@
-[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m14[90m:1:[0m Class body should not start with blank line [90m(standard:no-empty-first-line-in-class-body)[0m
-[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m15[90m:17:[0m Property name should start with a lowercase letter and use camel case [90m(standard:property-naming)[0m
-[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m18[90m:39:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
-[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m22[90m:43:[0m Missing trailing comma before ")" [90m(standard:trailing-comma-on-call-site)[0m
-[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m32[90m:1:[0m Exceeded max line length (120) [90m(standard:max-line-length)[0m
-[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m32[90m:21:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
-[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m32[90m:131:[0m Missing newline before ")" [90m(standard:argument-list-wrapping)[0m
-[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m39[90m:1:[0m Trailing space(s) [90m(standard:no-trailing-spaces)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:1:[0m Exceeded max line length (120) [90m(standard:max-line-length)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:32:[0m Missing newline before "listOf(Article(Source(null, "Search"), null, "Search Result", null, "url2", null, "2024-01-02", null))" [90m(standard:property-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:40:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:48:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:55:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:61:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:69:[0m Missing newline before ")" [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:72:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:78:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:95:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:101:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:109:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:115:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:129:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:133:[0m Missing newline before ")" [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m117[90m:134:[0m Missing newline before ")" [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:1:[0m Exceeded max line length (120) [90m(standard:max-line-length)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:26:[0m Missing newline before "Article(Source(null, "Source"), null, "Title", null, "https://example.com", null, "date", null)" [90m(standard:property-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:35:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:42:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:48:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:56:[0m Missing newline before ")" [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:59:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:65:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:74:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:80:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:103:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:109:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:117:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m130[90m:121:[0m Missing newline before ")" [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModelTest.kt[90m:[0m134[90m:88:[0m Trailing space(s) [90m(standard:no-trailing-spaces)[0m
 
 Summary error count (descending) by rule:
-  standard:argument-list-wrapping: 2
-  standard:max-line-length: 1
-  standard:multiline-expression-wrapping: 1
-  standard:no-empty-first-line-in-class-body: 1
+  standard:argument-list-wrapping: 26
+  standard:max-line-length: 2
+  standard:property-wrapping: 2
   standard:no-trailing-spaces: 1
-  standard:property-naming: 1
-  standard:trailing-comma-on-call-site: 1

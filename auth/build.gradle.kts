@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
+    kspTest(libs.hilt.compiler)
 
     implementation(libs.coil.compose)
     implementation(platform(libs.firebase.bom))
@@ -57,6 +58,7 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.truth)
     testImplementation(libs.turbine)
+    testImplementation(libs.hilt.android.testing)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.robolectric)
 

@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="4.3">
+<file name="D:/KNewsApp/network/src/test/java/com/android/knewsapp/network/connectivity/NetworkConnectivityObserverTest.kt">
+	<error line="43" column="44" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+</file>
 </checkstyle>

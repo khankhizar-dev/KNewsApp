@@ -4,11 +4,10 @@ import com.android.knewsapp.news.data.remote.NewsApiService;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
-import dagger.internal.Provider;
-import dagger.internal.Providers;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 import retrofit2.Retrofit;
 
 @ScopeMetadata("javax.inject.Singleton")
@@ -23,9 +22,7 @@ import retrofit2.Retrofit;
     "rawtypes",
     "KotlinInternal",
     "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "cast"
 })
 public final class NewsModule_ProvideNewsApiServiceFactory implements Factory<NewsApiService> {
   private final Provider<Retrofit.Builder> retrofitBuilderProvider;
@@ -38,11 +35,6 @@ public final class NewsModule_ProvideNewsApiServiceFactory implements Factory<Ne
   @Override
   public NewsApiService get() {
     return provideNewsApiService(retrofitBuilderProvider.get());
-  }
-
-  public static NewsModule_ProvideNewsApiServiceFactory create(
-      javax.inject.Provider<Retrofit.Builder> retrofitBuilderProvider) {
-    return new NewsModule_ProvideNewsApiServiceFactory(Providers.asDaggerProvider(retrofitBuilderProvider));
   }
 
   public static NewsModule_ProvideNewsApiServiceFactory create(

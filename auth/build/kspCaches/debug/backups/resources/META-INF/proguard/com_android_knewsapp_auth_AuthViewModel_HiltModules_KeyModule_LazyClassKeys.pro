@@ -1,1 +1,0 @@
--keep,allowobfuscation,allowshrinking class com.android.knewsapp.auth.AuthViewModel

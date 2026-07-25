@@ -3,11 +3,10 @@ package com.android.knewsapp.network.di;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
-import dagger.internal.Provider;
-import dagger.internal.Providers;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
@@ -23,9 +22,7 @@ import retrofit2.Retrofit;
     "rawtypes",
     "KotlinInternal",
     "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "cast"
 })
 public final class NetworkModule_ProvideRetrofitBuilderFactory implements Factory<Retrofit.Builder> {
   private final Provider<OkHttpClient> okHttpClientProvider;
@@ -37,11 +34,6 @@ public final class NetworkModule_ProvideRetrofitBuilderFactory implements Factor
   @Override
   public Retrofit.Builder get() {
     return provideRetrofitBuilder(okHttpClientProvider.get());
-  }
-
-  public static NetworkModule_ProvideRetrofitBuilderFactory create(
-      javax.inject.Provider<OkHttpClient> okHttpClientProvider) {
-    return new NetworkModule_ProvideRetrofitBuilderFactory(Providers.asDaggerProvider(okHttpClientProvider));
   }
 
   public static NetworkModule_ProvideRetrofitBuilderFactory create(

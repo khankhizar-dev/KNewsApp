@@ -20,9 +20,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
     "rawtypes",
     "KotlinInternal",
     "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "cast"
 })
 public final class NetworkModule_ProvideLoggingInterceptorFactory implements Factory<HttpLoggingInterceptor> {
   @Override
@@ -39,6 +37,6 @@ public final class NetworkModule_ProvideLoggingInterceptorFactory implements Fac
   }
 
   private static final class InstanceHolder {
-    static final NetworkModule_ProvideLoggingInterceptorFactory INSTANCE = new NetworkModule_ProvideLoggingInterceptorFactory();
+    private static final NetworkModule_ProvideLoggingInterceptorFactory INSTANCE = new NetworkModule_ProvideLoggingInterceptorFactory();
   }
 }

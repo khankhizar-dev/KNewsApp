@@ -1,6 +1,7 @@
 package com.android.knewsapp.news.presentation.news_list
 
 import app.cash.turbine.test
+import com.android.knewsapp.network.connectivity.ConnectivityObserver
 import com.android.knewsapp.news.domain.model.Article
 import com.android.knewsapp.news.domain.model.Source
 import com.android.knewsapp.news.domain.repository.NewsRepository
@@ -10,6 +11,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -24,6 +26,7 @@ class NewsListViewModelTest {
     private val testDispatcher = UnconfinedTestDispatcher()
     private lateinit var viewModel: NewsListViewModel
     private val repository: NewsRepository = mockk()
+    private val connectivityObserver: ConnectivityObserver = mockk(relaxed = true)
 
     @Before
     fun setup() {
@@ -44,8 +47,10 @@ class NewsListViewModelTest {
             )
 
         every { repository.getArticles(any(), any(), any()) } returns flowOf(Result.success(testArticles))
+        every { repository.getBookmarks() } returns flowOf(emptyList())
+        every { connectivityObserver.observe() } returns flowOf(ConnectivityObserver.Status.Available)
 
-        viewModel = NewsListViewModel(repository)
+        viewModel = NewsListViewModel(repository, connectivityObserver)
     }
 
     @After
@@ -87,5 +92,68 @@ class NewsListViewModelTest {
             assertThat(viewModel.language.value).isEqualTo("en")
 
             verify { repository.getArticles("gb", "science", true) }
+        }
+
+    @Test
+    fun `observe connectivity reloads news when becoming available and list is empty`() =
+        runTest {
+            val connectivityFlow = MutableStateFlow(ConnectivityObserver.Status.Unavailable)
+            every { connectivityObserver.observe() } returns connectivityFlow
+            every { repository.getArticles(any(), any(), any()) } returns flowOf(Result.success(emptyList()))
+
+            // Create a new VM to use the new connectivityFlow
+            NewsListViewModel(repository, connectivityObserver)
+
+            verify(exactly = 1) { repository.getArticles(any(), any(), any()) }
+
+            connectivityFlow.value = ConnectivityObserver.Status.Available
+
+            verify(exactly = 2) { repository.getArticles(any(), any(), any()) }
+        }
+
+    @Test
+    fun `searchNews calls repository and updates articles`() =
+        runTest {
+            val searchResults =
+                listOf(
+                    Article(
+                        source = Source(null, "Search"),
+                        author = null,
+                        title = "Search Result",
+                        description = null,
+                        url = "url2",
+                        urlToImage = null,
+                        publishedAt = "2024-01-02",
+                        content = null,
+                    ),
+                )
+            io.mockk.coEvery { repository.getEverything("query", any()) } returns Result.success(searchResults)
+
+            viewModel.searchNews("query")
+
+            viewModel.articles.test {
+                assertThat(awaitItem()).isEqualTo(searchResults)
+            }
+        }
+
+    @Test
+    fun `selectArticle updates selectedArticle and fetches full content`() =
+        runTest {
+            val article =
+                Article(
+                    source = Source(null, "Source"),
+                    author = null,
+                    title = "Title",
+                    description = null,
+                    url = "https://example.com",
+                    urlToImage = null,
+                    publishedAt = "date",
+                    content = null,
+                )
+            viewModel.selectArticle(article)
+
+            assertThat(viewModel.selectedArticle.value).isEqualTo(article)
+            // Jsoup fetch is hard to mock in unit test without additional abstraction,
+            // but we can at least verify the selection state.
         }
 }

@@ -4,11 +4,10 @@ import com.android.knewsapp.news.data.local.dao.NewsDao;
 import com.android.knewsapp.news.data.remote.NewsApiService;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
-import dagger.internal.Provider;
-import dagger.internal.Providers;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -22,9 +21,7 @@ import javax.annotation.processing.Generated;
     "rawtypes",
     "KotlinInternal",
     "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "cast"
 })
 public final class NewsRepositoryImpl_Factory implements Factory<NewsRepositoryImpl> {
   private final Provider<NewsApiService> apiServiceProvider;
@@ -40,12 +37,6 @@ public final class NewsRepositoryImpl_Factory implements Factory<NewsRepositoryI
   @Override
   public NewsRepositoryImpl get() {
     return newInstance(apiServiceProvider.get(), newsDaoProvider.get());
-  }
-
-  public static NewsRepositoryImpl_Factory create(
-      javax.inject.Provider<NewsApiService> apiServiceProvider,
-      javax.inject.Provider<NewsDao> newsDaoProvider) {
-    return new NewsRepositoryImpl_Factory(Providers.asDaggerProvider(apiServiceProvider), Providers.asDaggerProvider(newsDaoProvider));
   }
 
   public static NewsRepositoryImpl_Factory create(Provider<NewsApiService> apiServiceProvider,

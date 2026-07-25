@@ -29,6 +29,7 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    kspTest(libs.hilt.compiler)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
 
@@ -36,6 +37,7 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.truth)
     testImplementation(libs.turbine)
+    testImplementation(libs.hilt.android.testing)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.robolectric)
 

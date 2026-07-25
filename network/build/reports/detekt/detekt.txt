@@ -1,0 +1,1 @@
+MagicNumber - [<anonymous>] at D:\KNewsApp\network\src\test\java\com\android\knewsapp\network\connectivity\NetworkConnectivityObserverTest.kt:43:44 - Signature=NetworkConnectivityObserverTest.kt$NetworkConnectivityObserverTest$100

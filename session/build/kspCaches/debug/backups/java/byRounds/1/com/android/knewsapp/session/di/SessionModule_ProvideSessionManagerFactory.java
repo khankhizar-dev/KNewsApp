@@ -6,11 +6,10 @@ import com.android.knewsapp.session.SessionManager;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
-import dagger.internal.Provider;
-import dagger.internal.Providers;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 
 @ScopeMetadata("javax.inject.Singleton")
 @QualifierMetadata
@@ -24,9 +23,7 @@ import javax.annotation.processing.Generated;
     "rawtypes",
     "KotlinInternal",
     "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "cast"
 })
 public final class SessionModule_ProvideSessionManagerFactory implements Factory<SessionManager> {
   private final Provider<DataStore<Preferences>> dataStoreProvider;
@@ -39,11 +36,6 @@ public final class SessionModule_ProvideSessionManagerFactory implements Factory
   @Override
   public SessionManager get() {
     return provideSessionManager(dataStoreProvider.get());
-  }
-
-  public static SessionModule_ProvideSessionManagerFactory create(
-      javax.inject.Provider<DataStore<Preferences>> dataStoreProvider) {
-    return new SessionModule_ProvideSessionManagerFactory(Providers.asDaggerProvider(dataStoreProvider));
   }
 
   public static SessionModule_ProvideSessionManagerFactory create(

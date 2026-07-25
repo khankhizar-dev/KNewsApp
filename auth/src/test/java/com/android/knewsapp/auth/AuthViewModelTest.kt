@@ -1,6 +1,7 @@
 package com.android.knewsapp.auth
 
 import app.cash.turbine.test
+import com.android.knewsapp.network.connectivity.ConnectivityObserver
 import com.android.knewsapp.session.SessionManager
 import com.google.common.truth.Truth.assertThat
 import io.mockk.coVerify
@@ -9,6 +10,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -22,12 +24,14 @@ class AuthViewModelTest {
     private val testDispatcher = UnconfinedTestDispatcher()
     private lateinit var viewModel: AuthViewModel
     private val sessionManager: SessionManager = mockk(relaxed = true)
+    private val connectivityObserver: ConnectivityObserver = mockk(relaxed = true)
 
     @Before
     fun setup() {
         Dispatchers.setMain(testDispatcher)
         every { sessionManager.user } returns MutableStateFlow(null)
-        viewModel = AuthViewModel(sessionManager)
+        every { connectivityObserver.observe() } returns flowOf(ConnectivityObserver.Status.Available)
+        viewModel = AuthViewModel(sessionManager, connectivityObserver)
     }
 
     @After
@@ -39,8 +43,6 @@ class AuthViewModelTest {
     fun `initial loading state is checking session`() =
         runTest {
             viewModel.isCheckingSession.test {
-                // In setup, AuthViewModel init runs checkSession
-                // Depending on timing, we might see true then false
                 val first = awaitItem()
                 if (first) {
                     assertThat(awaitItem()).isFalse()
@@ -55,5 +57,13 @@ class AuthViewModelTest {
         runTest {
             viewModel.signOut()
             coVerify { sessionManager.clearSession() }
+        }
+
+    @Test
+    fun `networkStatus reflects connectivityObserver status`() =
+        runTest {
+            viewModel.networkStatus.test {
+                assertThat(awaitItem()).isEqualTo(ConnectivityObserver.Status.Available)
+            }
         }
 }

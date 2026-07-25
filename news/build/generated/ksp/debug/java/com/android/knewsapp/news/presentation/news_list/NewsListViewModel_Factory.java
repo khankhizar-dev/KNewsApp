@@ -4,11 +4,10 @@ import com.android.knewsapp.network.connectivity.ConnectivityObserver;
 import com.android.knewsapp.news.domain.repository.NewsRepository;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
-import dagger.internal.Provider;
-import dagger.internal.Providers;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -22,9 +21,7 @@ import javax.annotation.processing.Generated;
     "rawtypes",
     "KotlinInternal",
     "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "cast"
 })
 public final class NewsListViewModel_Factory implements Factory<NewsListViewModel> {
   private final Provider<NewsRepository> repositoryProvider;
@@ -40,12 +37,6 @@ public final class NewsListViewModel_Factory implements Factory<NewsListViewMode
   @Override
   public NewsListViewModel get() {
     return newInstance(repositoryProvider.get(), connectivityObserverProvider.get());
-  }
-
-  public static NewsListViewModel_Factory create(
-      javax.inject.Provider<NewsRepository> repositoryProvider,
-      javax.inject.Provider<ConnectivityObserver> connectivityObserverProvider) {
-    return new NewsListViewModel_Factory(Providers.asDaggerProvider(repositoryProvider), Providers.asDaggerProvider(connectivityObserverProvider));
   }
 
   public static NewsListViewModel_Factory create(Provider<NewsRepository> repositoryProvider,

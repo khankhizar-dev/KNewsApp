@@ -4,28 +4,6 @@
   "runs": [
     {
       "results": [
-        {
-          "level": "warning",
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///D:/KNewsApp/news/src/test/java/com/android/knewsapp/news/data/local/NewsMigrationTest.kt"
-                },
-                "region": {
-                  "endColumn": 50,
-                  "endLine": 36,
-                  "startColumn": 49,
-                  "startLine": 36
-                }
-              }
-            }
-          ],
-          "message": {
-            "text": "This expression contains a magic number. Consider defining it to a well named constant."
-          },
-          "ruleId": "detekt.style.MagicNumber"
-        }
       ],
       "tool": {
         "driver": {

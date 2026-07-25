@@ -6,11 +6,10 @@ import com.android.knewsapp.news.domain.repository.NewsRepository;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
-import dagger.internal.Provider;
-import dagger.internal.Providers;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 
 @ScopeMetadata("javax.inject.Singleton")
 @QualifierMetadata
@@ -24,9 +23,7 @@ import javax.annotation.processing.Generated;
     "rawtypes",
     "KotlinInternal",
     "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "cast"
 })
 public final class NewsModule_ProvideNewsRepositoryFactory implements Factory<NewsRepository> {
   private final Provider<NewsApiService> apiServiceProvider;
@@ -42,12 +39,6 @@ public final class NewsModule_ProvideNewsRepositoryFactory implements Factory<Ne
   @Override
   public NewsRepository get() {
     return provideNewsRepository(apiServiceProvider.get(), newsDaoProvider.get());
-  }
-
-  public static NewsModule_ProvideNewsRepositoryFactory create(
-      javax.inject.Provider<NewsApiService> apiServiceProvider,
-      javax.inject.Provider<NewsDao> newsDaoProvider) {
-    return new NewsModule_ProvideNewsRepositoryFactory(Providers.asDaggerProvider(apiServiceProvider), Providers.asDaggerProvider(newsDaoProvider));
   }
 
   public static NewsModule_ProvideNewsRepositoryFactory create(

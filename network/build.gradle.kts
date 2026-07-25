@@ -35,10 +35,13 @@ dependencies {
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    kspTest(libs.hilt.compiler)
 
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.truth)
+    testImplementation(libs.turbine)
+    testImplementation(libs.hilt.android.testing)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockwebserver)
 

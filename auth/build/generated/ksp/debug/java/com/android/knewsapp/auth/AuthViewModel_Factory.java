@@ -1,13 +1,13 @@
 package com.android.knewsapp.auth;
 
+import com.android.knewsapp.network.connectivity.ConnectivityObserver;
 import com.android.knewsapp.session.SessionManager;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
-import dagger.internal.Provider;
-import dagger.internal.Providers;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import javax.inject.Provider;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -21,32 +21,31 @@ import javax.annotation.processing.Generated;
     "rawtypes",
     "KotlinInternal",
     "KotlinInternalInJava",
-    "cast",
-    "deprecation",
-    "nullness:initialization.field.uninitialized"
+    "cast"
 })
 public final class AuthViewModel_Factory implements Factory<AuthViewModel> {
   private final Provider<SessionManager> sessionManagerProvider;
 
-  public AuthViewModel_Factory(Provider<SessionManager> sessionManagerProvider) {
+  private final Provider<ConnectivityObserver> connectivityObserverProvider;
+
+  public AuthViewModel_Factory(Provider<SessionManager> sessionManagerProvider,
+      Provider<ConnectivityObserver> connectivityObserverProvider) {
     this.sessionManagerProvider = sessionManagerProvider;
+    this.connectivityObserverProvider = connectivityObserverProvider;
   }
 
   @Override
   public AuthViewModel get() {
-    return newInstance(sessionManagerProvider.get());
+    return newInstance(sessionManagerProvider.get(), connectivityObserverProvider.get());
   }
 
-  public static AuthViewModel_Factory create(
-      javax.inject.Provider<SessionManager> sessionManagerProvider) {
-    return new AuthViewModel_Factory(Providers.asDaggerProvider(sessionManagerProvider));
+  public static AuthViewModel_Factory create(Provider<SessionManager> sessionManagerProvider,
+      Provider<ConnectivityObserver> connectivityObserverProvider) {
+    return new AuthViewModel_Factory(sessionManagerProvider, connectivityObserverProvider);
   }
 
-  public static AuthViewModel_Factory create(Provider<SessionManager> sessionManagerProvider) {
-    return new AuthViewModel_Factory(sessionManagerProvider);
-  }
-
-  public static AuthViewModel newInstance(SessionManager sessionManager) {
-    return new AuthViewModel(sessionManager);
+  public static AuthViewModel newInstance(SessionManager sessionManager,
+      ConnectivityObserver connectivityObserver) {
+    return new AuthViewModel(sessionManager, connectivityObserver);
   }
 }
