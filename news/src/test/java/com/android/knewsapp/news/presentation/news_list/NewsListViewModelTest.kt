@@ -7,6 +7,7 @@ import com.android.knewsapp.news.domain.repository.NewsRepository
 import com.google.common.truth.Truth.assertThat
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
@@ -68,5 +69,16 @@ class NewsListViewModelTest {
         viewModel.error.test {
             assertThat(awaitItem()).isEqualTo(errorMessage)
         }
+    }
+
+    @Test
+    fun `setFilters updates state and reloads news`() = runTest {
+        viewModel.setFilters("gb", "science", "en")
+        
+        assertThat(viewModel.country.value).isEqualTo("gb")
+        assertThat(viewModel.category.value).isEqualTo("science")
+        assertThat(viewModel.language.value).isEqualTo("en")
+        
+        verify { repository.getArticles("gb", "science", true) }
     }
 }

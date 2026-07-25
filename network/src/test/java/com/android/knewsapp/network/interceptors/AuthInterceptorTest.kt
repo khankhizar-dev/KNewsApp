@@ -71,4 +71,20 @@ class AuthInterceptorTest {
         assertThat(recordedRequest.getHeader("X-KNews-Timestamp")).isNotNull()
         assertThat(recordedRequest.getHeader("X-KNews-PublicKey")).isNotNull()
     }
+
+    @Test
+    fun `intercept does not add Authorization header when token is null`() {
+        every { sessionManager.userEmail } returns flowOf(null)
+        
+        mockWebServer.enqueue(MockResponse().setResponseCode(200))
+
+        val request = Request.Builder()
+            .url(mockWebServer.url("/"))
+            .build()
+
+        client.newCall(request).execute()
+
+        val recordedRequest = mockWebServer.takeRequest()
+        assertThat(recordedRequest.getHeader("Authorization")).isNull()
+    }
 }
