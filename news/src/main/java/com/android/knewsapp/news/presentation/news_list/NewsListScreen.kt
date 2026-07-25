@@ -1,5 +1,8 @@
 package com.android.knewsapp.news.presentation.news_list
 
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,7 +29,6 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
@@ -60,11 +62,14 @@ import coil.compose.AsyncImage
 import com.android.knewsapp.core_ui.theme.Dimensions
 import com.android.knewsapp.news.R
 import com.android.knewsapp.news.domain.model.Article
+import com.android.knewsapp.news.presentation.news_list.components.ArticleSkeleton
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class, ExperimentalSharedTransitionApi::class)
 @Composable
 fun NewsListScreen(
     viewModel: NewsListViewModel,
+    sharedTransitionScope: SharedTransitionScope,
+    animatedContentScope: AnimatedContentScope,
     onArticleClick: (Article) -> Unit,
 ) {
     val articles by viewModel.articles.collectAsStateWithLifecycle()
@@ -91,6 +96,7 @@ fun NewsListScreen(
         )
 
     val displayArticles = if (selectedTab == 0) articles else bookmarkedArticles
+    val skeletonCount = 5
 
     if (showFilterSheet) {
         ModalBottomSheet(onDismissRequest = { showFilterSheet = false }) {
@@ -277,7 +283,15 @@ fun NewsListScreen(
                     .padding(innerPadding),
         ) {
             if (loading && displayArticles.isEmpty()) {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(Dimensions.PaddingMedium),
+                    verticalArrangement = Arrangement.spacedBy(Dimensions.PaddingMedium),
+                ) {
+                    items(skeletonCount) {
+                        ArticleSkeleton()
+                    }
+                }
             } else if (error != null && displayArticles.isEmpty()) {
                 Column(
                     modifier =
@@ -330,6 +344,8 @@ fun NewsListScreen(
                     items(displayArticles, key = { it.url }) { article ->
                         ArticleItem(
                             article = article,
+                            sharedTransitionScope = sharedTransitionScope,
+                            animatedContentScope = animatedContentScope,
                             onClick = { onArticleClick(article) },
                             onBookmarkClick = { viewModel.toggleBookmark(article) },
                         )
@@ -340,9 +356,12 @@ fun NewsListScreen(
     }
 }
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun ArticleItem(
     article: Article,
+    sharedTransitionScope: SharedTransitionScope,
+    animatedContentScope: AnimatedContentScope,
     onClick: () -> Unit,
     onBookmarkClick: () -> Unit,
 ) {
@@ -353,15 +372,21 @@ fun ArticleItem(
         Column {
             Box {
                 article.urlToImage?.let { imageUrl ->
-                    AsyncImage(
-                        model = imageUrl,
-                        contentDescription = stringResource(R.string.article_image),
-                        modifier =
-                            Modifier
-                                .fillMaxWidth()
-                                .height(200.dp),
-                        contentScale = ContentScale.Crop,
-                    )
+                    with(sharedTransitionScope) {
+                        AsyncImage(
+                            model = imageUrl,
+                            contentDescription = stringResource(R.string.article_image),
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .height(200.dp)
+                                    .sharedElement(
+                                        rememberSharedContentState(key = "image/${article.url}"),
+                                        animatedVisibilityScope = animatedContentScope,
+                                    ),
+                            contentScale = ContentScale.Crop,
+                        )
+                    }
                 }
 
                 IconButton(

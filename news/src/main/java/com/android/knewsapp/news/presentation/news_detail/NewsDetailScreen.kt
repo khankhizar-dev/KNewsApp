@@ -1,6 +1,9 @@
 package com.android.knewsapp.news.presentation.news_detail
 
 import android.content.Intent
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -38,11 +41,13 @@ import com.android.knewsapp.core_ui.theme.Dimensions
 import com.android.knewsapp.news.R
 import com.android.knewsapp.news.domain.model.Article
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)
 @Composable
 fun NewsDetailScreen(
     article: Article,
     fullStory: String?,
+    sharedTransitionScope: SharedTransitionScope,
+    animatedContentScope: AnimatedContentScope,
     onBackClick: () -> Unit,
     onBookmarkClick: () -> Unit,
 ) {
@@ -96,16 +101,22 @@ fun NewsDetailScreen(
                     .padding(innerPadding)
                     .verticalScroll(rememberScrollState()),
         ) {
-            article.urlToImage?.let {
-                AsyncImage(
-                    model = it,
-                    contentDescription = stringResource(R.string.article_image),
-                    modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .height(250.dp),
-                    contentScale = ContentScale.Crop,
-                )
+            article.urlToImage?.let { imageUrl ->
+                with(sharedTransitionScope) {
+                    AsyncImage(
+                        model = imageUrl,
+                        contentDescription = stringResource(R.string.article_image),
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .height(250.dp)
+                                .sharedElement(
+                                    rememberSharedContentState(key = "image/${article.url}"),
+                                    animatedVisibilityScope = animatedContentScope,
+                                ),
+                        contentScale = ContentScale.Crop,
+                    )
+                }
             }
 
             Column(modifier = Modifier.padding(Dimensions.PaddingMedium)) {

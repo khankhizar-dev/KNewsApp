@@ -7,6 +7,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
@@ -61,6 +63,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalSharedTransitionApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -76,180 +79,185 @@ class MainActivity : ComponentActivity() {
                 val isCheckingSession by authViewModel.isCheckingSession.collectAsStateWithLifecycle()
                 val networkStatus by authViewModel.networkStatus.collectAsStateWithLifecycle()
 
-                Column(modifier = Modifier.fillMaxSize()) {
-                    AnimatedVisibility(
-                        visible = networkStatus != ConnectivityObserver.Status.Available,
-                        enter = expandVertically(),
-                        exit = shrinkVertically(),
-                    ) {
-                        Box(
-                            modifier =
-                                Modifier
-                                    .fillMaxWidth()
-                                    .background(Color.Red.copy(alpha = 0.8f))
-                                    .padding(8.dp),
-                            contentAlignment = Alignment.Center,
+                SharedTransitionLayout {
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        AnimatedVisibility(
+                            visible = networkStatus != ConnectivityObserver.Status.Available,
+                            enter = expandVertically(),
+                            exit = shrinkVertically(),
                         ) {
-                            Text(
-                                text = stringResource(R.string.no_internet_connection),
-                                color = Color.White,
-                                style = MaterialTheme.typography.labelMedium,
-                                textAlign = TextAlign.Center,
-                            )
+                            Box(
+                                modifier =
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .background(Color.Red.copy(alpha = 0.8f))
+                                        .padding(8.dp),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.no_internet_connection),
+                                    color = Color.White,
+                                    style = MaterialTheme.typography.labelMedium,
+                                    textAlign = TextAlign.Center,
+                                )
+                            }
                         }
-                    }
 
-                    if (isCheckingSession) {
-                        Box(
-                            modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            CircularProgressIndicator()
-                        }
-                    } else {
-                        LaunchedEffect(user) {
-                            if (user != null) {
-                                // Only navigate to main if we are on login/signup
-                                val currentRoute = navController.currentDestination?.route
-                                if (currentRoute == "login" || currentRoute == "signup" || currentRoute == null) {
-                                    navController.navigate("main") {
+                        if (isCheckingSession) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                CircularProgressIndicator()
+                            }
+                        } else {
+                            LaunchedEffect(user) {
+                                if (user != null) {
+                                    val currentRoute = navController.currentDestination?.route
+                                    if (currentRoute == "login" || currentRoute == "signup" || currentRoute == null) {
+                                        navController.navigate("main") {
+                                            popUpTo(0) { inclusive = true }
+                                        }
+                                    }
+                                } else {
+                                    navController.navigate("login") {
                                         popUpTo(0) { inclusive = true }
                                     }
                                 }
-                            } else {
-                                navController.navigate("login") {
-                                    popUpTo(0) { inclusive = true }
-                                }
-                            }
-                        }
-
-                        NavHost(
-                            navController = navController,
-                            startDestination = if (user != null) "main" else "login",
-                            modifier = Modifier.weight(1f),
-                        ) {
-                            composable("login") {
-                                LoginScreen(
-                                    viewModel = authViewModel,
-                                    onNavigateToSignUp = {
-                                        navController.navigate("signup")
-                                    },
-                                    onLoginSuccess = {},
-                                    onGoogleSignInClick = {
-                                        scope.launch {
-                                            val googleIdOption: GetGoogleIdOption =
-                                                GetGoogleIdOption.Builder()
-                                                    .setFilterByAuthorizedAccounts(false)
-                                                    .setServerClientId(getString(R.string.default_web_client_id))
-                                                    .build()
-
-                                            val request: GetCredentialRequest =
-                                                GetCredentialRequest.Builder()
-                                                    .addCredentialOption(googleIdOption)
-                                                    .build()
-
-                                            try {
-                                                val result =
-                                                    credentialManager.getCredential(
-                                                        context = this@MainActivity,
-                                                        request = request,
-                                                    )
-                                                val credential = result.credential
-                                                val googleIdTokenCredential =
-                                                    GoogleIdTokenCredential.createFrom(credential.data)
-                                                val idToken = googleIdTokenCredential.idToken
-
-                                                authViewModel.signInWithGoogle(idToken) {}
-                                            } catch (e: GetCredentialException) {
-                                                val msg = getString(R.string.google_sign_in_failed, e.message)
-                                                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-                                            }
-                                        }
-                                    },
-                                )
-                            }
-                            composable("signup") {
-                                SignUpScreen(
-                                    viewModel = authViewModel,
-                                    onNavigateToLogin = {
-                                        navController.popBackStack()
-                                    },
-                                    onSignUpSuccess = {},
-                                )
-                            }
-                            composable("main") {
-                                var bottomTab by remember { mutableIntStateOf(0) }
-                                val newsViewModel: NewsListViewModel = hiltViewModel()
-
-                                Scaffold(
-                                    bottomBar = {
-                                        NavigationBar {
-                                            NavigationBarItem(
-                                                selected = bottomTab == 0,
-                                                onClick = { bottomTab = 0 },
-                                                icon = {
-                                                    Icon(
-                                                        imageVector = Icons.Default.Home,
-                                                        contentDescription = stringResource(R.string.news),
-                                                    )
-                                                },
-                                                label = { Text(stringResource(R.string.news)) },
-                                            )
-                                            NavigationBarItem(
-                                                selected = bottomTab == 1,
-                                                onClick = { bottomTab = 1 },
-                                                icon = {
-                                                    Icon(
-                                                        imageVector = Icons.Default.Person,
-                                                        contentDescription = stringResource(R.string.profile),
-                                                    )
-                                                },
-                                                label = { Text(stringResource(R.string.profile)) },
-                                            )
-                                        }
-                                    },
-                                ) { innerPadding ->
-                                    Box(modifier = Modifier.padding(innerPadding)) {
-                                        if (bottomTab == 0) {
-                                            NewsListScreen(
-                                                viewModel = newsViewModel,
-                                                onArticleClick = { article ->
-                                                    newsViewModel.selectArticle(article)
-                                                    navController.navigate("detail")
-                                                },
-                                            )
-                                        } else {
-                                            ProfileScreen(
-                                                viewModel = authViewModel,
-                                                onLogoutClick = {
-                                                    authViewModel.signOut()
-                                                },
-                                            )
-                                        }
-                                    }
-                                }
                             }
 
-                            composable("detail") {
-                                val parentEntry =
-                                    remember(it) {
-                                        navController.getBackStackEntry("main")
-                                    }
-                                val newsViewModel: NewsListViewModel = hiltViewModel(parentEntry)
-                                val article by newsViewModel.selectedArticle.collectAsStateWithLifecycle()
-                                val fullStory by newsViewModel.fullContent.collectAsStateWithLifecycle()
-
-                                article?.let {
-                                    NewsDetailScreen(
-                                        article = it,
-                                        fullStory = fullStory,
-                                        onBackClick = {
-                                            navController.popBackStack()
+                            NavHost(
+                                navController = navController,
+                                startDestination = if (user != null) "main" else "login",
+                                modifier = Modifier.weight(1f),
+                            ) {
+                                composable("login") {
+                                    LoginScreen(
+                                        viewModel = authViewModel,
+                                        onNavigateToSignUp = {
+                                            navController.navigate("signup")
                                         },
-                                        onBookmarkClick = {
-                                            newsViewModel.toggleBookmark(it)
+                                        onLoginSuccess = {},
+                                        onGoogleSignInClick = {
+                                            scope.launch {
+                                                val googleIdOption: GetGoogleIdOption =
+                                                    GetGoogleIdOption.Builder()
+                                                        .setFilterByAuthorizedAccounts(false)
+                                                        .setServerClientId(getString(R.string.default_web_client_id))
+                                                        .build()
+
+                                                val request: GetCredentialRequest =
+                                                    GetCredentialRequest.Builder()
+                                                        .addCredentialOption(googleIdOption)
+                                                        .build()
+
+                                                try {
+                                                    val result =
+                                                        credentialManager.getCredential(
+                                                            context = this@MainActivity,
+                                                            request = request,
+                                                        )
+                                                    val credential = result.credential
+                                                    val googleIdTokenCredential =
+                                                        GoogleIdTokenCredential.createFrom(credential.data)
+                                                    val idToken = googleIdTokenCredential.idToken
+
+                                                    authViewModel.signInWithGoogle(idToken) {}
+                                                } catch (e: GetCredentialException) {
+                                                    val msg = getString(R.string.google_sign_in_failed, e.message)
+                                                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                                                }
+                                            }
                                         },
                                     )
+                                }
+                                composable("signup") {
+                                    SignUpScreen(
+                                        viewModel = authViewModel,
+                                        onNavigateToLogin = {
+                                            navController.popBackStack()
+                                        },
+                                        onSignUpSuccess = {},
+                                    )
+                                }
+                                composable("main") {
+                                    var bottomTab by remember { mutableIntStateOf(0) }
+                                    val newsViewModel: NewsListViewModel = hiltViewModel()
+
+                                    Scaffold(
+                                        bottomBar = {
+                                            NavigationBar {
+                                                NavigationBarItem(
+                                                    selected = bottomTab == 0,
+                                                    onClick = { bottomTab = 0 },
+                                                    icon = {
+                                                        Icon(
+                                                            imageVector = Icons.Default.Home,
+                                                            contentDescription = stringResource(R.string.news),
+                                                        )
+                                                    },
+                                                    label = { Text(stringResource(R.string.news)) },
+                                                )
+                                                NavigationBarItem(
+                                                    selected = bottomTab == 1,
+                                                    onClick = { bottomTab = 1 },
+                                                    icon = {
+                                                        Icon(
+                                                            imageVector = Icons.Default.Person,
+                                                            contentDescription = stringResource(R.string.profile),
+                                                        )
+                                                    },
+                                                    label = { Text(stringResource(R.string.profile)) },
+                                                )
+                                            }
+                                        },
+                                    ) { innerPadding ->
+                                        Box(modifier = Modifier.padding(innerPadding)) {
+                                            if (bottomTab == 0) {
+                                                NewsListScreen(
+                                                    viewModel = newsViewModel,
+                                                    sharedTransitionScope = this@SharedTransitionLayout,
+                                                    animatedContentScope = this@composable,
+                                                    onArticleClick = { article ->
+                                                        newsViewModel.selectArticle(article)
+                                                        navController.navigate("detail")
+                                                    },
+                                                )
+                                            } else {
+                                                ProfileScreen(
+                                                    viewModel = authViewModel,
+                                                    onLogoutClick = {
+                                                        authViewModel.signOut()
+                                                    },
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+
+                                composable("detail") {
+                                    val parentEntry =
+                                        remember(it) {
+                                            navController.getBackStackEntry("main")
+                                        }
+                                    val newsViewModel: NewsListViewModel = hiltViewModel(parentEntry)
+                                    val article by newsViewModel.selectedArticle.collectAsStateWithLifecycle()
+                                    val fullStory by newsViewModel.fullContent.collectAsStateWithLifecycle()
+
+                                    article?.let {
+                                        NewsDetailScreen(
+                                            article = it,
+                                            fullStory = fullStory,
+                                            sharedTransitionScope = this@SharedTransitionLayout,
+                                            animatedContentScope = this@composable,
+                                            onBackClick = {
+                                                navController.popBackStack()
+                                            },
+                                            onBookmarkClick = {
+                                                newsViewModel.toggleBookmark(it)
+                                            },
+                                        )
+                                    }
                                 }
                             }
                         }
