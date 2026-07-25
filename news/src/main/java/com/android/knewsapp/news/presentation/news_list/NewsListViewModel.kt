@@ -2,12 +2,14 @@ package com.android.knewsapp.news.presentation.news_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.knewsapp.network.connectivity.ConnectivityObserver
 import com.android.knewsapp.news.domain.model.Article
 import com.android.knewsapp.news.domain.repository.NewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,6 +19,7 @@ class NewsListViewModel
     @Inject
     constructor(
         private val repository: NewsRepository,
+        private val connectivityObserver: ConnectivityObserver,
     ) : ViewModel() {
         private val _articles = MutableStateFlow<List<Article>>(emptyList())
         val articles: StateFlow<List<Article>> = _articles
@@ -53,6 +56,17 @@ class NewsListViewModel
 
         init {
             loadNews()
+            observeConnectivity()
+        }
+
+        private fun observeConnectivity() {
+            viewModelScope.launch {
+                connectivityObserver.observe().collectLatest { status ->
+                    if (status == ConnectivityObserver.Status.Available && _articles.value.isEmpty()) {
+                        loadNews()
+                    }
+                }
+            }
         }
 
         fun toggleBookmark(article: Article) {

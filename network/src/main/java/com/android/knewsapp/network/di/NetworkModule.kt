@@ -1,9 +1,13 @@
 package com.android.knewsapp.network.di
 
+import android.content.Context
+import com.android.knewsapp.network.connectivity.ConnectivityObserver
+import com.android.knewsapp.network.connectivity.NetworkConnectivityObserver
 import com.android.knewsapp.network.interceptors.AuthInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,5 +44,13 @@ object NetworkModule {
         return Retrofit.Builder()
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
+    }
+
+    @Provides
+    @Singleton
+    fun provideConnectivityObserver(
+        @ApplicationContext context: Context,
+    ): ConnectivityObserver {
+        return NetworkConnectivityObserver(context)
     }
 }

@@ -2,13 +2,16 @@ package com.android.knewsapp.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.knewsapp.network.connectivity.ConnectivityObserver
 import com.android.knewsapp.session.SessionManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -18,10 +21,19 @@ class AuthViewModel
     @Inject
     constructor(
         private val sessionManager: SessionManager,
+        connectivityObserver: ConnectivityObserver,
     ) : ViewModel() {
         private val auth = FirebaseAuth.getInstance()
 
         val user: StateFlow<FirebaseUser?> = sessionManager.user
+
+        val networkStatus: StateFlow<ConnectivityObserver.Status> =
+            connectivityObserver.observe()
+                .stateIn(
+                    viewModelScope,
+                    SharingStarted.WhileSubscribed(5000),
+                    ConnectivityObserver.Status.Unavailable,
+                )
 
         private val _loading = MutableStateFlow(false)
         val loading: StateFlow<Boolean> = _loading

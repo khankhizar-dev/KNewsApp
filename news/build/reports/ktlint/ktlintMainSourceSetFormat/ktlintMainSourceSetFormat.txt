@@ -1,47 +1,130 @@
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m91[90m:24:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m92[90m:17:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m93[90m:21:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m94[90m:25:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m96[90m:17:[0m Unexpected indentation (16) (should be 8) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m101[90m:16:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m102[90m:13:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m103[90m:16:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m104[90m:7:[0m Unexpected indentation (24) (should be 20) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m128[90m:44:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m129[90m:45:[0m Unexpected indentation (28) (should be 32) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m131[90m:24:[0m Unexpected indentation (28) (should be 32) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m131[90m:73:[0m Unexpected indentation (28) (should be 20) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m94[90m:28:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m95[90m:21:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m96[90m:25:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m97[90m:29:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m99[90m:17:[0m Unexpected indentation (20) (should be 12) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m201[90m:3:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m201[90m:69:[0m Unexpected indentation (36) (should be 40) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m202[90m:73:[0m Unexpected indentation (36) (should be 40) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m205[90m:12:[0m Unexpected indentation (32) (should be 36) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m206[90m:18:[0m Unexpected indentation (36) (should be 28) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m250[90m:25:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m252[90m:6:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m255[90m:3:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m256[90m:5:[0m Unexpected indentation (24) (should be 16) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m274[90m:13:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m274[90m:46:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m275[90m:25:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m275[90m:69:[0m Unexpected indentation (16) (should be 8) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m281[90m:12:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m281[90m:53:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m283[90m:14:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m284[90m:51:[0m Unexpected indentation (24) (should be 20) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m299[90m:40:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m300[90m:13:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m302[90m:20:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m303[90m:41:[0m Unexpected indentation (24) (should be 20) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m352[90m:7:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m355[90m:13:[0m Unexpected indentation (28) (should be 32) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m356[90m:14:[0m Unexpected indentation (28) (should be 32) [90m(standard:indent)[0m
-[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m356[90m:63:[0m Unexpected indentation (28) (should be 24) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m1[90m:1:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m1[90m:1:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m1[90m:1:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m1[90m:1:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m1[90m:1:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m1[90m:1:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m1[90m:1:[0m Unexpected indentation (0) (should be 4) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m18[90m:24:[0m Expected newline before annotation [90m(standard:annotation)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m18[90m:36:[0m Expected newline after last annotation [90m(standard:annotation)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m19[90m:9:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m20[90m:13:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m21[90m:17:[0m Unexpected indentation (0) (should be 4) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m22[90m:21:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m23[90m:25:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m25[90m:29:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m26[90m:33:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m28[90m:37:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m29[90m:41:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m31[90m:45:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m32[90m:49:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m34[90m:53:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m37[90m:1:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m38[90m:46:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m39[90m:6:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m41[90m:21:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m42[90m:13:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m44[90m:27:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m45[90m:21:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m47[90m:35:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m48[90m:31:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m51[90m:26:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m51[90m:30:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m52[90m:20:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m52[90m:46:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m52[90m:79:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m56[90m:2:[0m Unexpected indentation (8) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m60[90m:18:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m61[90m:1:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m61[90m:24:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m61[90m:58:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m61[90m:69:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m62[90m:44:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m62[90m:80:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m65[90m:4:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m71[90m:2:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m71[90m:37:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m73[90m:2:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m75[90m:13:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m75[90m:27:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m75[90m:36:[0m Newline expected after opening parenthesis [90m(standard:function-signature)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m75[90m:38:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m75[90m:63:[0m Parameter should start on a newline [90m(standard:function-signature)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m76[90m:8:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m76[90m:13:[0m Parameter should start on a newline [90m(standard:function-signature)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m77[90m:5:[0m Newline expected before closing parenthesis [90m(standard:function-signature)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m77[90m:5:[0m Missing trailing comma before ")" [90m(standard:trailing-comma-on-declaration-site)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m77[90m:11:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m78[90m:27:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m79[90m:6:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m79[90m:17:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m82[90m:15:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m83[90m:9:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m84[90m:8:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m85[90m:5:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m85[90m:17:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m86[90m:22:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m86[90m:61:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m87[90m:20:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m88[90m:2:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m88[90m:13:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m89[90m:6:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m90[90m:7:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m91[90m:27:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m92[90m:21:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m93[90m:33:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m95[90m:10:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m99[90m:9:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m100[90m:12:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m101[90m:3:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m104[90m:19:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m106[90m:4:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m107[90m:27:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m107[90m:49:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m108[90m:11:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m108[90m:25:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m108[90m:36:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m110[90m:11:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m113[90m:1:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m113[90m:28:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m113[90m:39:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m114[90m:33:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m116[90m:11:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m117[90m:15:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m121[90m:37:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m122[90m:48:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m122[90m:62:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m124[90m:19:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m124[90m:30:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m125[90m:16:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m125[90m:61:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m126[90m:41:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m127[90m:14:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m128[90m:15:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m128[90m:29:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m129[90m:3:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m129[90m:55:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m134[90m:7:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m134[90m:29:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m136[90m:10:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m139[90m:14:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m141[90m:2:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m142[90m:7:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m142[90m:48:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m145[90m:32:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m146[90m:5:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m146[90m:19:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m146[90m:30:[0m Unexpected indentation (4) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m148[90m:13:[0m Unexpected indentation (8) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m149[90m:3:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m149[90m:41:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m149[90m:78:[0m Unexpected indentation (12) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m151[90m:14:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListViewModel.kt[90m:[0m153[90m:7:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
 
 Summary error count (descending) by rule:
-  standard:indent: 33
-  standard:multiline-expression-wrapping: 10
+  standard:indent: 115
+  standard:function-signature: 4
+  standard:annotation: 2
+  standard:multiline-expression-wrapping: 1
+  standard:trailing-comma-on-declaration-site: 1
