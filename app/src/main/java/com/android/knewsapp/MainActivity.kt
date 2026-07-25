@@ -8,11 +8,22 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
@@ -24,6 +35,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.android.knewsapp.auth.AuthViewModel
 import com.android.knewsapp.auth.LoginScreen
+import com.android.knewsapp.auth.ProfileScreen
 import com.android.knewsapp.auth.SignUpScreen
 import com.android.knewsapp.core_ui.theme.KNewsAppTheme
 import com.android.knewsapp.news.presentation.news_detail.NewsDetailScreen
@@ -60,8 +72,12 @@ class MainActivity : ComponentActivity() {
                 } else {
                     LaunchedEffect(user) {
                         if (user != null) {
-                            navController.navigate("main") {
-                                popUpTo("login") { inclusive = true }
+                            // Only navigate to main if we are on login/signup
+                            val currentRoute = navController.currentDestination?.route
+                            if (currentRoute == "login" || currentRoute == "signup" || currentRoute == null) {
+                                navController.navigate("main") {
+                                    popUpTo(0) { inclusive = true }
+                                }
                             }
                         } else {
                             navController.navigate("login") {
@@ -80,9 +96,7 @@ class MainActivity : ComponentActivity() {
                                 onNavigateToSignUp = {
                                     navController.navigate("signup")
                                 },
-                                onLoginSuccess = {
-                                    // Handled by LaunchedEffect
-                                },
+                                onLoginSuccess = {},
                                 onGoogleSignInClick = {
                                     scope.launch {
                                         val googleIdOption: GetGoogleIdOption =
@@ -107,9 +121,7 @@ class MainActivity : ComponentActivity() {
                                                 GoogleIdTokenCredential.createFrom(credential.data)
                                             val idToken = googleIdTokenCredential.idToken
 
-                                            authViewModel.signInWithGoogle(idToken) {
-                                                // Success handled by LaunchedEffect
-                                            }
+                                            authViewModel.signInWithGoogle(idToken) {}
                                         } catch (e: GetCredentialException) {
                                             val msg = "Google Sign-In failed: ${e.message}"
                                             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
@@ -124,23 +136,50 @@ class MainActivity : ComponentActivity() {
                                 onNavigateToLogin = {
                                     navController.popBackStack()
                                 },
-                                onSignUpSuccess = {
-                                    // Handled by LaunchedEffect
-                                },
+                                onSignUpSuccess = {},
                             )
                         }
                         composable("main") {
+                            var bottomTab by remember { mutableIntStateOf(0) }
                             val newsViewModel: NewsListViewModel = hiltViewModel()
-                            NewsListScreen(
-                                viewModel = newsViewModel,
-                                onArticleClick = { article ->
-                                    newsViewModel.selectArticle(article)
-                                    navController.navigate("detail")
+
+                            Scaffold(
+                                bottomBar = {
+                                    NavigationBar {
+                                        NavigationBarItem(
+                                            selected = bottomTab == 0,
+                                            onClick = { bottomTab = 0 },
+                                            icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
+                                            label = { Text("News") },
+                                        )
+                                        NavigationBarItem(
+                                            selected = bottomTab == 1,
+                                            onClick = { bottomTab = 1 },
+                                            icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
+                                            label = { Text("Profile") },
+                                        )
+                                    }
                                 },
-                                onLogoutClick = {
-                                    authViewModel.signOut()
-                                },
-                            )
+                            ) { innerPadding ->
+                                Box(modifier = Modifier.padding(innerPadding)) {
+                                    if (bottomTab == 0) {
+                                        NewsListScreen(
+                                            viewModel = newsViewModel,
+                                            onArticleClick = { article ->
+                                                newsViewModel.selectArticle(article)
+                                                navController.navigate("detail")
+                                            },
+                                        )
+                                    } else {
+                                        ProfileScreen(
+                                            viewModel = authViewModel,
+                                            onLogoutClick = {
+                                                authViewModel.signOut()
+                                            },
+                                        )
+                                    }
+                                }
+                            }
                         }
 
                         composable("detail") {
@@ -173,7 +212,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onUserInteraction() {
         super.onUserInteraction()
-        // Reset inactivity timer on any user interaction
         val authViewModel: AuthViewModel by viewModels()
         authViewModel.resetInactivityTimer()
     }

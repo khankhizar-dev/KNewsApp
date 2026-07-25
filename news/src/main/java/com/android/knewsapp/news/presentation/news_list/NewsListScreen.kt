@@ -17,7 +17,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -65,7 +64,6 @@ import com.android.knewsapp.news.domain.model.Article
 fun NewsListScreen(
     viewModel: NewsListViewModel,
     onArticleClick: (Article) -> Unit,
-    onLogoutClick: () -> Unit,
 ) {
     val articles by viewModel.articles.collectAsStateWithLifecycle()
     val bookmarkedArticles by viewModel.bookmarkedArticles.collectAsStateWithLifecycle()
@@ -214,19 +212,23 @@ fun NewsListScreen(
                     },
                     actions = {
                         if (isSearchExpanded) {
-                            IconButton(onClick = {
-                                if (searchQuery.isNotBlank()) {
-                                    viewModel.searchNews(searchQuery)
-                                }
-                                isSearchExpanded = false
-                                searchQuery = ""
-                            }) {
+                            IconButton(
+                                onClick = {
+                                    if (searchQuery.isNotBlank()) {
+                                        viewModel.searchNews(searchQuery)
+                                    }
+                                    isSearchExpanded = false
+                                    searchQuery = ""
+                                },
+                            ) {
                                 Icon(Icons.Default.Search, contentDescription = "Confirm Search")
                             }
-                            IconButton(onClick = {
-                                isSearchExpanded = false
-                                searchQuery = ""
-                            }) {
+                            IconButton(
+                                onClick = {
+                                    isSearchExpanded = false
+                                    searchQuery = ""
+                                },
+                            ) {
                                 Icon(Icons.Default.Close, contentDescription = "Close Search")
                             }
                         } else {
@@ -238,13 +240,6 @@ fun NewsListScreen(
                             }
                             IconButton(onClick = { showFilterSheet = true }) {
                                 Icon(Icons.Default.List, contentDescription = "Filter")
-                            }
-                            IconButton(onClick = onLogoutClick) {
-                                Icon(
-                                    imageVector = Icons.AutoMirrored.Filled.ExitToApp,
-                                    contentDescription = "Logout",
-                                    tint = MaterialTheme.colorScheme.primary,
-                                )
                             }
                         }
                     },
