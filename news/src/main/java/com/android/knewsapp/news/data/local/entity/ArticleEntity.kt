@@ -1,5 +1,6 @@
 package com.android.knewsapp.news.data.local.entity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -15,4 +16,5 @@ data class ArticleEntity(
     val sourceName: String,
     val country: String?,
     val category: String?,
+    @ColumnInfo(defaultValue = "0") val isRead: Boolean = false,
 )

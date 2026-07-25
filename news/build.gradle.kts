@@ -5,11 +5,16 @@ plugins {
     alias(libs.plugins.paparazzi)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 android {
     namespace = "com.android.knewsapp.news"
     compileSdk = 35
+
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 
     defaultConfig {
         minSdk = 24
@@ -25,6 +30,13 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    sourceSets {
+        getByName("test") {
+            resources.srcDirs("schemas")
+        }
+    }
+
     buildFeatures {
         compose = true
         buildConfig = true
@@ -66,6 +78,7 @@ dependencies {
     testImplementation(libs.turbine)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.robolectric)
+    testImplementation(libs.room.testing)
     testImplementation("androidx.test:core:1.5.0")
 
     androidTestImplementation(libs.androidx.junit)

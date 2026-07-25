@@ -1,0 +1,17 @@
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m14[90m:1:[0m Class body should not start with blank line [90m(standard:no-empty-first-line-in-class-body)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m15[90m:17:[0m Property name should start with a lowercase letter and use camel case [90m(standard:property-naming)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m18[90m:39:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m22[90m:43:[0m Missing trailing comma before ")" [90m(standard:trailing-comma-on-call-site)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m32[90m:1:[0m Exceeded max line length (120) [90m(standard:max-line-length)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m32[90m:21:[0m Argument should be on a separate line (unless all arguments can fit a single line) [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m32[90m:131:[0m Missing newline before ")" [90m(standard:argument-list-wrapping)[0m
+[90mD:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\[0mNewsMigrationTest.kt[90m:[0m39[90m:1:[0m Trailing space(s) [90m(standard:no-trailing-spaces)[0m
+
+Summary error count (descending) by rule:
+  standard:argument-list-wrapping: 2
+  standard:max-line-length: 1
+  standard:multiline-expression-wrapping: 1
+  standard:no-empty-first-line-in-class-body: 1
+  standard:no-trailing-spaces: 1
+  standard:property-naming: 1
+  standard:trailing-comma-on-call-site: 1

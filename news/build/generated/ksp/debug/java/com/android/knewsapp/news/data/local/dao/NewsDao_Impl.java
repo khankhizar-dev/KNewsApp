@@ -48,7 +48,7 @@ public final class NewsDao_Impl implements NewsDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `articles` (`url`,`title`,`author`,`description`,`urlToImage`,`publishedAt`,`content`,`sourceName`,`country`,`category`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `articles` (`url`,`title`,`author`,`description`,`urlToImage`,`publishedAt`,`content`,`sourceName`,`country`,`category`,`isRead`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -88,6 +88,8 @@ public final class NewsDao_Impl implements NewsDao {
         } else {
           statement.bindString(10, entity.getCategory());
         }
+        final int _tmp = entity.isRead() ? 1 : 0;
+        statement.bindLong(11, _tmp);
       }
     };
     this.__insertionAdapterOfBookmarkEntity = new EntityInsertionAdapter<BookmarkEntity>(__db) {
@@ -144,7 +146,11 @@ public final class NewsDao_Impl implements NewsDao {
       @Override
       @NonNull
       public String createQuery() {
-        final String _query = "DELETE FROM articles WHERE (? IS NULL OR country = ?) AND (? IS NULL OR category = ?)";
+        final String _query = "\n"
+                + "        DELETE FROM articles \n"
+                + "        WHERE (? IS NULL OR country = ?) \n"
+                + "        AND (? IS NULL OR category = ?)\n"
+                + "        ";
         return _query;
       }
     };
@@ -257,7 +263,12 @@ public final class NewsDao_Impl implements NewsDao {
 
   @Override
   public Flow<List<ArticleEntity>> getArticles(final String country, final String category) {
-    final String _sql = "SELECT * FROM articles WHERE (? IS NULL OR country = ?) AND (? IS NULL OR category = ?) ORDER BY publishedAt DESC";
+    final String _sql = "\n"
+            + "        SELECT * FROM articles \n"
+            + "        WHERE (? IS NULL OR country = ?) \n"
+            + "        AND (? IS NULL OR category = ?) \n"
+            + "        ORDER BY publishedAt DESC\n"
+            + "        ";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 4);
     int _argIndex = 1;
     if (country == null) {
@@ -299,6 +310,7 @@ public final class NewsDao_Impl implements NewsDao {
           final int _cursorIndexOfSourceName = CursorUtil.getColumnIndexOrThrow(_cursor, "sourceName");
           final int _cursorIndexOfCountry = CursorUtil.getColumnIndexOrThrow(_cursor, "country");
           final int _cursorIndexOfCategory = CursorUtil.getColumnIndexOrThrow(_cursor, "category");
+          final int _cursorIndexOfIsRead = CursorUtil.getColumnIndexOrThrow(_cursor, "isRead");
           final List<ArticleEntity> _result = new ArrayList<ArticleEntity>(_cursor.getCount());
           while (_cursor.moveToNext()) {
             final ArticleEntity _item;
@@ -346,7 +358,11 @@ public final class NewsDao_Impl implements NewsDao {
             } else {
               _tmpCategory = _cursor.getString(_cursorIndexOfCategory);
             }
-            _item = new ArticleEntity(_tmpUrl,_tmpTitle,_tmpAuthor,_tmpDescription,_tmpUrlToImage,_tmpPublishedAt,_tmpContent,_tmpSourceName,_tmpCountry,_tmpCategory);
+            final boolean _tmpIsRead;
+            final int _tmp;
+            _tmp = _cursor.getInt(_cursorIndexOfIsRead);
+            _tmpIsRead = _tmp != 0;
+            _item = new ArticleEntity(_tmpUrl,_tmpTitle,_tmpAuthor,_tmpDescription,_tmpUrlToImage,_tmpPublishedAt,_tmpContent,_tmpSourceName,_tmpCountry,_tmpCategory,_tmpIsRead);
             _result.add(_item);
           }
           return _result;

@@ -1,0 +1,1 @@
+MagicNumber - [migrate2To3] at D:\KNewsApp\news\src\test\java\com\android\knewsapp\news\data\local\NewsMigrationTest.kt:36:49 - Signature=NewsMigrationTest.kt$NewsMigrationTest$3

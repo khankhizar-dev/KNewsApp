@@ -1,5 +1,6 @@
 package com.android.knewsapp.news.presentation.news_list;
 
+import com.android.knewsapp.network.connectivity.ConnectivityObserver;
 import com.android.knewsapp.news.domain.repository.NewsRepository;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
@@ -28,25 +29,32 @@ import javax.annotation.processing.Generated;
 public final class NewsListViewModel_Factory implements Factory<NewsListViewModel> {
   private final Provider<NewsRepository> repositoryProvider;
 
-  public NewsListViewModel_Factory(Provider<NewsRepository> repositoryProvider) {
+  private final Provider<ConnectivityObserver> connectivityObserverProvider;
+
+  public NewsListViewModel_Factory(Provider<NewsRepository> repositoryProvider,
+      Provider<ConnectivityObserver> connectivityObserverProvider) {
     this.repositoryProvider = repositoryProvider;
+    this.connectivityObserverProvider = connectivityObserverProvider;
   }
 
   @Override
   public NewsListViewModel get() {
-    return newInstance(repositoryProvider.get());
+    return newInstance(repositoryProvider.get(), connectivityObserverProvider.get());
   }
 
   public static NewsListViewModel_Factory create(
-      javax.inject.Provider<NewsRepository> repositoryProvider) {
-    return new NewsListViewModel_Factory(Providers.asDaggerProvider(repositoryProvider));
+      javax.inject.Provider<NewsRepository> repositoryProvider,
+      javax.inject.Provider<ConnectivityObserver> connectivityObserverProvider) {
+    return new NewsListViewModel_Factory(Providers.asDaggerProvider(repositoryProvider), Providers.asDaggerProvider(connectivityObserverProvider));
   }
 
-  public static NewsListViewModel_Factory create(Provider<NewsRepository> repositoryProvider) {
-    return new NewsListViewModel_Factory(repositoryProvider);
+  public static NewsListViewModel_Factory create(Provider<NewsRepository> repositoryProvider,
+      Provider<ConnectivityObserver> connectivityObserverProvider) {
+    return new NewsListViewModel_Factory(repositoryProvider, connectivityObserverProvider);
   }
 
-  public static NewsListViewModel newInstance(NewsRepository repository) {
-    return new NewsListViewModel(repository);
+  public static NewsListViewModel newInstance(NewsRepository repository,
+      ConnectivityObserver connectivityObserver) {
+    return new NewsListViewModel(repository, connectivityObserver);
   }
 }

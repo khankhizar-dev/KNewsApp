@@ -33,13 +33,13 @@ public final class NewsDatabase_Impl extends NewsDatabase {
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(2) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(3) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS `articles` (`url` TEXT NOT NULL, `title` TEXT NOT NULL, `author` TEXT, `description` TEXT, `urlToImage` TEXT, `publishedAt` TEXT NOT NULL, `content` TEXT, `sourceName` TEXT NOT NULL, `country` TEXT, `category` TEXT, PRIMARY KEY(`url`))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `articles` (`url` TEXT NOT NULL, `title` TEXT NOT NULL, `author` TEXT, `description` TEXT, `urlToImage` TEXT, `publishedAt` TEXT NOT NULL, `content` TEXT, `sourceName` TEXT NOT NULL, `country` TEXT, `category` TEXT, `isRead` INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(`url`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `bookmarks` (`url` TEXT NOT NULL, `title` TEXT NOT NULL, `author` TEXT, `description` TEXT, `urlToImage` TEXT, `publishedAt` TEXT NOT NULL, `content` TEXT, `sourceName` TEXT NOT NULL, `bookmarkedAt` INTEGER NOT NULL, PRIMARY KEY(`url`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e01b48e15503f3d5625b660d0099e8c7')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f355ed592b729a9cd006e7f320df6111')");
       }
 
       @Override
@@ -89,7 +89,7 @@ public final class NewsDatabase_Impl extends NewsDatabase {
       @NonNull
       public RoomOpenHelper.ValidationResult onValidateSchema(
           @NonNull final SupportSQLiteDatabase db) {
-        final HashMap<String, TableInfo.Column> _columnsArticles = new HashMap<String, TableInfo.Column>(10);
+        final HashMap<String, TableInfo.Column> _columnsArticles = new HashMap<String, TableInfo.Column>(11);
         _columnsArticles.put("url", new TableInfo.Column("url", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsArticles.put("title", new TableInfo.Column("title", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsArticles.put("author", new TableInfo.Column("author", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -100,6 +100,7 @@ public final class NewsDatabase_Impl extends NewsDatabase {
         _columnsArticles.put("sourceName", new TableInfo.Column("sourceName", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsArticles.put("country", new TableInfo.Column("country", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsArticles.put("category", new TableInfo.Column("category", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsArticles.put("isRead", new TableInfo.Column("isRead", "INTEGER", true, 0, "0", TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysArticles = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesArticles = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoArticles = new TableInfo("articles", _columnsArticles, _foreignKeysArticles, _indicesArticles);
@@ -130,7 +131,7 @@ public final class NewsDatabase_Impl extends NewsDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "e01b48e15503f3d5625b660d0099e8c7", "c63ba64ba3853fbb29eb97674b57cd72");
+    }, "f355ed592b729a9cd006e7f320df6111", "acbb9e099bb1fddfb9a5bf09baf9729b");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
@@ -182,6 +183,7 @@ public final class NewsDatabase_Impl extends NewsDatabase {
   public List<Migration> getAutoMigrations(
       @NonNull final Map<Class<? extends AutoMigrationSpec>, AutoMigrationSpec> autoMigrationSpecs) {
     final List<Migration> _autoMigrations = new ArrayList<Migration>();
+    _autoMigrations.add(new NewsDatabase_AutoMigration_2_3_Impl());
     return _autoMigrations;
   }
 
