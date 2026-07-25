@@ -14,6 +14,9 @@ A modern, modularized Android news application built with **Jetpack Compose** an
     *   **Baseline Profiles**: Automatically generated to improve app startup and frame performance.
     *   **Macrobenchmarking**: Dedicated `:benchmark` module to measure cold/warm startup times.
 *   **90%+ Test Coverage:** Robust testing suite including Unit, UI, and Snapshot tests.
+*   **Static Code Analysis**: 
+    *   **KtLint**: Automated Kotlin linting and formatting.
+    *   **Detekt**: Advanced static code analysis for identifying code smells and complexity.
 
 ## 🛠 Technical Stack
 *   **Language:** Kotlin
@@ -22,6 +25,7 @@ A modern, modularized Android news application built with **Jetpack Compose** an
 *   **Networking:** Retrofit, OkHttp, Jsoup
 *   **DI:** Dagger Hilt
 *   **Benchmarking**: Macrobenchmark, Baseline Profiles
+*   **Static Analysis**: KtLint, Detekt
 *   **Testing:** JUnit 4, MockK, Google Truth, Turbine, Robolectric, Paparazzi
 
 ## 🏗 Architecture Overview
@@ -41,6 +45,7 @@ The project follows **Clean Architecture** principles:
 1. **Firebase Setup:** Place `google-services.json` in `app/`.
 2. **Google Sign-In:** Configure `default_web_client_id` in `strings.xml`.
 3. **Run Tests:** Use `./gradlew test` and `./gradlew verifyPaparazziDebug`.
-4. **Generate Baseline Profile:** Run `./gradlew :app:generateBaselineProfile`.
+4. **Static Analysis:** Run `./gradlew ktlintCheck detekt`.
+5. **Generate Baseline Profile:** Run `./gradlew :app:generateBaselineProfile`.
 5. **Run Benchmarks:** Run the tests in the `:benchmark` module on a physical device.
 6. **Build:** Sync Gradle and run the `:app` module.

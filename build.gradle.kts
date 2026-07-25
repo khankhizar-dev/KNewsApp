@@ -10,4 +10,14 @@ plugins {
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.androidx.baselineprofile) apply false
     alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.ktlint) apply false
+    alias(libs.plugins.detekt) apply false
+}
+
+subprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    apply(plugin = "io.gitlab.arturbosch.detekt")
+
+    // Default configurations will be used. 
+    // To run: ./gradlew ktlintCheck detekt
 }
