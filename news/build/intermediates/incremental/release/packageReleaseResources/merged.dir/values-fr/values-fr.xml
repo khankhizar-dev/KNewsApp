@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all">Tout</string>
+    <string name="app_name">KNews</string>
+    <string name="article_image">Image de l\'article</string>
+    <string name="back">Retour</string>
+    <string name="bookmark">Signet</string>
+    <string name="bookmarks">Signets</string>
+    <string name="category">Catégorie</string>
+    <string name="close_search">Fermer la recherche</string>
+    <string name="confirm_search">Confirmer la recherche</string>
+    <string name="country">Pays</string>
+    <string name="discover">Découvrir</string>
+    <string name="failed_to_load_content">Échec du chargement du contenu complet. Erreur : %s</string>
+    <string name="failed_to_load_news">Échec du chargement des actualités</string>
+    <string name="filter">Filtrer</string>
+    <string name="filters_and_sorting">Filtres et Tri</string>
+    <string name="global">Mondial</string>
+    <string name="language_global_search">Langue (Recherche mondiale)</string>
+    <string name="latest">Dernier</string>
+    <string name="logout">Déconnexion</string>
+    <string name="no_articles_found">Aucun article trouvé.</string>
+    <string name="no_bookmarks_saved">Aucun signet enregistré pour le moment.</string>
+    <string name="refresh">Actualiser</string>
+    <string name="reset_filters">Réinitialiser les filtres</string>
+    <string name="retry">Réessayer</string>
+    <string name="search">Rechercher</string>
+    <string name="search_failed">La recherche a échoué</string>
+    <string name="search_news">Rechercher des actualités...</string>
+    <string name="share">Partager</string>
+    <string name="sort_by">Trier par</string>
+    <string name="title_a_z">Titre A-Z</string>
+    <string name="unknown_error">Erreur inconnue</string>
+</resources>

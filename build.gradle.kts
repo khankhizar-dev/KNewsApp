@@ -19,6 +19,19 @@ plugins {
 subprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
     apply(plugin = "io.gitlab.arturbosch.detekt")
+
+subprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    apply(plugin = "io.gitlab.arturbosch.detekt")
+
+    tasks.withType<Test> {
+        // Workaround for Windows systems where PATH contains spaces (like "Microsoft VS Code")
+        // which can break the Gradle Test Executor command line.
+        doFirst {
+            systemProperty("java.library.path", ".")
+        }
+    }
+}
 }
 
 tasks.register<Copy>("installGitHooks") {

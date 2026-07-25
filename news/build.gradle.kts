@@ -31,14 +31,27 @@ android {
     }
 
     sourceSets {
+        getByName("main") {
+            jniLibs.setSrcDirs(emptyList<File>())
+        }
         getByName("test") {
             resources.srcDirs("schemas")
+            jniLibs.setSrcDirs(emptyList<File>())
+        }
+        getByName("androidTest") {
+            jniLibs.setSrcDirs(emptyList<File>())
         }
     }
 
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = false
+        }
     }
 }
 

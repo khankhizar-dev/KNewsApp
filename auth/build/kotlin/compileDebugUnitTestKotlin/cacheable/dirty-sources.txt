@@ -1,1 +1,0 @@
-D:\KNewsApp\auth\src\test\java\com\android\knewsapp\auth\AuthViewModelTest.kt
