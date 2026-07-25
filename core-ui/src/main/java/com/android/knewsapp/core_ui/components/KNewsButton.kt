@@ -16,20 +16,21 @@ fun KNewsButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    isLoading: Boolean = false
+    isLoading: Boolean = false,
 ) {
     Button(
         onClick = onClick,
         enabled = enabled && !isLoading,
-        modifier = modifier
-            .fillMaxWidth()
-            .height(56.dp)
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .height(56.dp),
     ) {
         if (isLoading) {
             CircularProgressIndicator(
                 color = MaterialTheme.colorScheme.onPrimary,
                 strokeWidth = 2.dp,
-                modifier = Modifier.height(24.dp)
+                modifier = Modifier.height(24.dp),
             )
         } else {
             Text(text = text)

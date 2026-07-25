@@ -14,5 +14,5 @@ data class ArticleEntity(
     val content: String?,
     val sourceName: String,
     val country: String?,
-    val category: String?
+    val category: String?,
 )

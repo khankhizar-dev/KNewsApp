@@ -13,7 +13,6 @@ import org.junit.Rule
 import org.junit.Test
 
 class NewsListScreenTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -21,19 +20,20 @@ class NewsListScreenTest {
 
     @Test
     fun newsListScreen_displaysTitle() {
-        val testArticles = listOf(
-            Article(
-                source = Source(null, "Test"),
-                author = "Author",
-                title = "Amazing News Title",
-                description = "Desc",
-                url = "url",
-                urlToImage = null,
-                publishedAt = "2024-01-01",
-                content = null
+        val testArticles =
+            listOf(
+                Article(
+                    source = Source(null, "Test"),
+                    author = "Author",
+                    title = "Amazing News Title",
+                    description = "Desc",
+                    url = "url",
+                    urlToImage = null,
+                    publishedAt = "2024-01-01",
+                    content = null,
+                ),
             )
-        )
-        
+
         every { repository.getArticles(any(), any(), any()) } returns flowOf(Result.success(testArticles))
         val viewModel = NewsListViewModel(repository)
 
@@ -41,7 +41,7 @@ class NewsListScreenTest {
             NewsListScreen(
                 viewModel = viewModel,
                 onArticleClick = {},
-                onLogoutClick = {}
+                onLogoutClick = {},
             )
         }
 

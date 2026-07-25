@@ -14,7 +14,6 @@ import org.junit.Before
 import org.junit.Test
 
 class AuthInterceptorTest {
-
     private lateinit var mockWebServer: MockWebServer
     private lateinit var sessionManager: SessionManager
     private lateinit var authInterceptor: AuthInterceptor
@@ -27,9 +26,10 @@ class AuthInterceptorTest {
 
         sessionManager = mockk()
         authInterceptor = AuthInterceptor(sessionManager)
-        client = OkHttpClient.Builder()
-            .addInterceptor(authInterceptor)
-            .build()
+        client =
+            OkHttpClient.Builder()
+                .addInterceptor(authInterceptor)
+                .build()
     }
 
     @After
@@ -41,12 +41,13 @@ class AuthInterceptorTest {
     fun `intercept adds Authorization header when token exists`() {
         val testToken = "test-jwt-token"
         every { sessionManager.userEmail } returns flowOf(testToken)
-        
+
         mockWebServer.enqueue(MockResponse().setResponseCode(200))
 
-        val request = Request.Builder()
-            .url(mockWebServer.url("/"))
-            .build()
+        val request =
+            Request.Builder()
+                .url(mockWebServer.url("/"))
+                .build()
 
         client.newCall(request).execute()
 
@@ -57,12 +58,13 @@ class AuthInterceptorTest {
     @Test
     fun `intercept adds security headers when token exists`() {
         every { sessionManager.userEmail } returns flowOf("some-token")
-        
+
         mockWebServer.enqueue(MockResponse().setResponseCode(200))
 
-        val request = Request.Builder()
-            .url(mockWebServer.url("/"))
-            .build()
+        val request =
+            Request.Builder()
+                .url(mockWebServer.url("/"))
+                .build()
 
         client.newCall(request).execute()
 
@@ -75,12 +77,13 @@ class AuthInterceptorTest {
     @Test
     fun `intercept does not add Authorization header when token is null`() {
         every { sessionManager.userEmail } returns flowOf(null)
-        
+
         mockWebServer.enqueue(MockResponse().setResponseCode(200))
 
-        val request = Request.Builder()
-            .url(mockWebServer.url("/"))
-            .build()
+        val request =
+            Request.Builder()
+                .url(mockWebServer.url("/"))
+                .build()
 
         client.newCall(request).execute()
 

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo "Running static analysis: ktlint and detekt..."
+
+# Run ktlintCheck and detekt
+./gradlew ktlintCheck detekt
+
+EXIT_CODE=$?
+
+if [ $EXIT_CODE -ne 0 ]; then
+    echo "Static analysis failed. Please fix the issues before committing."
+    exit $EXIT_CODE
+fi
+
+exit 0

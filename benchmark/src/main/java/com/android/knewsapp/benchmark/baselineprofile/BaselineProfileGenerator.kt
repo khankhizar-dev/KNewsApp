@@ -9,11 +9,12 @@ class BaselineProfileGenerator {
     val baselineProfileRule = BaselineProfileRule()
 
     @Test
-    fun generate() = baselineProfileRule.collect(
-        packageName = "com.android.knewsapp",
-        includeInStartupProfile = true
-    ) {
-        pressHome()
-        startActivityAndWait()
-    }
+    fun generate() =
+        baselineProfileRule.collect(
+            packageName = "com.android.knewsapp",
+            includeInStartupProfile = true,
+        ) {
+            pressHome()
+            startActivityAndWait()
+        }
 }

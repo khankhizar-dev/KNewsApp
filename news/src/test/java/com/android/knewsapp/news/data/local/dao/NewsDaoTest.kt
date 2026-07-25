@@ -15,16 +15,16 @@ import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class NewsDaoTest {
-
     private lateinit var database: NewsDatabase
     private lateinit var dao: NewsDao
 
     @Before
     fun setup() {
-        database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            NewsDatabase::class.java
-        ).allowMainThreadQueries().build()
+        database =
+            Room.inMemoryDatabaseBuilder(
+                ApplicationProvider.getApplicationContext(),
+                NewsDatabase::class.java,
+            ).allowMainThreadQueries().build()
         dao = database.newsDao
     }
 
@@ -34,31 +34,68 @@ class NewsDaoTest {
     }
 
     @Test
-    fun `insert and get articles`() = runTest {
-        val articles = listOf(
-            ArticleEntity("url1", "Title 1", null, null, null, "2024-01-01", null, "Source", "us", null)
-        )
-        dao.insertArticles(articles)
-        
-        val result = dao.getArticles("us", null).first()
-        assertThat(result).hasSize(1)
-        assertThat(result[0].url).isEqualTo("url1")
-    }
+    fun `insert and get articles`() =
+        runTest {
+            val articles =
+                listOf(
+                    ArticleEntity(
+                        url = "url1",
+                        title = "Title 1",
+                        author = null,
+                        description = null,
+                        urlToImage = null,
+                        publishedAt = "2024-01-01",
+                        content = null,
+                        sourceName = "Source",
+                        country = "us",
+                        category = null,
+                    ),
+                )
+            dao.insertArticles(articles)
+
+            val result = dao.getArticles("us", null).first()
+            assertThat(result).hasSize(1)
+            assertThat(result[0].url).isEqualTo("url1")
+        }
 
     @Test
-    fun `clear articles removes only matching`() = runTest {
-        val articles = listOf(
-            ArticleEntity("url1", "Title 1", null, null, null, "2024-01-01", null, "Source", "us", null),
-            ArticleEntity("url2", "Title 2", null, null, null, "2024-01-01", null, "Source", "gb", null)
-        )
-        dao.insertArticles(articles)
-        
-        dao.clearArticles("us", null)
-        
-        val usResult = dao.getArticles("us", null).first()
-        val gbResult = dao.getArticles("gb", null).first()
-        
-        assertThat(usResult).isEmpty()
-        assertThat(gbResult).hasSize(1)
-    }
+    fun `clear articles removes only matching`() =
+        runTest {
+            val articles =
+                listOf(
+                    ArticleEntity(
+                        url = "url1",
+                        title = "Title 1",
+                        author = null,
+                        description = null,
+                        urlToImage = null,
+                        publishedAt = "2024-01-01",
+                        content = null,
+                        sourceName = "Source",
+                        country = "us",
+                        category = null,
+                    ),
+                    ArticleEntity(
+                        url = "url2",
+                        title = "Title 2",
+                        author = null,
+                        description = null,
+                        urlToImage = null,
+                        publishedAt = "2024-01-01",
+                        content = null,
+                        sourceName = "Source",
+                        country = "gb",
+                        category = null,
+                    ),
+                )
+            dao.insertArticles(articles)
+
+            dao.clearArticles("us", null)
+
+            val usResult = dao.getArticles("us", null).first()
+            val gbResult = dao.getArticles("gb", null).first()
+
+            assertThat(usResult).isEmpty()
+            assertThat(gbResult).hasSize(1)
+        }
 }

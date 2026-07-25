@@ -33,17 +33,19 @@ public final class NewsDatabase_Impl extends NewsDatabase {
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(2) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `articles` (`url` TEXT NOT NULL, `title` TEXT NOT NULL, `author` TEXT, `description` TEXT, `urlToImage` TEXT, `publishedAt` TEXT NOT NULL, `content` TEXT, `sourceName` TEXT NOT NULL, `country` TEXT, `category` TEXT, PRIMARY KEY(`url`))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `bookmarks` (`url` TEXT NOT NULL, `title` TEXT NOT NULL, `author` TEXT, `description` TEXT, `urlToImage` TEXT, `publishedAt` TEXT NOT NULL, `content` TEXT, `sourceName` TEXT NOT NULL, `bookmarkedAt` INTEGER NOT NULL, PRIMARY KEY(`url`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2320e2fbd1dda80ffc14429725c172d2')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e01b48e15503f3d5625b660d0099e8c7')");
       }
 
       @Override
       public void dropAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("DROP TABLE IF EXISTS `articles`");
+        db.execSQL("DROP TABLE IF EXISTS `bookmarks`");
         final List<? extends RoomDatabase.Callback> _callbacks = mCallbacks;
         if (_callbacks != null) {
           for (RoomDatabase.Callback _callback : _callbacks) {
@@ -107,9 +109,28 @@ public final class NewsDatabase_Impl extends NewsDatabase {
                   + " Expected:\n" + _infoArticles + "\n"
                   + " Found:\n" + _existingArticles);
         }
+        final HashMap<String, TableInfo.Column> _columnsBookmarks = new HashMap<String, TableInfo.Column>(9);
+        _columnsBookmarks.put("url", new TableInfo.Column("url", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsBookmarks.put("title", new TableInfo.Column("title", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsBookmarks.put("author", new TableInfo.Column("author", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsBookmarks.put("description", new TableInfo.Column("description", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsBookmarks.put("urlToImage", new TableInfo.Column("urlToImage", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsBookmarks.put("publishedAt", new TableInfo.Column("publishedAt", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsBookmarks.put("content", new TableInfo.Column("content", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsBookmarks.put("sourceName", new TableInfo.Column("sourceName", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsBookmarks.put("bookmarkedAt", new TableInfo.Column("bookmarkedAt", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysBookmarks = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesBookmarks = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoBookmarks = new TableInfo("bookmarks", _columnsBookmarks, _foreignKeysBookmarks, _indicesBookmarks);
+        final TableInfo _existingBookmarks = TableInfo.read(db, "bookmarks");
+        if (!_infoBookmarks.equals(_existingBookmarks)) {
+          return new RoomOpenHelper.ValidationResult(false, "bookmarks(com.android.knewsapp.news.data.local.entity.BookmarkEntity).\n"
+                  + " Expected:\n" + _infoBookmarks + "\n"
+                  + " Found:\n" + _existingBookmarks);
+        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "2320e2fbd1dda80ffc14429725c172d2", "1fc8c6174124866d86170e7a8dd0de2a");
+    }, "e01b48e15503f3d5625b660d0099e8c7", "c63ba64ba3853fbb29eb97674b57cd72");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
@@ -120,7 +141,7 @@ public final class NewsDatabase_Impl extends NewsDatabase {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     final HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "articles");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "articles","bookmarks");
   }
 
   @Override
@@ -130,6 +151,7 @@ public final class NewsDatabase_Impl extends NewsDatabase {
     try {
       super.beginTransaction();
       _db.execSQL("DELETE FROM `articles`");
+      _db.execSQL("DELETE FROM `bookmarks`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();

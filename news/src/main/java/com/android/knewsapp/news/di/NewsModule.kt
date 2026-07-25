@@ -18,14 +18,15 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NewsModule {
-
     @Provides
     @Singleton
-    fun provideNewsDatabase(@ApplicationContext context: Context): NewsDatabase {
+    fun provideNewsDatabase(
+        @ApplicationContext context: Context,
+    ): NewsDatabase {
         return Room.databaseBuilder(
             context,
             NewsDatabase::class.java,
-            "news_db"
+            "news_db",
         ).build()
     }
 
@@ -46,7 +47,10 @@ object NewsModule {
 
     @Provides
     @Singleton
-    fun provideNewsRepository(apiService: NewsApiService, newsDao: NewsDao): NewsRepository {
+    fun provideNewsRepository(
+        apiService: NewsApiService,
+        newsDao: NewsDao,
+    ): NewsRepository {
         return NewsRepositoryImpl(apiService, newsDao)
     }
 }

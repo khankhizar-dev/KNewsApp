@@ -9,7 +9,6 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [33]) // Mocking Android SDK
 class KeyManagerTest {
-
     @Test
     fun `getPublicKey returns a valid non-empty string`() {
         val publicKey = KeyManager.getPublicKey()

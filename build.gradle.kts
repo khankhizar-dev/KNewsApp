@@ -17,7 +17,14 @@ plugins {
 subprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
     apply(plugin = "io.gitlab.arturbosch.detekt")
+}
 
-    // Default configurations will be used. 
-    // To run: ./gradlew ktlintCheck detekt
+tasks.register<Copy>("installGitHooks") {
+    from(file("$rootDir/config/scripts/pre-commit.sh"))
+    into(file("$rootDir/.git/hooks"))
+    rename { "pre-commit" }
+
+    doLast {
+        println("Git hooks installed successfully to .git/hooks/pre-commit")
+    }
 }

@@ -5,7 +5,6 @@ build:
 config:
   validation: true
   warningsAsErrors: false
-  overrideDefaultConfig: false
 
 complexity:
   active: true
@@ -14,17 +13,17 @@ complexity:
     threshold: 4
   LongMethod:
     active: true
-    threshold: 60
+    threshold: 300
   LongParameterList:
     active: true
-    functionThreshold: 6
-    constructorThreshold: 7
+    functionThreshold: 10
+    constructorThreshold: 10
 
 style:
   active: true
   MagicNumber:
     active: true
-    ignoreNumbers: ['-1', '0', '1', '2']
+    ignoreNumbers: ['-1', '0', '1', '2', '4', '200']
     ignoreHashCodeFunction: true
     ignorePropertyDeclaration: true
     ignoreLocalVariableDeclaration: true

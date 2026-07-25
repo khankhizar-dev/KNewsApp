@@ -36,7 +36,6 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -52,7 +51,10 @@ class MainActivity : ComponentActivity() {
                 val isCheckingSession by authViewModel.isCheckingSession.collectAsStateWithLifecycle()
 
                 if (isCheckingSession) {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = androidx.compose.ui.Alignment.Center) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = androidx.compose.ui.Alignment.Center,
+                    ) {
                         CircularProgressIndicator()
                     }
                 } else {
@@ -68,7 +70,10 @@ class MainActivity : ComponentActivity() {
                         }
                     }
 
-                    NavHost(navController = navController, startDestination = if (user != null) "main" else "login") {
+                    NavHost(
+                        navController = navController,
+                        startDestination = if (user != null) "main" else "login",
+                    ) {
                         composable("login") {
                             LoginScreen(
                                 viewModel = authViewModel,
@@ -80,32 +85,37 @@ class MainActivity : ComponentActivity() {
                                 },
                                 onGoogleSignInClick = {
                                     scope.launch {
-                                        val googleIdOption: GetGoogleIdOption = GetGoogleIdOption.Builder()
-                                            .setFilterByAuthorizedAccounts(false)
-                                            .setServerClientId(getString(R.string.default_web_client_id))
-                                            .build()
+                                        val googleIdOption: GetGoogleIdOption =
+                                            GetGoogleIdOption.Builder()
+                                                .setFilterByAuthorizedAccounts(false)
+                                                .setServerClientId(getString(R.string.default_web_client_id))
+                                                .build()
 
-                                        val request: GetCredentialRequest = GetCredentialRequest.Builder()
-                                            .addCredentialOption(googleIdOption)
-                                            .build()
+                                        val request: GetCredentialRequest =
+                                            GetCredentialRequest.Builder()
+                                                .addCredentialOption(googleIdOption)
+                                                .build()
 
                                         try {
-                                            val result = credentialManager.getCredential(
-                                                context = this@MainActivity,
-                                                request = request,
-                                            )
+                                            val result =
+                                                credentialManager.getCredential(
+                                                    context = this@MainActivity,
+                                                    request = request,
+                                                )
                                             val credential = result.credential
-                                            val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+                                            val googleIdTokenCredential =
+                                                GoogleIdTokenCredential.createFrom(credential.data)
                                             val idToken = googleIdTokenCredential.idToken
-                                            
+
                                             authViewModel.signInWithGoogle(idToken) {
                                                 // Success handled by LaunchedEffect
                                             }
                                         } catch (e: GetCredentialException) {
-                                            Toast.makeText(context, "Google Sign-In failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                                            val msg = "Google Sign-In failed: ${e.message}"
+                                            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                                         }
                                     }
-                                }
+                                },
                             )
                         }
                         composable("signup") {
@@ -116,7 +126,7 @@ class MainActivity : ComponentActivity() {
                                 },
                                 onSignUpSuccess = {
                                     // Handled by LaunchedEffect
-                                }
+                                },
                             )
                         }
                         composable("main") {
@@ -129,25 +139,29 @@ class MainActivity : ComponentActivity() {
                                 },
                                 onLogoutClick = {
                                     authViewModel.signOut()
-                                }
+                                },
                             )
                         }
 
                         composable("detail") {
-                            val parentEntry = remember(it) {
-                                navController.getBackStackEntry("main")
-                            }
+                            val parentEntry =
+                                remember(it) {
+                                    navController.getBackStackEntry("main")
+                                }
                             val newsViewModel: NewsListViewModel = hiltViewModel(parentEntry)
                             val article by newsViewModel.selectedArticle.collectAsStateWithLifecycle()
                             val fullStory by newsViewModel.fullContent.collectAsStateWithLifecycle()
-                            
+
                             article?.let {
                                 NewsDetailScreen(
                                     article = it,
                                     fullStory = fullStory,
                                     onBackClick = {
                                         navController.popBackStack()
-                                    }
+                                    },
+                                    onBookmarkClick = {
+                                        newsViewModel.toggleBookmark(it)
+                                    },
                                 )
                             }
                         }

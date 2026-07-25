@@ -19,18 +19,20 @@ object KeyManager {
     private fun generateEcKeyIfNeeded() {
         val keyStore = KeyStore.getInstance(ANDROID_KEYSTORE).apply { load(null) }
         if (!keyStore.containsAlias(KEY_ALIAS)) {
-            val keyPairGenerator = KeyPairGenerator.getInstance(
-                KeyProperties.KEY_ALGORITHM_EC,
-                ANDROID_KEYSTORE
-            )
+            val keyPairGenerator =
+                KeyPairGenerator.getInstance(
+                    KeyProperties.KEY_ALGORITHM_EC,
+                    ANDROID_KEYSTORE,
+                )
 
-            val spec = KeyGenParameterSpec.Builder(
-                KEY_ALIAS,
-                KeyProperties.PURPOSE_SIGN or KeyProperties.PURPOSE_VERIFY
-            )
-                .setDigests(KeyProperties.DIGEST_SHA256)
-                .setUserAuthenticationRequired(false) // Set to true for biometric requirement
-                .build()
+            val spec =
+                KeyGenParameterSpec.Builder(
+                    KEY_ALIAS,
+                    KeyProperties.PURPOSE_SIGN or KeyProperties.PURPOSE_VERIFY,
+                )
+                    .setDigests(KeyProperties.DIGEST_SHA256)
+                    .setUserAuthenticationRequired(false) // Set to true for biometric requirement
+                    .build()
 
             keyPairGenerator.initialize(spec)
             keyPairGenerator.generateKeyPair()
@@ -40,11 +42,11 @@ object KeyManager {
     fun signData(data: String): String {
         val keyStore = KeyStore.getInstance(ANDROID_KEYSTORE).apply { load(null) }
         val privateKey = keyStore.getKey(KEY_ALIAS, null) as java.security.PrivateKey
-        
+
         val signature = Signature.getInstance("SHA256withECDSA")
         signature.initSign(privateKey)
         signature.update(data.toByteArray())
-        
+
         return Base64.encodeToString(signature.sign(), Base64.NO_WRAP)
     }
 

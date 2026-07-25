@@ -1,0 +1,47 @@
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m91[90m:24:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m92[90m:17:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m93[90m:21:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m94[90m:25:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m96[90m:17:[0m Unexpected indentation (16) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m101[90m:16:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m102[90m:13:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m103[90m:16:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m104[90m:7:[0m Unexpected indentation (24) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m128[90m:44:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m129[90m:45:[0m Unexpected indentation (28) (should be 32) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m131[90m:24:[0m Unexpected indentation (28) (should be 32) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_detail\[0mNewsDetailScreen.kt[90m:[0m131[90m:73:[0m Unexpected indentation (28) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m94[90m:28:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m95[90m:21:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m96[90m:25:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m97[90m:29:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m99[90m:17:[0m Unexpected indentation (20) (should be 12) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m201[90m:3:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m201[90m:69:[0m Unexpected indentation (36) (should be 40) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m202[90m:73:[0m Unexpected indentation (36) (should be 40) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m205[90m:12:[0m Unexpected indentation (32) (should be 36) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m206[90m:18:[0m Unexpected indentation (36) (should be 28) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m250[90m:25:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m252[90m:6:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m255[90m:3:[0m Unexpected indentation (20) (should be 24) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m256[90m:5:[0m Unexpected indentation (24) (should be 16) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m274[90m:13:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m274[90m:46:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m275[90m:25:[0m Unexpected indentation (16) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m275[90m:69:[0m Unexpected indentation (16) (should be 8) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m281[90m:12:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m281[90m:53:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m283[90m:14:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m284[90m:51:[0m Unexpected indentation (24) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m299[90m:40:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m300[90m:13:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m302[90m:20:[0m Unexpected indentation (24) (should be 28) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m303[90m:41:[0m Unexpected indentation (24) (should be 20) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m352[90m:7:[0m A multiline expression should start on a new line [90m(standard:multiline-expression-wrapping)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m355[90m:13:[0m Unexpected indentation (28) (should be 32) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m356[90m:14:[0m Unexpected indentation (28) (should be 32) [90m(standard:indent)[0m
+[90mD:\KNewsApp\news\src\main\java\com\android\knewsapp\news\presentation\news_list\[0mNewsListScreen.kt[90m:[0m356[90m:63:[0m Unexpected indentation (28) (should be 24) [90m(standard:indent)[0m
+
+Summary error count (descending) by rule:
+  standard:indent: 33
+  standard:multiline-expression-wrapping: 10

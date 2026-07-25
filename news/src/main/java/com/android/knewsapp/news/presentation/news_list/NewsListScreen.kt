@@ -1,6 +1,16 @@
 package com.android.knewsapp.news.presentation.news_list
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -8,12 +18,36 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.PrimaryTabRow
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Tab
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,9 +65,10 @@ import com.android.knewsapp.news.domain.model.Article
 fun NewsListScreen(
     viewModel: NewsListViewModel,
     onArticleClick: (Article) -> Unit,
-    onLogoutClick: () -> Unit
+    onLogoutClick: () -> Unit,
 ) {
     val articles by viewModel.articles.collectAsStateWithLifecycle()
+    val bookmarkedArticles by viewModel.bookmarkedArticles.collectAsStateWithLifecycle()
     val loading by viewModel.loading.collectAsStateWithLifecycle()
     val error by viewModel.error.collectAsStateWithLifecycle()
     val currentCountry by viewModel.country.collectAsStateWithLifecycle()
@@ -44,30 +79,38 @@ fun NewsListScreen(
     var showFilterSheet by remember { mutableStateOf(false) }
     var searchQuery by remember { mutableStateOf("") }
     var isSearchExpanded by remember { mutableStateOf(false) }
+    var selectedTab by remember { mutableIntStateOf(0) }
 
     val countries = listOf("us", "gb", "in", "ca", "au", "ae", "sa", "fr", "de", "jp")
     val categories = listOf("business", "entertainment", "general", "health", "science", "sports", "technology")
     val languages = listOf("ar", "de", "en", "es", "fr", "he", "it", "nl", "no", "pt", "ru", "sv", "ud", "zh")
     val sortOptions = listOf("publishedAt" to "Latest", "title" to "Title A-Z")
 
+    val displayArticles = if (selectedTab == 0) articles else bookmarkedArticles
+
     if (showFilterSheet) {
         ModalBottomSheet(onDismissRequest = { showFilterSheet = false }) {
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(Dimensions.PaddingLarge)
-                    .verticalScroll(rememberScrollState())
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(Dimensions.PaddingLarge)
+                        .verticalScroll(rememberScrollState()),
             ) {
-                Text("Filters & Sorting", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                Text(
+                    "Filters & Sorting",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                )
                 Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
-                
+
                 Text("Sort By", style = MaterialTheme.typography.titleMedium)
                 LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     items(sortOptions) { option ->
                         FilterChip(
                             selected = currentSortBy == option.first,
                             onClick = { viewModel.setSortBy(option.first) },
-                            label = { Text(option.second) }
+                            label = { Text(option.second) },
                         )
                     }
                 }
@@ -79,15 +122,19 @@ fun NewsListScreen(
                     item {
                         FilterChip(
                             selected = currentCountry == null,
-                            onClick = { viewModel.setFilters(null, currentCategory, currentLanguage) },
-                            label = { Text("Global") }
+                            onClick = {
+                                viewModel.setFilters(null, currentCategory, currentLanguage)
+                            },
+                            label = { Text("Global") },
                         )
                     }
                     items(countries) { country ->
                         FilterChip(
                             selected = currentCountry == country,
-                            onClick = { viewModel.setFilters(country, currentCategory, currentLanguage) },
-                            label = { Text(country.uppercase()) }
+                            onClick = {
+                                viewModel.setFilters(country, currentCategory, currentLanguage)
+                            },
+                            label = { Text(country.uppercase()) },
                         )
                     }
                 }
@@ -99,15 +146,19 @@ fun NewsListScreen(
                     item {
                         FilterChip(
                             selected = currentLanguage == null,
-                            onClick = { viewModel.setFilters(currentCountry, currentCategory, null) },
-                            label = { Text("All") }
+                            onClick = {
+                                viewModel.setFilters(currentCountry, currentCategory, null)
+                            },
+                            label = { Text("All") },
                         )
                     }
                     items(languages) { language ->
                         FilterChip(
                             selected = currentLanguage == language,
-                            onClick = { viewModel.setFilters(null, null, language) }, // Clear country/category when picking language
-                            label = { Text(language.uppercase()) }
+                            onClick = {
+                                viewModel.setFilters(null, null, language)
+                            },
+                            label = { Text(language.uppercase()) },
                         )
                     }
                 }
@@ -117,16 +168,16 @@ fun NewsListScreen(
                 Text("Category", style = MaterialTheme.typography.titleMedium)
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 ) {
                     categories.forEach { category ->
                         FilterChip(
                             selected = currentCategory == category,
-                            onClick = { 
+                            onClick = {
                                 val newCategory = if (currentCategory == category) null else category
                                 viewModel.setFilters(currentCountry, newCategory, currentLanguage)
                             },
-                            label = { Text(category.replaceFirstChar { it.uppercase() }) }
+                            label = { Text(category.replaceFirstChar { it.uppercase() }) },
                         )
                     }
                 }
@@ -139,7 +190,7 @@ fun NewsListScreen(
         topBar = {
             Column {
                 CenterAlignedTopAppBar(
-                    title = { 
+                    title = {
                         if (isSearchExpanded) {
                             TextField(
                                 value = searchQuery,
@@ -147,32 +198,33 @@ fun NewsListScreen(
                                 placeholder = { Text("Search news...") },
                                 modifier = Modifier.fillMaxWidth(),
                                 singleLine = true,
-                                colors = TextFieldDefaults.colors(
-                                    focusedContainerColor = Color.Transparent,
-                                    unfocusedContainerColor = Color.Transparent
-                                )
+                                colors =
+                                    TextFieldDefaults.colors(
+                                        focusedContainerColor = Color.Transparent,
+                                        unfocusedContainerColor = Color.Transparent,
+                                    ),
                             )
                         } else {
                             Text(
                                 "KNews",
                                 style = MaterialTheme.typography.headlineMedium,
-                                fontWeight = FontWeight.Bold
-                            ) 
+                                fontWeight = FontWeight.Bold,
+                            )
                         }
                     },
                     actions = {
                         if (isSearchExpanded) {
-                            IconButton(onClick = { 
+                            IconButton(onClick = {
                                 if (searchQuery.isNotBlank()) {
-                                    viewModel.searchNews(searchQuery) 
+                                    viewModel.searchNews(searchQuery)
                                 }
-                                isSearchExpanded = false 
+                                isSearchExpanded = false
                                 searchQuery = ""
                             }) {
                                 Icon(Icons.Default.Search, contentDescription = "Confirm Search")
                             }
                             IconButton(onClick = {
-                                isSearchExpanded = false 
+                                isSearchExpanded = false
                                 searchQuery = ""
                             }) {
                                 Icon(Icons.Default.Close, contentDescription = "Close Search")
@@ -191,64 +243,89 @@ fun NewsListScreen(
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ExitToApp,
                                     contentDescription = "Logout",
-                                    tint = MaterialTheme.colorScheme.primary
+                                    tint = MaterialTheme.colorScheme.primary,
                                 )
                             }
                         }
                     },
-                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.surface
-                    )
+                    colors =
+                        TopAppBarDefaults.centerAlignedTopAppBarColors(
+                            containerColor = MaterialTheme.colorScheme.surface,
+                        ),
                 )
+
+                PrimaryTabRow(selectedTabIndex = selectedTab) {
+                    Tab(
+                        selected = selectedTab == 0,
+                        onClick = { selectedTab = 0 },
+                        text = { Text("Discover") },
+                    )
+                    Tab(
+                        selected = selectedTab == 1,
+                        onClick = { selectedTab = 1 },
+                        text = { Text("Bookmarks") },
+                    )
+                }
             }
-        }
+        },
     ) { innerPadding ->
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
         ) {
-            if (loading && articles.isEmpty()) {
+            if (loading && displayArticles.isEmpty()) {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-            } else if (error != null && articles.isEmpty()) {
+            } else if (error != null && displayArticles.isEmpty()) {
                 Column(
-                    modifier = Modifier.align(Alignment.Center).padding(Dimensions.PaddingLarge),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    modifier =
+                        Modifier
+                            .align(Alignment.Center)
+                            .padding(Dimensions.PaddingLarge),
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Text(
                         text = error ?: "Unknown error",
                         color = MaterialTheme.colorScheme.error,
-                        style = MaterialTheme.typography.bodyLarge
+                        style = MaterialTheme.typography.bodyLarge,
                     )
                     Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
                     Button(onClick = { viewModel.loadNews() }) {
                         Text("Retry")
                     }
                 }
-            } else if (!loading && articles.isEmpty()) {
+            } else if (!loading && displayArticles.isEmpty()) {
+                val emptyText = if (selectedTab == 0) "No articles found." else "No bookmarks saved yet."
                 Column(
-                    modifier = Modifier.align(Alignment.Center).padding(Dimensions.PaddingLarge),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    modifier =
+                        Modifier
+                            .align(Alignment.Center)
+                            .padding(Dimensions.PaddingLarge),
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Text(
-                        text = "No articles found for this filter.",
-                        style = MaterialTheme.typography.titleMedium
+                        text = emptyText,
+                        style = MaterialTheme.typography.titleMedium,
                     )
-                    Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
-                    OutlinedButton(onClick = { viewModel.setFilters("us", null, null) }) {
-                        Text("Reset to US Headlines")
+                    if (selectedTab == 0) {
+                        Spacer(modifier = Modifier.height(Dimensions.SpacerMedium))
+                        OutlinedButton(onClick = { viewModel.setFilters("us", null, null) }) {
+                            Text("Reset Filters")
+                        }
                     }
                 }
             } else {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(Dimensions.PaddingMedium),
-                    verticalArrangement = Arrangement.spacedBy(Dimensions.PaddingMedium)
+                    verticalArrangement = Arrangement.spacedBy(Dimensions.PaddingMedium),
                 ) {
-                    items(articles) { article ->
+                    items(displayArticles, key = { it.url }) { article ->
                         ArticleItem(
                             article = article,
-                            onClick = { onArticleClick(article) }
+                            onClick = { onArticleClick(article) },
+                            onBookmarkClick = { viewModel.toggleBookmark(article) },
                         )
                     }
                 }
@@ -260,22 +337,38 @@ fun NewsListScreen(
 @Composable
 fun ArticleItem(
     article: Article,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onBookmarkClick: () -> Unit,
 ) {
     Card(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Column {
-            article.urlToImage?.let { imageUrl ->
-                AsyncImage(
-                    model = imageUrl,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(200.dp),
-                    contentScale = ContentScale.Crop
-                )
+            Box {
+                article.urlToImage?.let { imageUrl ->
+                    AsyncImage(
+                        model = imageUrl,
+                        contentDescription = null,
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .height(200.dp),
+                        contentScale = ContentScale.Crop,
+                    )
+                }
+
+                IconButton(
+                    onClick = onBookmarkClick,
+                    modifier = Modifier.align(Alignment.TopEnd),
+                ) {
+                    val icon = if (article.isBookmarked) Icons.Default.Favorite else Icons.Default.FavoriteBorder
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = "Bookmark",
+                        tint = if (article.isBookmarked) Color.Red else Color.White,
+                    )
+                }
             }
             Column(modifier = Modifier.padding(Dimensions.PaddingMedium)) {
                 Text(
@@ -283,7 +376,7 @@ fun ArticleItem(
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
                 )
                 article.description?.let {
                     Spacer(modifier = Modifier.height(Dimensions.SpacerSmall))
@@ -291,9 +384,15 @@ fun ArticleItem(
                         text = it,
                         style = MaterialTheme.typography.bodyMedium,
                         maxLines = 3,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
                     )
                 }
+                Spacer(modifier = Modifier.height(Dimensions.SpacerSmall))
+                Text(
+                    text = article.source.name,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary,
+                )
             }
         }
     }

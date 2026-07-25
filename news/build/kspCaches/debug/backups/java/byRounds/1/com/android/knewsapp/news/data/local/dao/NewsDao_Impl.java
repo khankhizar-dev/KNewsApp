@@ -3,6 +3,7 @@ package com.android.knewsapp.news.data.local.dao;
 import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.room.CoroutinesRoom;
+import androidx.room.EntityDeletionOrUpdateAdapter;
 import androidx.room.EntityInsertionAdapter;
 import androidx.room.RoomDatabase;
 import androidx.room.RoomSQLiteQuery;
@@ -11,6 +12,8 @@ import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
 import com.android.knewsapp.news.data.local.entity.ArticleEntity;
+import com.android.knewsapp.news.data.local.entity.BookmarkEntity;
+import java.lang.Boolean;
 import java.lang.Class;
 import java.lang.Exception;
 import java.lang.Object;
@@ -32,6 +35,10 @@ public final class NewsDao_Impl implements NewsDao {
   private final RoomDatabase __db;
 
   private final EntityInsertionAdapter<ArticleEntity> __insertionAdapterOfArticleEntity;
+
+  private final EntityInsertionAdapter<BookmarkEntity> __insertionAdapterOfBookmarkEntity;
+
+  private final EntityDeletionOrUpdateAdapter<BookmarkEntity> __deletionAdapterOfBookmarkEntity;
 
   private final SharedSQLiteStatement __preparedStmtOfClearArticles;
 
@@ -83,6 +90,56 @@ public final class NewsDao_Impl implements NewsDao {
         }
       }
     };
+    this.__insertionAdapterOfBookmarkEntity = new EntityInsertionAdapter<BookmarkEntity>(__db) {
+      @Override
+      @NonNull
+      protected String createQuery() {
+        return "INSERT OR REPLACE INTO `bookmarks` (`url`,`title`,`author`,`description`,`urlToImage`,`publishedAt`,`content`,`sourceName`,`bookmarkedAt`) VALUES (?,?,?,?,?,?,?,?,?)";
+      }
+
+      @Override
+      protected void bind(@NonNull final SupportSQLiteStatement statement,
+          @NonNull final BookmarkEntity entity) {
+        statement.bindString(1, entity.getUrl());
+        statement.bindString(2, entity.getTitle());
+        if (entity.getAuthor() == null) {
+          statement.bindNull(3);
+        } else {
+          statement.bindString(3, entity.getAuthor());
+        }
+        if (entity.getDescription() == null) {
+          statement.bindNull(4);
+        } else {
+          statement.bindString(4, entity.getDescription());
+        }
+        if (entity.getUrlToImage() == null) {
+          statement.bindNull(5);
+        } else {
+          statement.bindString(5, entity.getUrlToImage());
+        }
+        statement.bindString(6, entity.getPublishedAt());
+        if (entity.getContent() == null) {
+          statement.bindNull(7);
+        } else {
+          statement.bindString(7, entity.getContent());
+        }
+        statement.bindString(8, entity.getSourceName());
+        statement.bindLong(9, entity.getBookmarkedAt());
+      }
+    };
+    this.__deletionAdapterOfBookmarkEntity = new EntityDeletionOrUpdateAdapter<BookmarkEntity>(__db) {
+      @Override
+      @NonNull
+      protected String createQuery() {
+        return "DELETE FROM `bookmarks` WHERE `url` = ?";
+      }
+
+      @Override
+      protected void bind(@NonNull final SupportSQLiteStatement statement,
+          @NonNull final BookmarkEntity entity) {
+        statement.bindString(1, entity.getUrl());
+      }
+    };
     this.__preparedStmtOfClearArticles = new SharedSQLiteStatement(__db) {
       @Override
       @NonNull
@@ -103,6 +160,44 @@ public final class NewsDao_Impl implements NewsDao {
         __db.beginTransaction();
         try {
           __insertionAdapterOfArticleEntity.insert(articles);
+          __db.setTransactionSuccessful();
+          return Unit.INSTANCE;
+        } finally {
+          __db.endTransaction();
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
+  public Object insertBookmark(final BookmarkEntity bookmark,
+      final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        __db.beginTransaction();
+        try {
+          __insertionAdapterOfBookmarkEntity.insert(bookmark);
+          __db.setTransactionSuccessful();
+          return Unit.INSTANCE;
+        } finally {
+          __db.endTransaction();
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
+  public Object deleteBookmark(final BookmarkEntity bookmark,
+      final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        __db.beginTransaction();
+        try {
+          __deletionAdapterOfBookmarkEntity.handle(bookmark);
           __db.setTransactionSuccessful();
           return Unit.INSTANCE;
         } finally {
@@ -253,6 +348,111 @@ public final class NewsDao_Impl implements NewsDao {
             }
             _item = new ArticleEntity(_tmpUrl,_tmpTitle,_tmpAuthor,_tmpDescription,_tmpUrlToImage,_tmpPublishedAt,_tmpContent,_tmpSourceName,_tmpCountry,_tmpCategory);
             _result.add(_item);
+          }
+          return _result;
+        } finally {
+          _cursor.close();
+        }
+      }
+
+      @Override
+      protected void finalize() {
+        _statement.release();
+      }
+    });
+  }
+
+  @Override
+  public Flow<List<BookmarkEntity>> getBookmarks() {
+    final String _sql = "SELECT * FROM bookmarks ORDER BY bookmarkedAt DESC";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
+    return CoroutinesRoom.createFlow(__db, false, new String[] {"bookmarks"}, new Callable<List<BookmarkEntity>>() {
+      @Override
+      @NonNull
+      public List<BookmarkEntity> call() throws Exception {
+        final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+        try {
+          final int _cursorIndexOfUrl = CursorUtil.getColumnIndexOrThrow(_cursor, "url");
+          final int _cursorIndexOfTitle = CursorUtil.getColumnIndexOrThrow(_cursor, "title");
+          final int _cursorIndexOfAuthor = CursorUtil.getColumnIndexOrThrow(_cursor, "author");
+          final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
+          final int _cursorIndexOfUrlToImage = CursorUtil.getColumnIndexOrThrow(_cursor, "urlToImage");
+          final int _cursorIndexOfPublishedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "publishedAt");
+          final int _cursorIndexOfContent = CursorUtil.getColumnIndexOrThrow(_cursor, "content");
+          final int _cursorIndexOfSourceName = CursorUtil.getColumnIndexOrThrow(_cursor, "sourceName");
+          final int _cursorIndexOfBookmarkedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "bookmarkedAt");
+          final List<BookmarkEntity> _result = new ArrayList<BookmarkEntity>(_cursor.getCount());
+          while (_cursor.moveToNext()) {
+            final BookmarkEntity _item;
+            final String _tmpUrl;
+            _tmpUrl = _cursor.getString(_cursorIndexOfUrl);
+            final String _tmpTitle;
+            _tmpTitle = _cursor.getString(_cursorIndexOfTitle);
+            final String _tmpAuthor;
+            if (_cursor.isNull(_cursorIndexOfAuthor)) {
+              _tmpAuthor = null;
+            } else {
+              _tmpAuthor = _cursor.getString(_cursorIndexOfAuthor);
+            }
+            final String _tmpDescription;
+            if (_cursor.isNull(_cursorIndexOfDescription)) {
+              _tmpDescription = null;
+            } else {
+              _tmpDescription = _cursor.getString(_cursorIndexOfDescription);
+            }
+            final String _tmpUrlToImage;
+            if (_cursor.isNull(_cursorIndexOfUrlToImage)) {
+              _tmpUrlToImage = null;
+            } else {
+              _tmpUrlToImage = _cursor.getString(_cursorIndexOfUrlToImage);
+            }
+            final String _tmpPublishedAt;
+            _tmpPublishedAt = _cursor.getString(_cursorIndexOfPublishedAt);
+            final String _tmpContent;
+            if (_cursor.isNull(_cursorIndexOfContent)) {
+              _tmpContent = null;
+            } else {
+              _tmpContent = _cursor.getString(_cursorIndexOfContent);
+            }
+            final String _tmpSourceName;
+            _tmpSourceName = _cursor.getString(_cursorIndexOfSourceName);
+            final long _tmpBookmarkedAt;
+            _tmpBookmarkedAt = _cursor.getLong(_cursorIndexOfBookmarkedAt);
+            _item = new BookmarkEntity(_tmpUrl,_tmpTitle,_tmpAuthor,_tmpDescription,_tmpUrlToImage,_tmpPublishedAt,_tmpContent,_tmpSourceName,_tmpBookmarkedAt);
+            _result.add(_item);
+          }
+          return _result;
+        } finally {
+          _cursor.close();
+        }
+      }
+
+      @Override
+      protected void finalize() {
+        _statement.release();
+      }
+    });
+  }
+
+  @Override
+  public Flow<Boolean> isBookmarked(final String url) {
+    final String _sql = "SELECT EXISTS(SELECT 1 FROM bookmarks WHERE url = ?)";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    _statement.bindString(_argIndex, url);
+    return CoroutinesRoom.createFlow(__db, false, new String[] {"bookmarks"}, new Callable<Boolean>() {
+      @Override
+      @NonNull
+      public Boolean call() throws Exception {
+        final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+        try {
+          final Boolean _result;
+          if (_cursor.moveToFirst()) {
+            final int _tmp;
+            _tmp = _cursor.getInt(0);
+            _result = _tmp != 0;
+          } else {
+            _result = false;
           }
           return _result;
         } finally {

@@ -3,7 +3,7 @@ package com.android.knewsapp.news.domain.model
 data class NewsResponse(
     val status: String,
     val totalResults: Int,
-    val articles: List<Article>
+    val articles: List<Article>,
 )
 
 data class Article(
@@ -14,10 +14,11 @@ data class Article(
     val url: String,
     val urlToImage: String? = null,
     val publishedAt: String,
-    val content: String? = null
+    val content: String? = null,
+    val isBookmarked: Boolean = false,
 )
 
 data class Source(
     val id: String? = null,
-    val name: String
+    val name: String,
 )

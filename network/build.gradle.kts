@@ -26,13 +26,13 @@ android {
 dependencies {
     implementation(project(":session"))
     implementation(project(":security"))
-    
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
-    
+
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 

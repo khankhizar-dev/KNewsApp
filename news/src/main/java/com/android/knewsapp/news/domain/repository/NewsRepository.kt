@@ -7,16 +7,23 @@ interface NewsRepository {
     fun getArticles(
         country: String? = null,
         category: String? = null,
-        fetchFromRemote: Boolean = false
+        fetchFromRemote: Boolean = false,
     ): Flow<Result<List<Article>>>
 
     suspend fun getTopHeadlines(
         country: String? = null,
-        category: String? = null
+        category: String? = null,
     ): Result<List<Article>>
 
     suspend fun getEverything(
         query: String,
-        language: String? = null
+        language: String? = null,
     ): Result<List<Article>>
+
+    // Bookmarks
+    suspend fun toggleBookmark(article: Article)
+
+    fun getBookmarks(): Flow<List<Article>>
+
+    fun isBookmarked(url: String): Flow<Boolean>
 }

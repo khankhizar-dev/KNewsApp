@@ -4,7 +4,6 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
 class JwtUtilsTest {
-
     @Test
     fun `decodeToken with invalid token returns null`() {
         val result = JwtUtils.decodeToken("invalid-token")

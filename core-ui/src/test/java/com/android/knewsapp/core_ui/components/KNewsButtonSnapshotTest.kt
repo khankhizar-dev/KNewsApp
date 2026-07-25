@@ -7,11 +7,11 @@ import org.junit.Rule
 import org.junit.Test
 
 class KNewsButtonSnapshotTest {
-
     @get:Rule
-    val paparazzi = Paparazzi(
-        deviceConfig = DeviceConfig.PIXEL_5
-    )
+    val paparazzi =
+        Paparazzi(
+            deviceConfig = DeviceConfig.PIXEL_5,
+        )
 
     @Test
     fun loginButton_normal() {
@@ -19,7 +19,7 @@ class KNewsButtonSnapshotTest {
             KNewsAppTheme {
                 KNewsButton(
                     text = "Login",
-                    onClick = {}
+                    onClick = {},
                 )
             }
         }
@@ -32,7 +32,7 @@ class KNewsButtonSnapshotTest {
                 KNewsButton(
                     text = "Login",
                     onClick = {},
-                    isLoading = true
+                    isLoading = true,
                 )
             }
         }

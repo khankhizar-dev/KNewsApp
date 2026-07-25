@@ -17,7 +17,6 @@ import org.junit.rules.TemporaryFolder
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class SessionManagerTest {
-
     @get:Rule
     val tmpFolder = TemporaryFolder()
 
@@ -29,46 +28,50 @@ class SessionManagerTest {
 
     @Before
     fun setup() {
-        dataStore = PreferenceDataStoreFactory.create(
-            scope = testScope,
-            produceFile = { tmpFolder.newFile("test.preferences_pb") }
-        )
+        dataStore =
+            PreferenceDataStoreFactory.create(
+                scope = testScope,
+                produceFile = { tmpFolder.newFile("test.preferences_pb") },
+            )
         sessionManager = SessionManager(dataStore)
     }
 
     @Test
-    fun `userEmail initial state is null`() = testScope.runTest {
-        val email = sessionManager.userEmail.first()
-        assertThat(email).isNull()
-    }
+    fun `userEmail initial state is null`() =
+        runTest {
+            val email = sessionManager.userEmail.first()
+            assertThat(email).isNull()
+        }
 
     @Test
-    fun `userEmail returns correct value after manual datastore edit`() = testScope.runTest {
-        val testEmail = "test@example.com"
-        dataStore.edit { prefs ->
-            prefs[SessionManager.USER_EMAIL] = testEmail
+    fun `userEmail returns correct value after manual datastore edit`() =
+        runTest {
+            val testEmail = "test@example.com"
+            dataStore.edit { prefs ->
+                prefs[SessionManager.USER_EMAIL] = testEmail
+            }
+
+            val email = sessionManager.userEmail.first()
+            assertThat(email).isEqualTo(testEmail)
         }
-        
-        val email = sessionManager.userEmail.first()
-        assertThat(email).isEqualTo(testEmail)
-    }
 
     @Test
-    fun `clearSession clears the datastore`() = testScope.runTest {
-        dataStore.edit { prefs ->
-            prefs[SessionManager.USER_EMAIL] = "test@example.com"
-            prefs[SessionManager.USER_ID] = "123"
-        }
+    fun `clearSession clears the datastore`() =
+        runTest {
+            dataStore.edit { prefs ->
+                prefs[SessionManager.USER_EMAIL] = "test@example.com"
+                prefs[SessionManager.USER_ID] = "123"
+            }
 
-        // Note: FirebaseAuth.getInstance().signOut() will be called, 
-        // in Robolectric this usually works or can be shadowed.
-        try {
-            sessionManager.clearSession()
-        } catch (e: Exception) {
-            // Ignore if Firebase init fails in test env, focus on datastore
+            // Note: FirebaseAuth.getInstance().signOut() will be called,
+            // in Robolectric this usually works or can be shadowed.
+            try {
+                sessionManager.clearSession()
+            } catch (e: Exception) {
+                // Ignore if Firebase init fails in test env, focus on datastore
+            }
+
+            val email = sessionManager.userEmail.first()
+            assertThat(email).isNull()
         }
-        
-        val email = sessionManager.userEmail.first()
-        assertThat(email).isNull()
-    }
 }

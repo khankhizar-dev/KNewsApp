@@ -1,7 +1,8 @@
 package com.android.knewsapp.auth
 
-import androidx.compose.ui.test.*
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithText
 import com.android.knewsapp.session.SessionManager
 import io.mockk.every
 import io.mockk.mockk
@@ -10,7 +11,6 @@ import org.junit.Rule
 import org.junit.Test
 
 class SignUpScreenTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -25,7 +25,7 @@ class SignUpScreenTest {
             SignUpScreen(
                 viewModel = viewModel,
                 onNavigateToLogin = {},
-                onSignUpSuccess = {}
+                onSignUpSuccess = {},
             )
         }
 

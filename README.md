@@ -46,6 +46,7 @@ The project follows **Clean Architecture** principles:
 2. **Google Sign-In:** Configure `default_web_client_id` in `strings.xml`.
 3. **Run Tests:** Use `./gradlew test` and `./gradlew verifyPaparazziDebug`.
 4. **Static Analysis:** Run `./gradlew ktlintCheck detekt`.
+    *   **Automated Enforcement**: Run `./gradlew installGitHooks` to automatically run static analysis on every `git commit`.
 5. **Generate Baseline Profile:** Run `./gradlew :app:generateBaselineProfile`.
 5. **Run Benchmarks:** Run the tests in the `:benchmark` module on a physical device.
 6. **Build:** Sync Gradle and run the `:app` module.
