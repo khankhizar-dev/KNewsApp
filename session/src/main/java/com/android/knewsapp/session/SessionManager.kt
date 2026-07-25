@@ -1,21 +1,18 @@
 package com.android.knewsapp.session
 
-import android.content.Context
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
+import androidx.datastore.preferences.core.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "session_prefs")
-
-class SessionManager(private val context: Context) {
+class SessionManager @Inject constructor(
+    private val dataStore: DataStore<Preferences>
+) {
     private val auth = FirebaseAuth.getInstance()
 
     private val _user = MutableStateFlow<FirebaseUser?>(auth.currentUser)
@@ -27,7 +24,7 @@ class SessionManager(private val context: Context) {
         val LAST_LOGIN_UID = stringPreferencesKey("last_login_uid")
     }
 
-    val userEmail: Flow<String?> = context.dataStore.data.map { preferences ->
+    val userEmail: Flow<String?> = dataStore.data.map { preferences ->
         preferences[USER_EMAIL]
     }
 
@@ -35,7 +32,7 @@ class SessionManager(private val context: Context) {
         val currentUser = auth.currentUser
         _user.value = currentUser
         currentUser?.let { user ->
-            context.dataStore.edit { preferences ->
+            dataStore.edit { preferences ->
                 preferences[USER_EMAIL] = user.email ?: ""
                 preferences[USER_ID] = user.uid
                 preferences[LAST_LOGIN_UID] = user.uid
@@ -46,7 +43,7 @@ class SessionManager(private val context: Context) {
     suspend fun clearSession() {
         auth.signOut()
         _user.value = null
-        context.dataStore.edit { preferences ->
+        dataStore.edit { preferences ->
             preferences.clear()
         }
     }

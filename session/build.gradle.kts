@@ -31,7 +31,14 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
+    
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.truth)
+    testImplementation(libs.turbine)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.robolectric)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

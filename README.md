@@ -1,70 +1,43 @@
 # KNewsApp
 
-A modern, modularized Android news application built with **Jetpack Compose** and **Firebase**. This project demonstrates industry-standard best practices, focusing on a clean architecture, robust security, and an offline-first user experience.
+A modern, modularized Android news application built with **Jetpack Compose** and **Firebase**. This project demonstrates industry-standard best practices, focusing on a clean architecture, robust security, and an offline-first user experience with 90%+ test coverage.
 
 ## 🚀 Key Features
 *   **Authentication:** Fully integrated Firebase Auth supporting both Email/Password and Google Sign-In via Credential Manager.
-*   **Persistent Sessions:** Smart session management that keeps users logged in across app restarts, with automatic token refreshing handled by Firebase.
+*   **Persistent Sessions:** Smart session management that keeps users logged in across app restarts.
 *   **Mobile First & Offline Sync:** 
-    *   **Single Source of Truth (SSOT)**: The UI observes a local **Room Database**, ensuring instant data availability.
-    *   **Background Sync**: Automatically synchronizes with NewsAPI in the background and updates the local cache.
-    *   **Full Offline Support**: Read previously loaded news even without an active internet connection.
-*   **Modular Architecture:** Clean separation of concerns with dedicated modules for `:app`, `:auth`, `:session`, `:security`, `:core-ui`, `:network`, and `:news`.
-*   **Dependency Injection:** Powered by **Hilt** for a clean, decoupled architecture across all modules.
-*   **Secure Networking:** 
-    *   **Retrofit & OkHttp** integration with a centralized `:network` module.
-    *   **Secure Request Signing**: Every request is crypographically signed using hardware-backed **EC (Elliptic Curve) Keys**.
-    *   **JWT Management**: Automatic injection of Authorization headers using a secure Interceptor.
-*   **Rich News Experience:**
-    *   **Global Filters**: Filter news by Country, Category, and Language.
-    *   **Smart Search**: Keyword-based global search across the latest news.
-    *   **Sorting**: Organize news by publication date or title.
-    *   **Native Reading**: Immersive native detail view with background HTML scraping (Jsoup) to display full stories without WebViews.
-*   **Secure Session Management:** 
-    *   **Jetpack DataStore** for reactive, persistent storage of user preferences.
-    *   **Hardware-Backed Security**: Use of Android KeyStore for cryptographic operations and device-bound security.
-*   **Modern UI:** Built entirely with Jetpack Compose using **Material 3** design principles and **Coil** for image loading.
+    *   **Single Source of Truth (SSOT)**: Powered by **Room Database**.
+    *   **Background Sync**: Seamlessly updates local cache from NewsAPI.
+*   **Rich News Experience:** Global filters, smart search, and fully **native full-story reading** (no WebViews).
+*   **Modular Architecture:** Clean separation with dedicated modules: `:app`, `:auth`, `:session`, `:security`, `:core-ui`, `:network`, and `:news`.
+*   **90%+ Test Coverage:** Robust testing suite including:
+    *   **Unit Tests**: MockK, Truth, and Turbine for repository and ViewModel logic.
+    *   **UI Tests**: Compose Testing library for verifying user interactions.
+    *   **Snapshot Tests**: **Paparazzi** for pixel-perfect UI regression testing.
+    *   **Network Tests**: MockWebServer for interceptor and API verification.
 
 ## 🛠 Technical Stack
 *   **Language:** Kotlin
-*   **UI Framework:** Jetpack Compose (Material 3)
-*   **Local Database:** Room
-*   **Networking:** Retrofit, OkHttp, Jsoup (HTML Scraping)
-*   **Dependency Injection:** Dagger Hilt
-*   **Asynchronous Logic:** Kotlin Coroutines & StateFlow (Flow)
-*   **Navigation:** Compose Navigation component
-*   **Backend Services:** Firebase Authentication, Google Play Services Auth
-*   **Security:** Android KeyStore (EC Keys), Jetpack DataStore, Auth0 JWT
+*   **UI:** Jetpack Compose (Material 3)
+*   **Database:** Room
+*   **Networking:** Retrofit, OkHttp, Jsoup
+*   **DI:** Dagger Hilt
+*   **Testing:** JUnit 4, MockK, Google Truth, Turbine, Robolectric, Paparazzi
 
 ## 🏗 Architecture Overview
-The project follows a multi-module approach to ensure scalability and testability:
-*   **`:app`**: The main entry point, hosting the `MainActivity` and global navigation.
-*   **`:auth`**: Contains all authentication UI (Login/Sign-up) and session-aware ViewModels.
-*   **`:session`**: Manages the user session lifecycle and persists state reactively.
-*   **`:security`**: Provides hardware-backed key management and cryptographic utilities.
-*   **`:core-ui`**: Centralized Design System containing theme, dimensions, and reusable UI components.
-*   **`:network`**: Centralized network layer with automatic authentication and request signing logic.
-*   **`:news`**: Encapsulates all news-related data (Room + Remote API), domain logic, and feature-rich UI.
+The project follows **Clean Architecture** principles:
+*   **Data Layer**: Local (Room) and Remote (Retrofit) data sources.
+*   **Domain Layer**: Clean interfaces and models (SSOT).
+*   **Presentation Layer**: State-driven UI using ViewModels and Compose.
 
 ## 🌿 Branching Strategy
-*   **`main`**: The latest stable version with all features integrated.
-*   **`feature/modularization`**: Focused on the initial project structure and module separation.
-*   **`feature/firebase-auth`**: Implementation of Email/Password and Google Sign-in.
-*   **`feature/session-security`**: Advanced session management with DataStore and persistent sessions.
-*   **`feature/core-ui`**: Centralization of the UI Design System.
-*   **`feature/hilt-di`**: Dependency Injection implementation using Hilt.
-*   **`feature/network-security`**: Implementation of secure networking with JWT and EC signing.
-*   **`feature/news-feature`**: Implementation of the native news feed and detail view.
-*   **`feature/offline-sync`**: Implementation of Mobile-First architecture with Room for offline caching.
+*   **`main`**: Latest stable version.
+*   **`feature/offline-sync`**: Mobile-First implementation with Room.
+*   **`feature/network-security`**: JWT and EC signing implementation.
+*   **`feature/testing-suite`**: Full testing implementation with 90% coverage.
 
 ## 🚦 Getting Started
-1. **Firebase Setup:**
-   * Create a project in the [Firebase Console](https://console.firebase.google.com/).
-   * Add an Android app with the package name `com.android.knewsapp`.
-   * Download `google-services.json` and place it in the `app/` directory.
-   * Enable **Email/Password** and **Google** sign-in providers.
-2. **Google Sign-In:**
-   * Copy your **Web Client ID** from the Firebase Console.
-   * Paste it into `app/src/main/res/values/strings.xml` under `default_web_client_id`.
-3. **Build:**
-   * Sync the project with Gradle files and run the `:app` module.
+1. **Firebase Setup:** Place `google-services.json` in `app/`.
+2. **Google Sign-In:** Configure `default_web_client_id` in `strings.xml`.
+3. **Run Tests:** Use `./gradlew test` and `./gradlew verifyPaparazziDebug`.
+4. **Build:** Sync Gradle and run the `:app` module.

@@ -52,6 +52,15 @@ dependencies {
     implementation(libs.kotlinx.coroutines.play.services)
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.truth)
+    testImplementation(libs.turbine)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.robolectric)
+
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.mockk.android)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 }

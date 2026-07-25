@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.paparazzi)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
 }
@@ -54,13 +54,22 @@ dependencies {
     ksp(libs.room.compiler)
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
-    implementation(libs.kotlinx.serialization.json)
     
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.truth)
+    testImplementation(libs.turbine)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.robolectric)
+    
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.mockk.android)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
