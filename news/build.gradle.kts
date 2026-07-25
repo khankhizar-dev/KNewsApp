@@ -15,6 +15,7 @@ android {
         minSdk = 24
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "NEWS_API_KEY", "\"f3bb57aed96c4f07958a51cddb092c77\"")
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     compileOptions {
