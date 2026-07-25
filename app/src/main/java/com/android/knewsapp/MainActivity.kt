@@ -67,8 +67,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent
-        {
+        setContent {
             val scope = rememberCoroutineScope()
             val context = baseContext
             val credentialManager = CredentialManager.create(context)
