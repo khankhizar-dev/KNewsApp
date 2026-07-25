@@ -10,9 +10,32 @@ class NewsRepositoryImpl @Inject constructor(
     private val apiService: NewsApiService
 ) : NewsRepository {
     
-    override suspend fun getTopHeadlines(): Result<List<Article>> {
+    override suspend fun getTopHeadlines(
+        country: String?,
+        category: String?
+    ): Result<List<Article>> {
         return try {
-            val response = apiService.getTopHeadlines(apiKey = BuildConfig.NEWS_API_KEY)
+            val response = apiService.getTopHeadlines(
+                country = country,
+                category = category,
+                apiKey = BuildConfig.NEWS_API_KEY
+            )
+            Result.success(response.articles)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun getEverything(
+        query: String,
+        language: String?
+    ): Result<List<Article>> {
+        return try {
+            val response = apiService.getEverything(
+                query = query,
+                language = language,
+                apiKey = BuildConfig.NEWS_API_KEY
+            )
             Result.success(response.articles)
         } catch (e: Exception) {
             Result.failure(e)

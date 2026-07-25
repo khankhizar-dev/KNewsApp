@@ -6,15 +6,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
@@ -29,6 +28,7 @@ import com.android.knewsapp.auth.LoginScreen
 import com.android.knewsapp.auth.SignUpScreen
 import com.android.knewsapp.core_ui.theme.Dimensions
 import com.android.knewsapp.core_ui.theme.KNewsAppTheme
+import com.android.knewsapp.news.presentation.news_detail.NewsDetailScreen
 import com.android.knewsapp.news.presentation.news_list.NewsListScreen
 import com.android.knewsapp.news.presentation.news_list.NewsListViewModel
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
@@ -38,104 +38,131 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val authViewModel: AuthViewModel by viewModels()
-
-    override fun onUserInteraction() {
-        super.onUserInteraction()
-        authViewModel.resetInactivityTimer()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val scope = rememberCoroutineScope()
+            val context = baseContext
+            val credentialManager = CredentialManager.create(context)
+            val authViewModel: AuthViewModel = hiltViewModel()
+
             KNewsAppTheme {
                 val navController = rememberNavController()
-                val authViewModel: AuthViewModel = hiltViewModel()
                 val user by authViewModel.user.collectAsStateWithLifecycle()
-                val scope = rememberCoroutineScope()
-                val credentialManager = CredentialManager.create(this)
+                val isCheckingSession by authViewModel.isCheckingSession.collectAsStateWithLifecycle()
 
-                LaunchedEffect(user) {
-                    if (user == null) {
-                        navController.navigate("login") {
-                            popUpTo(0) { inclusive = true }
+                if (isCheckingSession) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = androidx.compose.ui.Alignment.Center) {
+                        CircularProgressIndicator()
+                    }
+                } else {
+                    LaunchedEffect(user) {
+                        if (user != null) {
+                            navController.navigate("main") {
+                                popUpTo("login") { inclusive = true }
+                            }
+                        } else {
+                            navController.navigate("login") {
+                                popUpTo(0) { inclusive = true }
+                            }
                         }
                     }
-                }
 
-                fun launchGoogleSignIn() {
-                    val googleIdOption = GetGoogleIdOption.Builder()
-                        .setFilterByAuthorizedAccounts(false)
-                        .setServerClientId(getString(R.string.default_web_client_id))
-                        .setAutoSelectEnabled(true)
-                        .build()
+                    NavHost(navController = navController, startDestination = if (user != null) "main" else "login") {
+                        composable("login") {
+                            LoginScreen(
+                                viewModel = authViewModel,
+                                onNavigateToSignUp = {
+                                    navController.navigate("signup")
+                                },
+                                onLoginSuccess = {
+                                    // Handled by LaunchedEffect
+                                },
+                                onGoogleSignInClick = {
+                                    scope.launch {
+                                        val googleIdOption: GetGoogleIdOption = GetGoogleIdOption.Builder()
+                                            .setFilterByAuthorizedAccounts(false)
+                                            .setServerClientId(getString(R.string.default_web_client_id))
+                                            .build()
 
-                    val request = GetCredentialRequest.Builder()
-                        .addCredentialOption(googleIdOption)
-                        .build()
+                                        val request: GetCredentialRequest = GetCredentialRequest.Builder()
+                                            .addCredentialOption(googleIdOption)
+                                            .build()
 
-                    scope.launch {
-                        try {
-                            val result = credentialManager.getCredential(
-                                context = this@MainActivity,
-                                request = request
-                            )
-                            val credential = result.credential
-                            if (credential is GoogleIdTokenCredential) {
-                                authViewModel.signInWithGoogle(credential.idToken) {
-                                    navController.navigate("main") {
-                                        popUpTo("login") { inclusive = true }
+                                        try {
+                                            val result = credentialManager.getCredential(
+                                                context = this@MainActivity,
+                                                request = request,
+                                            )
+                                            val credential = result.credential
+                                            val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+                                            val idToken = googleIdTokenCredential.idToken
+                                            
+                                            authViewModel.signInWithGoogle(idToken) {
+                                                // Success handled by LaunchedEffect
+                                            }
+                                        } catch (e: GetCredentialException) {
+                                            Toast.makeText(context, "Google Sign-In failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                                        }
                                     }
                                 }
-                            }
-                        } catch (e: GetCredentialException) {
-                            Toast.makeText(this@MainActivity, "Sign in failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                            )
                         }
-                    }
-                }
+                        composable("signup") {
+                            SignUpScreen(
+                                viewModel = authViewModel,
+                                onNavigateToLogin = {
+                                    navController.popBackStack()
+                                },
+                                onSignUpSuccess = {
+                                    // Handled by LaunchedEffect
+                                }
+                            )
+                        }
+                        composable("main") {
+                            val newsViewModel: NewsListViewModel = hiltViewModel()
+                            NewsListScreen(
+                                viewModel = newsViewModel,
+                                onArticleClick = { article ->
+                                    newsViewModel.selectArticle(article)
+                                    navController.navigate("detail")
+                                },
+                                onLogoutClick = {
+                                    authViewModel.signOut()
+                                }
+                            )
+                        }
 
-                NavHost(
-                    navController = navController,
-                    startDestination = if (user != null) "main" else "login"
-                ) {
-                    composable("login") {
-                        LoginScreen(
-                            viewModel = authViewModel,
-                            onNavigateToSignUp = { navController.navigate("signup") },
-                            onLoginSuccess = {
-                                navController.navigate("main") {
-                                    popUpTo("login") { inclusive = true }
-                                }
-                            },
-                            onGoogleSignInClick = ::launchGoogleSignIn
-                        )
-                    }
-                    composable("signup") {
-                        SignUpScreen(
-                            viewModel = authViewModel,
-                            onNavigateToLogin = { navController.navigate("login") },
-                            onSignUpSuccess = {
-                                navController.navigate("main") {
-                                    popUpTo("signup") { inclusive = true }
-                                }
+                        composable("detail") {
+                            val parentEntry = remember(it) {
+                                navController.getBackStackEntry("main")
                             }
-                        )
-                    }
-                    composable("main") {
-                        val newsViewModel: NewsListViewModel = hiltViewModel()
-                        NewsListScreen(
-                            viewModel = newsViewModel,
-                            onArticleClick = { article ->
-                                // Handle article click (e.g., navigate to detail)
-                            },
-                            onLogoutClick = {
-                                authViewModel.signOut()
+                            val newsViewModel: NewsListViewModel = hiltViewModel(parentEntry)
+                            val article by newsViewModel.selectedArticle.collectAsStateWithLifecycle()
+                            val fullStory by newsViewModel.fullContent.collectAsStateWithLifecycle()
+                            
+                            article?.let {
+                                NewsDetailScreen(
+                                    article = it,
+                                    fullStory = fullStory,
+                                    onBackClick = {
+                                        navController.popBackStack()
+                                    }
+                                )
                             }
-                        )
+                        }
                     }
                 }
             }
         }
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        // Reset inactivity timer on any user interaction
+        val authViewModel: AuthViewModel by viewModels()
+        authViewModel.resetInactivityTimer()
     }
 }

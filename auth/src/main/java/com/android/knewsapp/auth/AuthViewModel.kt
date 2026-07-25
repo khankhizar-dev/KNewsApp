@@ -24,40 +24,33 @@ class AuthViewModel @Inject constructor(
 
     val user: StateFlow<FirebaseUser?> = sessionManager.user
 
-    private var inactivityJob: Job? = null
-    private val inactivityTimeout = 3.minutes
-
-    init {
-        // Start monitoring user session to handle timeout
-        viewModelScope.launch {
-            user.collect { firebaseUser ->
-                if (firebaseUser != null) {
-                    resetInactivityTimer()
-                } else {
-                    inactivityJob?.cancel()
-                }
-            }
-        }
-    }
-
-    fun resetInactivityTimer() {
-        inactivityJob?.cancel()
-        if (auth.currentUser != null) {
-            // Optional: Refresh token to ensure session is valid
-            auth.currentUser?.getIdToken(false) 
-
-            inactivityJob = viewModelScope.launch {
-                delay(inactivityTimeout)
-                signOut()
-            }
-        }
-    }
-
     private val _loading = MutableStateFlow(false)
     val loading: StateFlow<Boolean> = _loading
 
     private val _error = MutableStateFlow<String?>(null)
     val error: StateFlow<String?> = _error
+
+    private val _isCheckingSession = MutableStateFlow(true)
+    val isCheckingSession: StateFlow<Boolean> = _isCheckingSession
+
+    init {
+        checkSession()
+    }
+
+    private fun checkSession() {
+        viewModelScope.launch {
+            // Give Firebase a moment to restore the session if needed
+            if (auth.currentUser != null) {
+                sessionManager.updateSession()
+            }
+            _isCheckingSession.value = false
+        }
+    }
+
+    fun resetInactivityTimer() {
+        // Removed aggressive 3-minute auto-logout to ensure persistent session
+        // Firebase handles token refresh automatically.
+    }
 
     fun signInWithEmail(email: String, password: String, onSuccess: () -> Unit) {
         viewModelScope.launch {

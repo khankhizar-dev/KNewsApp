@@ -8,16 +8,16 @@ data class NewsResponse(
 
 data class Article(
     val source: Source,
-    val author: String?,
+    val author: String? = null,
     val title: String,
-    val description: String?,
+    val description: String? = null,
     val url: String,
-    val urlToImage: String?,
+    val urlToImage: String? = null,
     val publishedAt: String,
-    val content: String?
+    val content: String? = null
 )
 
 data class Source(
-    val id: String?,
+    val id: String? = null,
     val name: String
 )
