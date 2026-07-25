@@ -1,6 +1,6 @@
 # KNewsApp
 
-A modern, modularized Android news application built with **Jetpack Compose** and **Firebase**. This project demonstrates industry-standard best practices, focusing on a clean architecture, robust security, and an offline-first user experience with 90%+ test coverage.
+A modern, modularized Android news application built with **Jetpack Compose** and **Firebase**. This project demonstrates industry-standard best practices, focusing on a clean architecture, robust security, and an offline-first user experience with 90%+ test coverage and performance benchmarking.
 
 ## 🚀 Key Features
 *   **Authentication:** Fully integrated Firebase Auth supporting both Email/Password and Google Sign-In via Credential Manager.
@@ -9,12 +9,11 @@ A modern, modularized Android news application built with **Jetpack Compose** an
     *   **Single Source of Truth (SSOT)**: Powered by **Room Database**.
     *   **Background Sync**: Seamlessly updates local cache from NewsAPI.
 *   **Rich News Experience:** Global filters, smart search, and fully **native full-story reading** (no WebViews).
-*   **Modular Architecture:** Clean separation with dedicated modules: `:app`, `:auth`, `:session`, `:security`, `:core-ui`, `:network`, and `:news`.
-*   **90%+ Test Coverage:** Robust testing suite including:
-    *   **Unit Tests**: MockK, Truth, and Turbine for repository and ViewModel logic.
-    *   **UI Tests**: Compose Testing library for verifying user interactions.
-    *   **Snapshot Tests**: **Paparazzi** for pixel-perfect UI regression testing.
-    *   **Network Tests**: MockWebServer for interceptor and API verification.
+*   **Modular Architecture:** Clean separation with dedicated modules: `:app`, `:auth`, `:session`, `:security`, `:core-ui`, `:network`, `:news`, and `:benchmark`.
+*   **Performance Optimization**:
+    *   **Baseline Profiles**: Automatically generated to improve app startup and frame performance.
+    *   **Macrobenchmarking**: Dedicated `:benchmark` module to measure cold/warm startup times.
+*   **90%+ Test Coverage:** Robust testing suite including Unit, UI, and Snapshot tests.
 
 ## 🛠 Technical Stack
 *   **Language:** Kotlin
@@ -22,6 +21,7 @@ A modern, modularized Android news application built with **Jetpack Compose** an
 *   **Database:** Room
 *   **Networking:** Retrofit, OkHttp, Jsoup
 *   **DI:** Dagger Hilt
+*   **Benchmarking**: Macrobenchmark, Baseline Profiles
 *   **Testing:** JUnit 4, MockK, Google Truth, Turbine, Robolectric, Paparazzi
 
 ## 🏗 Architecture Overview
@@ -34,10 +34,13 @@ The project follows **Clean Architecture** principles:
 *   **`main`**: Latest stable version.
 *   **`feature/offline-sync`**: Mobile-First implementation with Room.
 *   **`feature/network-security`**: JWT and EC signing implementation.
-*   **`feature/testing-suite`**: Full testing implementation with 90% coverage.
+*   **`feature/testing-suite`**: Full testing implementation.
+*   **`feature/performance-benchmarking`**: Startup time improvements and Baseline Profiles.
 
 ## 🚦 Getting Started
 1. **Firebase Setup:** Place `google-services.json` in `app/`.
 2. **Google Sign-In:** Configure `default_web_client_id` in `strings.xml`.
 3. **Run Tests:** Use `./gradlew test` and `./gradlew verifyPaparazziDebug`.
-4. **Build:** Sync Gradle and run the `:app` module.
+4. **Generate Baseline Profile:** Run `./gradlew :app:generateBaselineProfile`.
+5. **Run Benchmarks:** Run the tests in the `:benchmark` module on a physical device.
+6. **Build:** Sync Gradle and run the `:app` module.
