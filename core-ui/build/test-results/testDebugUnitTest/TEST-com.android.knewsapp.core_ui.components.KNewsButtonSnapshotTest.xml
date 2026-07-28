@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.android.knewsapp.core_ui.components.KNewsButtonSnapshotTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-07-28T07:16:16.623Z" hostname="DESKTOP-2NI169U" time="114.456">
+  <properties/>
+  <testcase name="loginButton_loading" classname="com.android.knewsapp.core_ui.components.KNewsButtonSnapshotTest" time="111.369"/>
+  <testcase name="loginButton_normal" classname="com.android.knewsapp.core_ui.components.KNewsButtonSnapshotTest" time="3.079"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (D:\gradle-home\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.16\4a451ee6484abac3a498df0f3b33ed00a6fced4d\byte-buddy-agent-1.14.16.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+Jul 28, 2026 12:47:50 PM app.cash.paparazzi.internal.PaparazziLogger logAndroidFramework
+INFO: Settings [3]: Can't get key animator_duration_scale from content://settings/global
+Jul 28, 2026 12:48:08 PM app.cash.paparazzi.internal.PaparazziLogger logAndroidFramework
+INFO: Settings [3]: Can't get key animator_duration_scale from content://settings/global
+]]></system-err>
+</testsuite>

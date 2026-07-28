@@ -1,0 +1,4 @@
+[90mD:\KNewsApp\auth\src\test\java\com\android\knewsapp\auth\[0mAuthViewModelTest.kt[90m:[0m3[90m:1:[0m Imports must be ordered in lexicographic order without any empty lines in-between with "java", "javax", "kotlin" and aliases in the end [90m(standard:import-ordering)[0m
+
+Summary error count (descending) by rule:
+  standard:import-ordering: 1

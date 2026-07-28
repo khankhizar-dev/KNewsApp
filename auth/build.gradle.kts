@@ -25,6 +25,22 @@ android {
     buildFeatures {
         compose = true
     }
+
+    sourceSets {
+        getByName("test") {
+            jniLibs.setSrcDirs(emptyList<File>())
+        }
+    }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = false
+            all {
+                (it as Test).environment("PATH", "C:\\Windows\\System32")
+                (it as Test).systemProperty("java.library.path", ".")
+            }
+        }
+    }
 }
 
 dependencies {

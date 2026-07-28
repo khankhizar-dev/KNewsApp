@@ -20,18 +20,20 @@ subprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
     apply(plugin = "io.gitlab.arturbosch.detekt")
 
-subprojects {
-    apply(plugin = "org.jlleitschuh.gradle.ktlint")
-    apply(plugin = "io.gitlab.arturbosch.detekt")
-
     tasks.withType<Test> {
         // Workaround for Windows systems where PATH contains spaces (like "Microsoft VS Code")
         // which can break the Gradle Test Executor command line.
+        // We use doFirst to ensure we overwrite whatever AGP might have set
         doFirst {
+            val systemRoot = System.getenv("SystemRoot") ?: "C:\\Windows"
+            environment("PATH", "$systemRoot\\System32;$systemRoot")
             systemProperty("java.library.path", ".")
         }
+        
+        // Use a pathing jar to avoid long command lines on Windows
+        // (Note: some AGP versions don't support this well, but worth a try)
+        // unitTests.isIncludeAndroidResources = false // Already set in modules
     }
-}
 }
 
 tasks.register<Copy>("installGitHooks") {

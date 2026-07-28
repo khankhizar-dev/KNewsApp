@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.android.knewsapp.session.SessionManager
+import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,7 +28,14 @@ object SessionModule {
 
     @Provides
     @Singleton
-    fun provideSessionManager(dataStore: DataStore<Preferences>): SessionManager {
-        return SessionManager(dataStore)
+    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideSessionManager(
+        dataStore: DataStore<Preferences>,
+        auth: FirebaseAuth,
+    ): SessionManager {
+        return SessionManager(dataStore, auth)
     }
 }

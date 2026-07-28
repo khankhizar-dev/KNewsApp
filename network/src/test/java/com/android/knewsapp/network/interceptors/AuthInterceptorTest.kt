@@ -1,5 +1,6 @@
 package com.android.knewsapp.network.interceptors
 
+import com.android.knewsapp.security.SecurityManager
 import com.android.knewsapp.session.SessionManager
 import com.google.common.truth.Truth.assertThat
 import io.mockk.every
@@ -16,6 +17,7 @@ import org.junit.Test
 class AuthInterceptorTest {
     private lateinit var mockWebServer: MockWebServer
     private lateinit var sessionManager: SessionManager
+    private lateinit var securityManager: SecurityManager
     private lateinit var authInterceptor: AuthInterceptor
     private lateinit var client: OkHttpClient
 
@@ -25,7 +27,8 @@ class AuthInterceptorTest {
         mockWebServer.start()
 
         sessionManager = mockk()
-        authInterceptor = AuthInterceptor(sessionManager)
+        securityManager = mockk(relaxed = true)
+        authInterceptor = AuthInterceptor(sessionManager, securityManager)
         client =
             OkHttpClient.Builder()
                 .addInterceptor(authInterceptor)
@@ -58,6 +61,8 @@ class AuthInterceptorTest {
     @Test
     fun `intercept adds security headers when token exists`() {
         every { sessionManager.userEmail } returns flowOf("some-token")
+        every { securityManager.signData(any()) } returns "mock-signature"
+        every { securityManager.getPublicKey() } returns "mock-public-key"
 
         mockWebServer.enqueue(MockResponse().setResponseCode(200))
 
@@ -69,9 +74,9 @@ class AuthInterceptorTest {
         client.newCall(request).execute()
 
         val recordedRequest = mockWebServer.takeRequest()
-        assertThat(recordedRequest.getHeader("X-KNews-Signature")).isNotNull()
+        assertThat(recordedRequest.getHeader("X-KNews-Signature")).isEqualTo("mock-signature")
         assertThat(recordedRequest.getHeader("X-KNews-Timestamp")).isNotNull()
-        assertThat(recordedRequest.getHeader("X-KNews-PublicKey")).isNotNull()
+        assertThat(recordedRequest.getHeader("X-KNews-PublicKey")).isEqualTo("mock-public-key")
     }
 
     @Test

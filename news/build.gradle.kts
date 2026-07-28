@@ -31,15 +31,8 @@ android {
     }
 
     sourceSets {
-        getByName("main") {
-            jniLibs.setSrcDirs(emptyList<File>())
-        }
         getByName("test") {
-            resources.srcDirs("schemas")
-            jniLibs.setSrcDirs(emptyList<File>())
-        }
-        getByName("androidTest") {
-            jniLibs.setSrcDirs(emptyList<File>())
+            assets.srcDir("$projectDir/schemas")
         }
     }
 
@@ -50,7 +43,11 @@ android {
 
     testOptions {
         unitTests {
-            isIncludeAndroidResources = false
+            isIncludeAndroidResources = true
+            all {
+                it.environment("PATH", "C:\\Windows\\System32")
+                it.systemProperty("java.library.path", ".")
+            }
         }
     }
 }

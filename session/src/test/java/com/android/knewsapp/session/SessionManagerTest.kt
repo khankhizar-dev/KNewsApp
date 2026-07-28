@@ -5,6 +5,9 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import com.google.common.truth.Truth.assertThat
+import com.google.firebase.auth.FirebaseAuth
+import io.mockk.every
+import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.TestScope
@@ -25,6 +28,7 @@ class SessionManagerTest {
 
     private lateinit var sessionManager: SessionManager
     private lateinit var dataStore: DataStore<Preferences>
+    private val firebaseAuth: FirebaseAuth = mockk(relaxed = true)
 
     @Before
     fun setup() {
@@ -33,7 +37,8 @@ class SessionManagerTest {
                 scope = testScope,
                 produceFile = { tmpFolder.newFile("test.preferences_pb") },
             )
-        sessionManager = SessionManager(dataStore)
+        every { firebaseAuth.currentUser } returns null
+        sessionManager = SessionManager(dataStore, firebaseAuth)
     }
 
     @Test
@@ -63,13 +68,7 @@ class SessionManagerTest {
                 prefs[SessionManager.USER_ID] = "123"
             }
 
-            // Note: FirebaseAuth.getInstance().signOut() will be called,
-            // in Robolectric this usually works or can be shadowed.
-            try {
-                sessionManager.clearSession()
-            } catch (e: Exception) {
-                // Ignore if Firebase init fails in test env, focus on datastore
-            }
+            sessionManager.clearSession()
 
             val email = sessionManager.userEmail.first()
             assertThat(email).isNull()

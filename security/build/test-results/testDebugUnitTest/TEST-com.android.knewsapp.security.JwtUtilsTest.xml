@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.android.knewsapp.security.JwtUtilsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-07-28T07:18:10.447Z" hostname="DESKTOP-2NI169U" time="1.184">
+  <properties/>
+  <testcase name="isTokenExpired with invalid token returns true" classname="com.android.knewsapp.security.JwtUtilsTest" time="1.173"/>
+  <testcase name="getClaim with invalid token returns null" classname="com.android.knewsapp.security.JwtUtilsTest" time="0.002"/>
+  <testcase name="decodeToken with invalid token returns null" classname="com.android.knewsapp.security.JwtUtilsTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

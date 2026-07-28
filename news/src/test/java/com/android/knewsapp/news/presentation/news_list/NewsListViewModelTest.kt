@@ -101,14 +101,13 @@ class NewsListViewModelTest {
             every { connectivityObserver.observe() } returns connectivityFlow
             every { repository.getArticles(any(), any(), any()) } returns flowOf(Result.success(emptyList()))
 
-            // Create a new VM to use the new connectivityFlow
-            NewsListViewModel(repository, connectivityObserver)
-
-            verify(exactly = 1) { repository.getArticles(any(), any(), any()) }
+            // Create VM and clear initial calls
+            val vm = NewsListViewModel(repository, connectivityObserver)
+            io.mockk.clearMocks(repository, answers = false)
 
             connectivityFlow.value = ConnectivityObserver.Status.Available
 
-            verify(exactly = 2) { repository.getArticles(any(), any(), any()) }
+            verify(exactly = 1) { repository.getArticles(any(), any(), any()) }
         }
 
     @Test

@@ -4,6 +4,7 @@ import app.cash.turbine.test
 import com.android.knewsapp.network.connectivity.ConnectivityObserver
 import com.android.knewsapp.session.SessionManager
 import com.google.common.truth.Truth.assertThat
+import com.google.firebase.auth.FirebaseAuth
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
@@ -25,13 +26,15 @@ class AuthViewModelTest {
     private lateinit var viewModel: AuthViewModel
     private val sessionManager: SessionManager = mockk(relaxed = true)
     private val connectivityObserver: ConnectivityObserver = mockk(relaxed = true)
+    private val firebaseAuth: FirebaseAuth = mockk(relaxed = true)
 
     @Before
     fun setup() {
         Dispatchers.setMain(testDispatcher)
         every { sessionManager.user } returns MutableStateFlow(null)
         every { connectivityObserver.observe() } returns flowOf(ConnectivityObserver.Status.Available)
-        viewModel = AuthViewModel(sessionManager, connectivityObserver)
+        every { firebaseAuth.currentUser } returns null
+        viewModel = AuthViewModel(sessionManager, firebaseAuth, connectivityObserver)
     }
 
     @After

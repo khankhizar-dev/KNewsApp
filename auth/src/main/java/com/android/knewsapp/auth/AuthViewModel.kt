@@ -21,10 +21,9 @@ class AuthViewModel
     @Inject
     constructor(
         private val sessionManager: SessionManager,
+        private val auth: FirebaseAuth,
         connectivityObserver: ConnectivityObserver,
     ) : ViewModel() {
-        private val auth = FirebaseAuth.getInstance()
-
         val user: StateFlow<FirebaseUser?> = sessionManager.user
 
         val networkStatus: StateFlow<ConnectivityObserver.Status> =

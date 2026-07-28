@@ -16,9 +16,8 @@ class SessionManager
     @Inject
     constructor(
         private val dataStore: DataStore<Preferences>,
+        private val auth: FirebaseAuth,
     ) {
-        private val auth = FirebaseAuth.getInstance()
-
         private val _user = MutableStateFlow<FirebaseUser?>(auth.currentUser)
         val user: StateFlow<FirebaseUser?> = _user
 

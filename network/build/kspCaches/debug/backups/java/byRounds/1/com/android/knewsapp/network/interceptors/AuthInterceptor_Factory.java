@@ -1,5 +1,6 @@
 package com.android.knewsapp.network.interceptors;
 
+import com.android.knewsapp.security.SecurityManager;
 import com.android.knewsapp.session.SessionManager;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
@@ -25,20 +26,26 @@ import javax.inject.Provider;
 public final class AuthInterceptor_Factory implements Factory<AuthInterceptor> {
   private final Provider<SessionManager> sessionManagerProvider;
 
-  public AuthInterceptor_Factory(Provider<SessionManager> sessionManagerProvider) {
+  private final Provider<SecurityManager> securityManagerProvider;
+
+  public AuthInterceptor_Factory(Provider<SessionManager> sessionManagerProvider,
+      Provider<SecurityManager> securityManagerProvider) {
     this.sessionManagerProvider = sessionManagerProvider;
+    this.securityManagerProvider = securityManagerProvider;
   }
 
   @Override
   public AuthInterceptor get() {
-    return newInstance(sessionManagerProvider.get());
+    return newInstance(sessionManagerProvider.get(), securityManagerProvider.get());
   }
 
-  public static AuthInterceptor_Factory create(Provider<SessionManager> sessionManagerProvider) {
-    return new AuthInterceptor_Factory(sessionManagerProvider);
+  public static AuthInterceptor_Factory create(Provider<SessionManager> sessionManagerProvider,
+      Provider<SecurityManager> securityManagerProvider) {
+    return new AuthInterceptor_Factory(sessionManagerProvider, securityManagerProvider);
   }
 
-  public static AuthInterceptor newInstance(SessionManager sessionManager) {
-    return new AuthInterceptor(sessionManager);
+  public static AuthInterceptor newInstance(SessionManager sessionManager,
+      SecurityManager securityManager) {
+    return new AuthInterceptor(sessionManager, securityManager);
   }
 }

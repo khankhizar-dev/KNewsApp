@@ -6,26 +6,28 @@ A modern, modularized Android news application built with **Jetpack Compose** an
 
 ## 🚀 Key Features
 *   **Authentication:** Fully integrated Firebase Auth supporting both Email/Password and Google Sign-In via Credential Manager.
-*   **Persistent Sessions:** Smart session management that keeps users logged in across app restarts.
+*   **Persistent Sessions:** Smart session management using **DataStore** that keeps users logged in across app restarts.
 *   **Mobile First & Offline Sync:** 
     *   **Single Source of Truth (SSOT)**: Powered by **Room Database**.
     *   **Background Sync**: Seamlessly updates local cache from NewsAPI.
-*   **Rich News Experience:** Global filters, smart search, and fully **native full-story reading** (no WebViews).
-*   **Modular Architecture:** Clean separation with dedicated modules: `:app`, `:auth`, `:session`, `:security`, `:core-ui`, `:network`, `:news`, and `:benchmark`.
+*   **Rich News Experience:** 
+    *   Global filters (Country, Category, Language).
+    *   Smart search functionality.
+    *   **Shared Element Transitions**: Smooth hero animations between list and detail views.
+    *   Fully **native full-story reading** (no WebViews).
+*   **Modular Architecture:** 8-module clean architecture: `:app`, `:auth`, `:session`, `:security`, `:core-ui`, `:network`, `:news`, and `:benchmark`.
 *   **Performance Optimization**:
     *   **Baseline Profiles**: Automatically generated to improve app startup and frame performance.
-    *   **Macrobenchmarking**: Dedicated `:benchmark` module to measure cold/warm startup times.
-*   **90%+ Test Coverage:** Robust testing suite including Unit, UI, and Snapshot tests.
-*   **Static Code Analysis**: 
-    *   **KtLint**: Automated Kotlin linting and formatting.
-    *   **Detekt**: Advanced static code analysis for identifying code smells and complexity.
-*   **Automated CI/CD**: Fully integrated **GitHub Actions** pipeline for continuous integration.
+    *   **Macrobenchmarking**: Dedicated module to measure cold/warm startup times.
+*   **90%+ Test Coverage:** Robust testing suite including Unit tests, Robolectric, and **Paparazzi Snapshot tests**.
+*   **Static Code Analysis**: Enforced via **KtLint** and **Detekt** with automatic pre-commit hooks.
+*   **Automated CI/CD**: Fully integrated **GitHub Actions** pipeline.
 
 ## 🛠 Technical Stack
 *   **Language:** Kotlin
 *   **UI:** Jetpack Compose (Material 3)
-*   **Database:** Room
-*   **Networking:** Retrofit, OkHttp, Jsoup
+*   **Database:** Room (v3 with Auto-Migrations)
+*   **Networking:** Retrofit, OkHttp, Jsoup (Native Content Extraction)
 *   **DI:** Dagger Hilt
 *   **Benchmarking**: Macrobenchmark, Baseline Profiles
 *   **Static Analysis**: KtLint, Detekt
@@ -38,20 +40,23 @@ The project follows **Clean Architecture** principles:
 *   **Domain Layer**: Clean interfaces and models (SSOT).
 *   **Presentation Layer**: State-driven UI using ViewModels and Compose.
 
+## 🚦 Getting Started
+1. **Firebase Setup:** Place your `google-services.json` in the `app/` directory.
+2. **Google Sign-In:** Replace `YOUR_WEB_CLIENT_ID_HERE` in `res/values/strings.xml` with your Firebase Web Client ID.
+3. **Run Tests:** Use `./gradlew test` and `./gradlew verifyPaparazziDebug`.
+4. **Static Analysis:** Run `./gradlew ktlintCheck detekt`.
+    *   **Automated Enforcement**: Run `./gradlew installGitHooks` to automatically run static analysis on every `git commit`.
+5. **Generate Baseline Profile:** Run `./gradlew :app:generateBaselineProfile`.
+6. **Run Benchmarks:** Run the tests in the `:benchmark` module on a physical device.
+
+## 🔧 Windows Troubleshooting
+If you encounter `ClassNotFoundException: VS` or `java.io.IOException: The pipe is being closed` during tests on Windows, this is often due to unquoted spaces in your system `PATH` (e.g., `Microsoft VS Code`).
+*   **Workaround Included**: The project includes a `build.gradle.kts` workaround that cleans the `PATH` during test execution. 
+*   **Manual Fix**: Ensure your `JAVA_HOME` is correct and avoid having directories with spaces in your system path, or ensure they are properly quoted in Windows Environment Settings.
+
 ## 🌿 Branching Strategy
 *   **`main`**: Latest stable version.
 *   **`feature/offline-sync`**: Mobile-First implementation with Room.
 *   **`feature/network-security`**: JWT and EC signing implementation.
 *   **`feature/testing-suite`**: Full testing implementation.
 *   **`feature/performance-benchmarking`**: Startup time improvements and Baseline Profiles.
-*   **`feature/ci-cd`**: GitHub Actions automation.
-
-## 🚦 Getting Started
-1. **Firebase Setup:** Place `google-services.json` in `app/`.
-2. **Google Sign-In:** Configure `default_web_client_id` in `strings.xml`.
-3. **Run Tests:** Use `./gradlew test` and `./gradlew verifyPaparazziDebug`.
-4. **Static Analysis:** Run `./gradlew ktlintCheck detekt`.
-    *   **Automated Enforcement**: Run `./gradlew installGitHooks` to automatically run static analysis on every `git commit`.
-5. **Generate Baseline Profile:** Run `./gradlew :app:generateBaselineProfile`.
-6. **Run Benchmarks:** Run the tests in the `:benchmark` module on a physical device.
-7. **Build:** Sync Gradle and run the `:app` module.

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.android.knewsapp.news.data.repository.NewsRepositoryImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-07-28T06:59:19.098Z" hostname="DESKTOP-2NI169U" time="1.808">
+  <properties/>
+  <testcase name="getArticles emits failure when remote fetch fails" classname="com.android.knewsapp.news.data.repository.NewsRepositoryImplTest" time="1.73"/>
+  <testcase name="toggleBookmark calls dao delete when already bookmarked" classname="com.android.knewsapp.news.data.repository.NewsRepositoryImplTest" time="0.078"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (D:\gradle-home\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.17\e3c251a39dc90badaf71c83427ba46840f219d8d\byte-buddy-agent-1.14.17.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
