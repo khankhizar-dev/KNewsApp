@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.android.knewsapp.news.data.local.dao.NewsDaoTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-07-28T07:21:04.913Z" hostname="DESKTOP-2NI169U" time="1.512">
-  <properties/>
-  <testcase name="clear articles removes only matching" classname="com.android.knewsapp.news.data.local.dao.NewsDaoTest" time="1.431"/>
-  <testcase name="insert and get articles" classname="com.android.knewsapp.news.data.local.dao.NewsDaoTest" time="0.081"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.android.knewsapp.network.interceptors.AuthInterceptorTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-07-28T07:20:08.172Z" hostname="DESKTOP-2NI169U" time="2.183">
-  <properties/>
-  <testcase name="intercept adds Authorization header when token exists" classname="com.android.knewsapp.network.interceptors.AuthInterceptorTest" time="2.157"/>
-  <testcase name="intercept does not add Authorization header when token is null" classname="com.android.knewsapp.network.interceptors.AuthInterceptorTest" time="0.009"/>
-  <testcase name="intercept adds security headers when token exists" classname="com.android.knewsapp.network.interceptors.AuthInterceptorTest" time="0.015"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
