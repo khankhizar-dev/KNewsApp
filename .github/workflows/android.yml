@@ -25,6 +25,20 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
+    - name: Create dummy google-services.json
+      run: |
+        echo '{
+          "project_info": { "project_number": "123456789", "project_id": "dummy-id" },
+          "client": [
+            {
+              "client_info": { "mobilesdk_app_id": "1:123:android:123", "android_client_info": { "package_name": "com.android.knewsapp" } },
+              "api_key": [ { "current_key": "dummy_key" } ],
+              "services": { "appinvite_service": { "other_platform_oauth_client": [] } }
+            }
+          ],
+          "configuration_version": "1"
+        }' > app/google-services.json
+
     - name: Run Static Analysis (KtLint)
       run: ./gradlew ktlintCheck
 
